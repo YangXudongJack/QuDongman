@@ -1,0 +1,27 @@
+
+/* Class = "UIButton"; normalTitle = "手机快捷登录"; ObjectID = "25y-kP-r0k"; */
+"25y-kP-r0k.normalTitle" = "手机快捷登录";
+
+/* Class = "UIButton"; selectedTitle = "手机快捷登录"; ObjectID = "25y-kP-r0k"; */
+"25y-kP-r0k.selectedTitle" = "手机快捷登录";
+
+/* Class = "UIButton"; normalTitle = "账号密码登录"; ObjectID = "9sQ-Iz-vvX"; */
+"9sQ-Iz-vvX.normalTitle" = "账号密码登录";
+
+/* Class = "UIButton"; selectedTitle = "账号密码登录"; ObjectID = "9sQ-Iz-vvX"; */
+"9sQ-Iz-vvX.selectedTitle" = "账号密码登录";
+
+/* Class = "UIButton"; normalTitle = "登录"; ObjectID = "WN4-Oe-U9m"; */
+"WN4-Oe-U9m.normalTitle" = "登录";
+
+/* Class = "UIButton"; normalTitle = "忘记密码"; ObjectID = "Y7s-tT-bzP"; */
+"Y7s-tT-bzP.normalTitle" = "忘记密码";
+
+/* Class = "UITextField"; placeholder = "请输入您的账号"; ObjectID = "b1A-lR-aWX"; */
+"b1A-lR-aWX.placeholder" = "请输入您的账号";
+
+/* Class = "UIButton"; normalTitle = "注册"; ObjectID = "b1f-td-inq"; */
+"b1f-td-inq.normalTitle" = "注册";
+
+/* Class = "UITextField"; placeholder = "请输入您的密码"; ObjectID = "nxV-rr-paG"; */
+"nxV-rr-paG.placeholder" = "请输入您的密码";

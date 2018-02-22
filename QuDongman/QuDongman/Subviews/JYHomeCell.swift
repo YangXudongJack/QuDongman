@@ -17,7 +17,7 @@ class JYHomeCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    class func createCell(tableview: UITableView, info: NSDictionary, indexPath : NSIndexPath) -> JYHomeCell{
+    class func createCell(tableview: UITableView, info: JYBanner, indexPath : NSIndexPath) -> JYHomeCell{
         let identifier = String.init("identifier\(indexPath.row)")
         var homecell:JYHomeCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? JYHomeCell
         if homecell == nil {
@@ -26,9 +26,9 @@ class JYHomeCell: UITableViewCell {
         
         let queue = DispatchQueue(label: "load.image")
         queue.async {
-            let imageName = info["banner_image"]!
-            if (imageName as! String).isEmpty == false {
-                let url = URL.init(string: imageName as! String)!
+            let imageName = info.banner_image!
+            if imageName.isEmpty == false {
+                let url = URL.init(string: imageName)!
                 do {
                     let data : NSData = try NSData(contentsOf: url)
                     DispatchQueue.main.async {
