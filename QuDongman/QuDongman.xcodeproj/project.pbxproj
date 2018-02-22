@@ -31,6 +31,7 @@
 		0B6F343B203EB823009F6F39 /* LanguageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F343A203EB823009F6F39 /* LanguageManager.swift */; };
 		0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F3444203ED1BC009F6F39 /* Localizable.strings */; };
 		0B6F3449203EE5EE009F6F39 /* String+Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F3448203EE5EE009F6F39 /* String+Sign.swift */; };
+		0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F344F203F0950009F6F39 /* JYUser.swift */; };
 		0BAA5E601FAA30A50063774E /* CartoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */; };
 		0BAE85FA1FA37FDB005E9027 /* JYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE85F91FA37FDB005E9027 /* JYButton.swift */; };
 		0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252A61FA30E7800B8CB52 /* AppDelegate.swift */; };
@@ -130,6 +131,7 @@
 		0B6F3445203ED1C0009F6F39 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0B6F3448203EE5EE009F6F39 /* String+Sign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Sign.swift"; sourceTree = "<group>"; };
 		0B6F344A203EECD9009F6F39 /* QuDongman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuDongman-Bridging-Header.h"; sourceTree = "<group>"; };
+		0B6F344F203F0950009F6F39 /* JYUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYUser.swift; sourceTree = "<group>"; };
 		0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonViewController.swift; sourceTree = "<group>"; };
 		0BAE85F91FA37FDB005E9027 /* JYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYButton.swift; sourceTree = "<group>"; };
 		0BC252A31FA30E7800B8CB52 /* QuDongman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuDongman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -161,6 +163,7 @@
 			children = (
 				0B6F340620387489009F6F39 /* JYBanner.swift */,
 				0B6F340D203877E2009F6F39 /* JYCartoon.swift */,
+				0B6F344F203F0950009F6F39 /* JYUser.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				0B6F340720387489009F6F39 /* JYBanner.swift in Sources */,
 				0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */,
 				0B6F341A203E5DBC009F6F39 /* MineViewController.swift in Sources */,
+				0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */,
 				0B1706131FC89210009E3D69 /* CartoonContentCell.swift in Sources */,
 				0B6F3449203EE5EE009F6F39 /* String+Sign.swift in Sources */,
 				0BC252C81FA33A1A00B8CB52 /* HomeViewController.swift in Sources */,
