@@ -14,8 +14,13 @@ class JYUser: JYBaseObject {
     @objc dynamic var access_token:String?
     @objc dynamic var avatar:String?
     
-    override init (dict:[String:AnyObject]) {
+    static let shared = JYUser.init(dict: [:])
+    
+    private override init (dict:[String:AnyObject]) {
         super.init(dict: dict)
+    }
+    
+    func update(dict:[String:AnyObject]) -> Void {
         setValuesForKeys(dict)
     }
 }

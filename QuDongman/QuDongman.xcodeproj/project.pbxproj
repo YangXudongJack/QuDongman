@@ -40,6 +40,8 @@
 		0BC252C21FA312A500B8CB52 /* UIColor+RGB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252C11FA312A500B8CB52 /* UIColor+RGB.swift */; };
 		0BC252C81FA33A1A00B8CB52 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252C41FA335B900B8CB52 /* HomeViewController.swift */; };
 		0BC252C91FA33A1E00B8CB52 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252C61FA335D400B8CB52 /* AboutViewController.swift */; };
+		0BF8835A204596720018BEF9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF88359204596720018BEF9 /* RegisterViewController.swift */; };
+		0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -144,6 +146,8 @@
 		0BC252C11FA312A500B8CB52 /* UIColor+RGB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+RGB.swift"; sourceTree = "<group>"; };
 		0BC252C41FA335B900B8CB52 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0BC252C61FA335D400B8CB52 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		0BF88359204596720018BEF9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUnit+Login.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +223,6 @@
 			children = (
 				0B6F341520387C56009F6F39 /* JYUrl.swift */,
 				0B6F3448203EE5EE009F6F39 /* String+Sign.swift */,
-				0B6F344A203EECD9009F6F39 /* QuDongman-Bridging-Header.h */,
 			);
 			path = url;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				0B10B9781FBB3FE00080F488 /* CartoonDetailViewController.swift */,
 				0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */,
 				0B6F3424203E637A009F6F39 /* LoginViewController.swift */,
+				0BF88359204596720018BEF9 /* RegisterViewController.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -299,6 +303,7 @@
 				0B15FF471FC71A9B00639BA2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
+			wrapsLines = 1;
 		};
 		0BC252A41FA30E7800B8CB52 /* Products */ = {
 			isa = PBXGroup;
@@ -316,6 +321,7 @@
 				0BC252BE1FA310C400B8CB52 /* Extension */,
 				0B119B451FA4BE89002270EA /* Data */,
 				0BC252BD1FA310BD00B8CB52 /* Tools */,
+				0B6F344A203EECD9009F6F39 /* QuDongman-Bridging-Header.h */,
 				0BC252B81FA30E9C00B8CB52 /* Subviews */,
 				0BC252AF1FA30E7800B8CB52 /* LaunchScreen.storyboard */,
 				0BC252B21FA30E7800B8CB52 /* Info.plist */,
@@ -340,10 +346,9 @@
 		0BC252BD1FA310BD00B8CB52 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0BF883642046E8680018BEF9 /* HttpRequest */,
 				0B6F3439203EB7E1009F6F39 /* Language */,
 				0B6F3426203E876D009F6F39 /* Device */,
-				0B6F341420387C32009F6F39 /* url */,
-				0B1706031FC72BC2009E3D69 /* HttpUnit.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -355,6 +360,16 @@
 				0B12F9311FA5DDF4008FF9DA /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		0BF883642046E8680018BEF9 /* HttpRequest */ = {
+			isa = PBXGroup;
+			children = (
+				0B6F341420387C32009F6F39 /* url */,
+				0B1706031FC72BC2009E3D69 /* HttpUnit.swift */,
+				0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */,
+			);
+			path = HttpRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -505,6 +520,7 @@
 				0B10B97F1FBB59E80080F488 /* CartoonCoverCell.swift in Sources */,
 				0B1706041FC72BC2009E3D69 /* HttpUnit.swift in Sources */,
 				0B6F341320387A08009F6F39 /* JYUrlBase.swift in Sources */,
+				0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */,
 				0BC252BC1FA30F2500B8CB52 /* JYNavigationController.swift in Sources */,
 				0B6F341C203E5E85009F6F39 /* SearchViewController.swift in Sources */,
 				0B10B9791FBB3FE00080F488 /* CartoonDetailViewController.swift in Sources */,
@@ -514,6 +530,7 @@
 				0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */,
 				0B6F341A203E5DBC009F6F39 /* MineViewController.swift in Sources */,
 				0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */,
+				0BF8835A204596720018BEF9 /* RegisterViewController.swift in Sources */,
 				0B1706131FC89210009E3D69 /* CartoonContentCell.swift in Sources */,
 				0B6F3449203EE5EE009F6F39 /* String+Sign.swift in Sources */,
 				0BC252C81FA33A1A00B8CB52 /* HomeViewController.swift in Sources */,
@@ -684,7 +701,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8471817-d40e-4428-a2c1-23cd808e8919";
 				PROVISIONING_PROFILE_SPECIFIER = CartoonDeveloper;
-				SWIFT_OBJC_BRIDGING_HEADER = "QuDongman/Tools/url/QuDongman-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/QuDongman/QuDongman-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -710,7 +727,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b8471817-d40e-4428-a2c1-23cd808e8919";
 				PROVISIONING_PROFILE_SPECIFIER = CartoonDeveloper;
-				SWIFT_OBJC_BRIDGING_HEADER = "QuDongman/Tools/url/QuDongman-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/QuDongman/QuDongman-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

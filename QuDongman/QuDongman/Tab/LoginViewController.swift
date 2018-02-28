@@ -32,6 +32,8 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var authorCodeBtn: UIButton!
     
+    @IBOutlet weak var quickLoginBottomConstraint: NSLayoutConstraint!
+    
     var timer:Timer?
     
     var count:Int?
@@ -43,10 +45,13 @@ class LoginViewController: UIViewController {
         return storyboard.instantiateViewController(withIdentifier: "LoginViewController") as! LoginViewController
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
         if DeviceManager.isIphone4() {
             logoTopConstraint.constant = 15
             loginTypeTopConstraint.constant = 5
@@ -55,6 +60,12 @@ class LoginViewController: UIViewController {
             loginTypeTopConstraint.constant = 15
         }
         count = 60
+        
+        self.hideTabbar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 
     @IBAction func shortcutLoginAction(_ sender: UIButton) {
@@ -90,14 +101,21 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginAction(_ sender: UIButton) {
-        let url = JYUrl.shortcutLogin()
-        var params:Dictionary<String, Any> = [:]
         if isShortcut {
-            params["tel"] = accountTF.text
-            params["signup_type"] = "2"
-            params["code"] = passwordTF.text
-            HttpUnit.HttpPost(url: url, params: params, responseObject: { (response, status) in
-                
+            weak var weakself = self
+            HttpUnit.fastRegister(params: { () -> Dictionary<String, Any> in
+                var params:Dictionary<String, Any> = [:]
+                params["tel"] = weakself?.accountTF.text
+                params["signup_type"] = "2"
+                params["code"] = weakself?.passwordTF.text
+                return params
+            }, responseObject: { (response, status) in
+                if status {
+                    let data = response.object(forKey: "data")
+                    JYUser.shared.update(dict: data as! [String : AnyObject])
+                    
+                    //登陆成功
+                }
             })
         }
     }
@@ -113,10 +131,7 @@ class LoginViewController: UIViewController {
                 timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(LoginViewController.countDown), userInfo: nil, repeats: true)
             }
             
-            let url = JYUrl.authorCode()
-            HttpUnit.HttpPost(url: url, params: ["tel":accountTF.text as Any], responseObject: { (response, status) in
-                
-            })
+            HttpUnit.getAuthCode(number: accountTF.text!)
         }else{
             
         }

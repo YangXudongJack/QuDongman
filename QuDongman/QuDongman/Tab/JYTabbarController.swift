@@ -40,9 +40,15 @@ class JYTabbarController: UITabBarController {
     
     func initControllers() -> Void {
         let home = HomeViewController()
-        let about = LoginViewController.create()
+        let about = AboutViewController()
         let search = SearchViewController()
-        let mine = MineViewController()
+        
+        let mine:UIViewController
+        if JYUser.shared.id == nil {
+            mine = LoginViewController.create()
+        }else{
+            mine = MineViewController()
+        }
         
         var views = [home, about, search, mine]
         var controllers = [UIViewController]()
