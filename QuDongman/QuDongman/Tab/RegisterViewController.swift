@@ -50,6 +50,7 @@ class RegisterViewController: UIViewController {
                 JYUser.shared.update(dict: data as! [String : AnyObject])
                 
                 //登陆成功
+                self.navigationController?.popViewController(animated: true)
             }
         })
     }

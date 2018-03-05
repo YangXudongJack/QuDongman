@@ -29,6 +29,10 @@ class JYUrl: JYUrlBase {
         return JYUrl.construct(url: super.url_v2().appending("/member/signup"))
     }
     
+    class func login() -> String {
+        return JYUrl.construct(url: super.url_v2().appending("/member/signin"))
+    }
+    
     class func construct(url: String) -> String {
         var urlString = String()
         if url.contains("?") {

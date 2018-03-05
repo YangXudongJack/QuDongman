@@ -114,7 +114,22 @@ class LoginViewController: UIViewController {
                     let data = response.object(forKey: "data")
                     JYUser.shared.update(dict: data as! [String : AnyObject])
                     
-                    //登陆成功
+                    weakself?.dismiss(animated: true, completion: nil)
+                }
+            })
+        }else{
+            weak var weakself = self
+            HttpUnit.login(params: { () -> Dictionary<String, Any> in
+                var params:Dictionary<String, Any> = [:]
+                params["username"] = weakself?.accountTF.text
+                params["password"] = weakself?.passwordTF.text
+                return params
+            }, responseObject: { (response, status) in
+                if status {
+                    let data = response.object(forKey: "data")
+                    JYUser.shared.update(dict: data as! [String : AnyObject])
+                    
+                    weakself?.dismiss(animated: true, completion: nil)
                 }
             })
         }

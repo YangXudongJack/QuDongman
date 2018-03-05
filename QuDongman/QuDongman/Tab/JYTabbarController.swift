@@ -42,13 +42,7 @@ class JYTabbarController: UITabBarController {
         let home = HomeViewController()
         let about = AboutViewController()
         let search = SearchViewController()
-        
-        let mine:UIViewController
-        if JYUser.shared.id == nil {
-            mine = LoginViewController.create()
-        }else{
-            mine = MineViewController()
-        }
+        let mine = MineViewController.create()
         
         var views = [home, about, search, mine]
         var controllers = [UIViewController]()

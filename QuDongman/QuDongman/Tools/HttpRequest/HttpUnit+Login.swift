@@ -22,4 +22,10 @@ extension HttpUnit {
         let parameters = params
         HttpPost(url: url, params: parameters(), responseObject: responseObject)
     }
+    
+    class func login(params: @escaping () -> Dictionary<String, Any>, responseObject: @escaping (_ info: NSDictionary, _ status: Bool) -> Void) -> Void {
+        let url = JYUrl.login()
+        let parameters = params
+        HttpPost(url: url, params: parameters(), responseObject: responseObject)
+    }
 }

@@ -42,6 +42,8 @@
 		0BC252C91FA33A1E00B8CB52 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252C61FA335D400B8CB52 /* AboutViewController.swift */; };
 		0BF8835A204596720018BEF9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF88359204596720018BEF9 /* RegisterViewController.swift */; };
 		0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */; };
+		0BFFC705204D905D00ED46A3 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFC703204D905D00ED46A3 /* UserProfileController.swift */; };
+		0BFFC706204D905E00ED46A3 /* UserProfileController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BFFC704204D905D00ED46A3 /* UserProfileController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -148,6 +150,8 @@
 		0BC252C61FA335D400B8CB52 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0BF88359204596720018BEF9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUnit+Login.swift"; sourceTree = "<group>"; };
+		0BFFC703204D905D00ED46A3 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
+		0BFFC704204D905D00ED46A3 /* UserProfileController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserProfileController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +277,7 @@
 		0B6F3421203E5EE4009F6F39 /* Mine */ = {
 			isa = PBXGroup;
 			children = (
+				0BFFC6FA204D8F7500ED46A3 /* Sub */,
 				0B6F3419203E5DBC009F6F39 /* MineViewController.swift */,
 			);
 			path = Mine;
@@ -370,6 +375,15 @@
 				0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */,
 			);
 			path = HttpRequest;
+			sourceTree = "<group>";
+		};
+		0BFFC6FA204D8F7500ED46A3 /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				0BFFC703204D905D00ED46A3 /* UserProfileController.swift */,
+				0BFFC704204D905D00ED46A3 /* UserProfileController.xib */,
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +509,7 @@
 				0B15FFC71FC724BF00639BA2 /* Main.storyboard in Resources */,
 				0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */,
 				0B6F3418203A809E009F6F39 /* Assets.xcassets in Resources */,
+				0BFFC706204D905E00ED46A3 /* UserProfileController.xib in Resources */,
 				0B15FFC81FC724BF00639BA2 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -514,6 +529,7 @@
 				0B6F3425203E637A009F6F39 /* LoginViewController.swift in Sources */,
 				0B6F340E203877E2009F6F39 /* JYCartoon.swift in Sources */,
 				0BC252C21FA312A500B8CB52 /* UIColor+RGB.swift in Sources */,
+				0BFFC705204D905D00ED46A3 /* UserProfileController.swift in Sources */,
 				0B6F341620387C56009F6F39 /* JYUrl.swift in Sources */,
 				0BAE85FA1FA37FDB005E9027 /* JYButton.swift in Sources */,
 				0BC252BA1FA30F1000B8CB52 /* JYTabbarController.swift in Sources */,
