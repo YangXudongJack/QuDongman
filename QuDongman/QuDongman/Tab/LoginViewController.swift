@@ -168,6 +168,21 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func WeChatLogin(_ sender: UIButton) {
+        let req = SendAuthReq()
+        req.scope = "snsapi_userinfo"
+        req.state = "App"
+        
+        weak var weakself = self
+        if WXApi.send(req) {
+            ShareManager.shared.shareResultClosure(closure: {
+                weakself?.dismiss(animated: true, completion: nil)
+            })
+        }else{
+            
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }

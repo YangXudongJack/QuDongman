@@ -54,7 +54,11 @@ class JYTabbarController: UITabBarController {
     }
     
     func customTabbar() -> Void{
-        tabbarVessel = UIView(frame: CGRect(x: 0, y: screenHeight! - tabbarViewHeight, width: screenWidth!, height: tabbarViewHeight))
+        var fixOriginY:CGFloat = 0
+        if DeviceManager.isIphoneX() {
+            fixOriginY = 20
+        }
+        tabbarVessel = UIView(frame: CGRect(x: 0, y: screenHeight! - tabbarViewHeight - fixOriginY, width: screenWidth!, height: tabbarViewHeight + fixOriginY))
         tabbarVessel?.backgroundColor = UIColor.white
         self.view.addSubview(tabbarVessel!)
         
@@ -119,6 +123,10 @@ class JYTabbarController: UITabBarController {
                 btn.isSelected = false
             }
         }
+    }
+    
+    override func prefersHomeIndicatorAutoHidden() -> Bool {
+        return true
     }
 
     override func didReceiveMemoryWarning() {

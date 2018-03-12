@@ -210,6 +210,9 @@
                                     <constraint firstAttribute="height" constant="52.5" id="ebi-ut-G3x"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="login_WEIXIN"/>
+                                <connections>
+                                    <action selector="WeChatLogin:" destination="1q8-1g-9xc" eventType="touchUpInside" id="vev-87-lvW"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kaV-FB-07Y">
                                 <rect key="frame" x="238.33333333333334" y="637.66666666666663" width="52.333333333333343" height="52.333333333333371"/>

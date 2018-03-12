@@ -12,12 +12,18 @@ import Alamofire
 class HttpUnit: NSObject {
     
     class func HttpGet(url: String, responseObject: @escaping (_ info: NSDictionary, _ status: Bool) -> Void) -> Void {
+        HttpGet_Origin(url: url) { (response) in
+            let status = response.object(forKey: "status")
+            responseObject(response, (status as! NSString).boolValue)
+        }
+    }
+    
+    class func HttpGet_Origin(url: String, responseObject: @escaping (_ info: NSDictionary) -> Void) -> Void {
         Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             if(response.error == nil){
                 if let json = response.result.value {
                     let dic : NSDictionary = json as! NSDictionary
-                    let status = dic.object(forKey: "status")
-                    responseObject(json as! NSDictionary, (status as! NSString).boolValue)
+                    responseObject(dic)
                 }
             }
         }

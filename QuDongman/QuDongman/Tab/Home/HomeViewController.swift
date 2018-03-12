@@ -23,7 +23,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let navHeight = self.navigationController?.navigationBar.frame.size.height
         var frame:CGRect?
         if #available(iOS 11.0, *) {
-            frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - navHeight! - 50 - UIApplication.shared.statusBarFrame.size.height)
+            var fixHeight:CGFloat = 0
+            if DeviceManager.isIphoneX() {
+                fixHeight = 20
+            }
+            
+            frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - navHeight! - 50 - UIApplication.shared.statusBarFrame.size.height - fixHeight)
         } else {
             frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - navHeight! - UIApplication.shared.statusBarFrame.size.height)
         }

@@ -90,4 +90,13 @@ class DeviceManager: NSObject {
             return (false || self.simulator5(model: model))
         }
     }
+    
+    class func isIphoneX() -> Bool {
+        let model = DeviceManager().model()
+        if model.contains("iPhone10,3") {
+            return true
+        }else {
+            return false
+        }
+    }
 }

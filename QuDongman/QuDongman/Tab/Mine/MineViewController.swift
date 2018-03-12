@@ -10,6 +10,8 @@ import UIKit
 
 class MineViewController: UITableViewController {
     
+    var screenWidth: CGFloat = UIScreen.main.bounds.size.width
+    
     class func create() -> MineViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
         return storyboard.instantiateViewController(withIdentifier: "MineViewController") as! MineViewController
@@ -25,8 +27,23 @@ class MineViewController: UITableViewController {
         super.viewDidLoad()
 
         self.automaticallyAdjustsScrollViewInsets = false
-        let fixHeight = -64 + UIApplication.shared.statusBarFrame.height - 20
+        var fixHeight = -64 + UIApplication.shared.statusBarFrame.height - 20
+        if DeviceManager.isIphoneX() {
+            fixHeight -= 40
+        }
         self.tableView.contentInset = UIEdgeInsetsMake(fixHeight, 0, 0, 0 )
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.section == 0 && indexPath.row == 0{
+            if DeviceManager.isIphoneX() {
+                return 160.0
+            }else{
+                return 120.0
+            }
+        }else {
+            return 56.0
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
