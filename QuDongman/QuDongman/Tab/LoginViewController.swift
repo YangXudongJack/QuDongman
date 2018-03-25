@@ -66,6 +66,8 @@ class LoginViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        self.showTabbar()
     }
 
     @IBAction func shortcutLoginAction(_ sender: UIButton) {
@@ -181,6 +183,10 @@ class LoginViewController: UIViewController {
         }else{
             
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

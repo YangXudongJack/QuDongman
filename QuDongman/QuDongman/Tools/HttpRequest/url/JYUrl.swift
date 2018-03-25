@@ -9,28 +9,28 @@
 import UIKit
 
 class JYUrl: JYUrlBase {
-    class func home() -> String {
-        return JYUrlBase.url()
+    class func home(page : Int) -> String {
+        return JYUrl.construct(url: super.url().appending("?pre-page=0&page=\(page)"))
     }
     
     class func detail(id: Int) -> String {
-        return super.url().appending("/books/\(id)")
+        return JYUrl.construct(url: super.url().appending("/books/\(id)"))
     }
     
     class func content(id: Int, chapter : Int) -> String {
-        return super.url().appending("/contents/\(id)/\(chapter)")
+        return JYUrl.construct(url: super.url().appending("/contents/\(id)/\(chapter)"))
     }
     
     class func authorCode() -> String {
-        return JYUrl.construct(url: super.url_v2().appending("/member/sms"))
+        return JYUrl.construct(url: super.url().appending("/member/sms"))
     }
     
     class func shortcutLogin() -> String {
-        return JYUrl.construct(url: super.url_v2().appending("/member/signup"))
+        return JYUrl.construct(url: super.url().appending("/member/signup"))
     }
     
     class func login() -> String {
-        return JYUrl.construct(url: super.url_v2().appending("/member/signin"))
+        return JYUrl.construct(url: super.url().appending("/member/signin"))
     }
     
     class func construct(url: String) -> String {

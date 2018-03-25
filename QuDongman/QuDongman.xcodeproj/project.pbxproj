@@ -39,6 +39,8 @@
 		0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0B6F3444203ED1BC009F6F39 /* Localizable.strings */; };
 		0B6F3449203EE5EE009F6F39 /* String+Sign.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F3448203EE5EE009F6F39 /* String+Sign.swift */; };
 		0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F344F203F0950009F6F39 /* JYUser.swift */; };
+		0B9BDE932067B70000915A0A /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BDE912067B70000915A0A /* UserAccountController.swift */; };
+		0B9BDE942067B70000915A0A /* UserAccountController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9BDE922067B70000915A0A /* UserAccountController.xib */; };
 		0BAA5E601FAA30A50063774E /* CartoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */; };
 		0BAE85FA1FA37FDB005E9027 /* JYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE85F91FA37FDB005E9027 /* JYButton.swift */; };
 		0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252A61FA30E7800B8CB52 /* AppDelegate.swift */; };
@@ -153,6 +155,8 @@
 		0B6F3448203EE5EE009F6F39 /* String+Sign.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Sign.swift"; sourceTree = "<group>"; };
 		0B6F344A203EECD9009F6F39 /* QuDongman-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QuDongman-Bridging-Header.h"; sourceTree = "<group>"; };
 		0B6F344F203F0950009F6F39 /* JYUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYUser.swift; sourceTree = "<group>"; };
+		0B9BDE912067B70000915A0A /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
+		0B9BDE922067B70000915A0A /* UserAccountController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserAccountController.xib; sourceTree = "<group>"; };
 		0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonViewController.swift; sourceTree = "<group>"; };
 		0BAE85F91FA37FDB005E9027 /* JYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYButton.swift; sourceTree = "<group>"; };
 		0BC252A31FA30E7800B8CB52 /* QuDongman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuDongman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,8 +303,6 @@
 				0BC252B91FA30F1000B8CB52 /* JYTabbarController.swift */,
 				0BC252BB1FA30F2500B8CB52 /* JYNavigationController.swift */,
 				0BC252C61FA335D400B8CB52 /* AboutViewController.swift */,
-				0B10B9781FBB3FE00080F488 /* CartoonDetailViewController.swift */,
-				0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */,
 				0B6F3424203E637A009F6F39 /* LoginViewController.swift */,
 				0BF88359204596720018BEF9 /* RegisterViewController.swift */,
 			);
@@ -310,6 +312,7 @@
 		0B6F341E203E5EBC009F6F39 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0B9BDE9D2067C3F300915A0A /* Sub */,
 				0BC252C41FA335B900B8CB52 /* HomeViewController.swift */,
 			);
 			path = Home;
@@ -353,6 +356,15 @@
 				0B6F343A203EB823009F6F39 /* LanguageManager.swift */,
 			);
 			path = Language;
+			sourceTree = "<group>";
+		};
+		0B9BDE9D2067C3F300915A0A /* Sub */ = {
+			isa = PBXGroup;
+			children = (
+				0B10B9781FBB3FE00080F488 /* CartoonDetailViewController.swift */,
+				0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */,
+			);
+			path = Sub;
 			sourceTree = "<group>";
 		};
 		0BC2529A1FA30E7800B8CB52 = {
@@ -439,6 +451,8 @@
 			children = (
 				0BFFC703204D905D00ED46A3 /* UserProfileController.swift */,
 				0BFFC704204D905D00ED46A3 /* UserProfileController.xib */,
+				0B9BDE912067B70000915A0A /* UserAccountController.swift */,
+				0B9BDE922067B70000915A0A /* UserAccountController.xib */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -563,6 +577,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B9BDE942067B70000915A0A /* UserAccountController.xib in Resources */,
 				0B15FFC71FC724BF00639BA2 /* Main.storyboard in Resources */,
 				0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */,
 				0B6F3418203A809E009F6F39 /* Assets.xcassets in Resources */,
@@ -584,6 +599,7 @@
 				0BC252C91FA33A1E00B8CB52 /* AboutViewController.swift in Sources */,
 				0B6F343B203EB823009F6F39 /* LanguageManager.swift in Sources */,
 				0B6F3425203E637A009F6F39 /* LoginViewController.swift in Sources */,
+				0B9BDE932067B70000915A0A /* UserAccountController.swift in Sources */,
 				0B6F340E203877E2009F6F39 /* JYCartoon.swift in Sources */,
 				0BC252C21FA312A500B8CB52 /* UIColor+RGB.swift in Sources */,
 				0BFFC705204D905D00ED46A3 /* UserProfileController.swift in Sources */,

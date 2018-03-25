@@ -10,9 +10,10 @@ import UIKit
 
 class CartoonDetailViewController: UITableViewController {
 
-    var dictionary:NSDictionary?
-    var book_result:NSDictionary?
-    var chapter_results:NSArray?
+    var detail:JYBanner?
+//    var book_result:NSDictionary?
+//    var chapter_results:NSArray?
+    var bookInfo:JYCartoon?
     var loadtag:Bool = true
     var id:Int?
     
@@ -25,14 +26,15 @@ class CartoonDetailViewController: UITableViewController {
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false
         
-        let id_t = dictionary?.object(forKey: "id")
-        id = (id_t as! NSString).integerValue
-        HttpUnit.HttpGet(url: JYUrl.detail(id:id!)) { (response, status) in
+        id = (detail?.id! as! NSString).integerValue
+        HttpUnit.HttpGet(url: JYUrl.detail(id:Int((detail?.id)!)!)) { (response, status) in
             if status {
                 let data = response.object(forKey: "data")
-                self.book_result = (data as! NSDictionary).object(forKey: "book_result") as? NSDictionary
+//                self.book_result = (data as! NSDictionary).object(forKey: "book_result") as? NSDictionary
+//
+//                self.chapter_results = (data as! NSDictionary).object(forKey: "chapter_results") as? NSArray
                 
-                self.chapter_results = (data as! NSDictionary).object(forKey: "chapter_results") as? NSArray
+                self.bookInfo = JYCartoon.init(dict: data as! [String : AnyObject])
                 
                 self.loadtag = false
                 self.tableView.reloadData()
@@ -89,26 +91,27 @@ class CartoonDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         weak var weakSelf = self
         if indexPath.row == 0 {
-            let cell : CartoonCoverCell = CartoonCoverCell.createCell(tableview: tableView, info: book_result!)
+            let cell : CartoonCoverCell = CartoonCoverCell.createCell(tableview: tableView, info: bookInfo!)
             cell.readClickColsure {
-                if weakSelf?.chapter_results?.count != 0 {
+                if weakSelf?.bookInfo?.chapter_results?.count != 0 {
                     let cartoon: CartoonViewController = CartoonViewController()
+                    
                     cartoon.id = self.id
-                    let info = weakSelf?.chapter_results?.firstObject as! NSDictionary
-                    cartoon.chapter = (info.object(forKey: "id") as! NSString).integerValue
-                    cartoon.title = info.object(forKey: "name") as? String
+                    let info = weakSelf?.bookInfo?.chapter_results?.first as! JYCatelog
+                    cartoon.chapter = (info.id as! NSString).integerValue
+                    cartoon.title = info.name
                     weakSelf?.navigationController?.pushViewController(cartoon, animated: true)
                 }
             };
             return cell
         }else{
-            let cell : CartoonCatelogCell = CartoonCatelogCell.createCell(tableview: tableView, info: chapter_results!)
+            let cell : CartoonCatelogCell = CartoonCatelogCell.createCell(tableview: tableView, info: bookInfo!)
             cell.readClickColsure(colsure: { (tag) in
                 let cartoon: CartoonViewController = CartoonViewController()
                 cartoon.id = weakSelf?.id
-                let info = weakSelf?.chapter_results?.object(at: tag - 1) as! NSDictionary
-                cartoon.chapter = (info.object(forKey: "id") as! NSString).integerValue
-                cartoon.title = info.object(forKey: "name") as? String
+                let info = weakSelf?.bookInfo?.chapter_results?[tag - 1] as! JYCatelog
+                cartoon.chapter = (info.id as! NSString).integerValue
+                cartoon.title = info.name
                 weakSelf?.navigationController?.pushViewController(cartoon, animated: true)
             })
             return cell

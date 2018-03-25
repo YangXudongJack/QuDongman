@@ -42,7 +42,14 @@ class ShareManager: NSObject, WXApiDelegate {
                         var params:Dictionary<String, Any> = [:]
                         params["openid"] = openid
                         params["signup_type"] = "3"
-                        params["userinfo"] = responseObj.value(forKey: "unionid")
+                        if JSONSerialization.isValidJSONObject(responseObj) {
+                            let data : NSData! = try? JSONSerialization.data(withJSONObject: responseObj, options: []) as NSData!
+                            let JSONString = NSString(data:data as Data,encoding: String.Encoding.utf8.rawValue)
+                            params["userinfo"] = JSONString
+                        }else{
+                            print("unvalid object")
+                        }
+                        
                         return params
                     }, responseObject: { (responseObject, status) in
                         let data = responseObject.object(forKey: "data")

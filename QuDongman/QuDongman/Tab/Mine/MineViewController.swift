@@ -20,7 +20,7 @@ class MineViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
 
     override func viewDidLoad() {
@@ -47,25 +47,26 @@ class MineViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if self.isLogin() {
-            var controller:UIViewController? = nil
-            
-            switch indexPath.section {
-            case 0: do {
+        var controller:UIViewController? = nil
+        
+        if indexPath.section == 0 {
+            if self.isLogin() {
                 switch indexPath.row {
                 case 0: do{
                     controller = UserProfileController.create()
                     break
-                }
+                    }
                     
                 default: do{
+                    controller = UserAccountController.create()
                     break
                     }
                 }
-                break
-                }
-                
-            case 1: do{
+            }else{
+                return
+            }
+        }else if indexPath.section == 1 {
+            if self.isLogin() {
                 switch indexPath.row {
                 case 0: do{
                     break
@@ -79,31 +80,22 @@ class MineViewController: UITableViewController {
                     break
                     }
                 }
-                break
-                }
-                
-            default: do{
-                switch indexPath.row {
-                case 0: do{
-                    break
-                    }
-                    
-                default: do{
-                    break
-                    }
-                }
-                }
+            }else{
+                return
             }
+        }else{
             
-            self.navigationController?.pushViewController(controller!, animated: true)
         }
+        
+        self.navigationController?.pushViewController(controller!, animated: true)
     }
     
     func isLogin() -> Bool {
         var login:Bool = false
         if JYUser.shared.id == nil {
             let loginVC = LoginViewController.create()
-            self.present(loginVC, animated: true, completion: nil)
+            let nav = JYNavigationController(rootViewController: loginVC)
+            self.present(nav, animated: true, completion: nil)
         }else{
             login = true
         }

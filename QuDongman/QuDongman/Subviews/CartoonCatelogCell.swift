@@ -23,12 +23,12 @@ class CartoonCatelogCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    class func createCell(tableview: UITableView, info: NSArray) -> CartoonCatelogCell {
+    class func createCell(tableview: UITableView, info: JYCartoon) -> CartoonCatelogCell {
         var cell:CartoonCatelogCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? CartoonCatelogCell
         if cell == nil {
             cell = CartoonCatelogCell.init(style: .default, reuseIdentifier: identifier)
         }
-        cell.configSubview(catelog: info)
+        cell.configSubview(catelog: info.chapter_results! as! Array<JYCatelog>)
         return cell
     }
     
@@ -37,7 +37,7 @@ class CartoonCatelogCell: UITableViewCell {
         self.selectionStyle = .none
     }
     
-    func configSubview(catelog : NSArray) -> Void {
+    func configSubview(catelog : Array<JYCatelog>) -> Void {
         let screenWidth = UIScreen.main.bounds.size.width
         let scale = screenWidth / 320.0
         
@@ -51,29 +51,26 @@ class CartoonCatelogCell: UITableViewCell {
         var number : Int = 0
         let gapX = (screenWidth - 80 * scale * 3) / 4
         var height : CGFloat = 0.0
-        if catelog != nil {
-            for _ in catelog {
-                let gapY = CGFloat(number / 3) * (40.0 * scale + 17.0) + 17 + 45
-                let button = UIButton(frame: CGRect(x: CGFloat(number % 3) * (80.0 * scale + gapX) + gapX, y: gapY, width: 80 * scale, height: 40 * scale))
-                button.layer.cornerRadius = 4
-                button.layer.masksToBounds = true
-                button.layer.borderWidth = 1
-                button.layer.borderColor = UIColor.borderColor().cgColor
-                button.setTitleColor(UIColor.black, for: .normal)
-                button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
-                button.titleLabel?.textAlignment = .center
-                self.contentView.addSubview(button)
-                
-                let info = catelog.object(at: number) as! NSDictionary
-                button.setTitle( info.object(forKey: "name") as? String, for: .normal)
-                button.adjustsImageWhenHighlighted = false
-                
-                number = number + 1
-                button.tag = number
-                button.addTarget(self, action: #selector(self.readAction(button:)), for: .touchUpInside)
-                
-                height = button.frame.origin.y + button.bounds.size.height * scale + 17
-            }
+        for item:JYCatelog in catelog {
+            let gapY = CGFloat(number / 3) * (40.0 * scale + 17.0) + 17 + 45
+            let button = UIButton(frame: CGRect(x: CGFloat(number % 3) * (80.0 * scale + gapX) + gapX, y: gapY, width: 80 * scale, height: 40 * scale))
+            button.layer.cornerRadius = 4
+            button.layer.masksToBounds = true
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.borderColor().cgColor
+            button.setTitleColor(UIColor.black, for: .normal)
+            button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+            button.titleLabel?.textAlignment = .center
+            self.contentView.addSubview(button)
+            
+            button.setTitle( item.name, for: .normal)
+            button.adjustsImageWhenHighlighted = false
+            
+            number = number + 1
+            button.tag = number
+            button.addTarget(self, action: #selector(self.readAction(button:)), for: .touchUpInside)
+            
+            height = button.frame.origin.y + button.bounds.size.height * scale + 17
         }
         self.contentView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: height)
     }

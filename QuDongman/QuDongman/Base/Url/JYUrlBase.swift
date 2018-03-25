@@ -14,11 +14,6 @@ class JYUrlBase: NSObject {
         return baseUrl.appending(self.scheme()).appending(self.address()).appending(self.versionCode())
     }
     
-    class func url_v2() -> String {
-        let baseUrl = String.init()
-        return baseUrl.appending(self.scheme()).appending(self.address()).appending(self.versionCode_v2())
-    }
-    
     class func scheme() -> String {
         return "http://"
     }
@@ -28,10 +23,6 @@ class JYUrlBase: NSObject {
     }
     
     class func versionCode() -> String {
-        return "/v1"
-    }
-    
-    class func versionCode_v2() -> String {
         return "/v2"
     }
 }

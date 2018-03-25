@@ -32,7 +32,7 @@ class CartoonCoverCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    class func createCell(tableview: UITableView, info: NSDictionary) -> CartoonCoverCell {
+    class func createCell(tableview: UITableView, info: JYCartoon) -> CartoonCoverCell {
         var cell:CartoonCoverCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? CartoonCoverCell
         if cell == nil {
             cell = CartoonCoverCell.init(style: .default, reuseIdentifier: identifier)
@@ -40,9 +40,9 @@ class CartoonCoverCell: UITableViewCell {
         
         let queue = DispatchQueue(label: "load.image")
         queue.async {
-            let imageName = info["cover_image"]!
-            if (imageName as! String).isEmpty == false {
-                let url = URL.init(string: imageName as! String)!
+            let imageName = info.book_reesult?.cover_image
+            if (imageName)?.isEmpty == false {
+                let url = URL.init(string: imageName!)!
                 do {
                     let data : NSData = try NSData(contentsOf: url)
                     DispatchQueue.main.async {
@@ -53,15 +53,14 @@ class CartoonCoverCell: UITableViewCell {
             }
         }
         
-        let title = info["name"]!
-        cell?.titleLabel?.text = title as? String
+        let title = info.book_reesult?.name
+        cell?.titleLabel?.text = title
         
-        let issuer = info["issuer"]!
-        let tags = info["tag_results"]
         var count:Int = 0
         let tag_results:NSMutableString = NSMutableString.init()
+        let issuer:String = (info.book_reesult?.issuer)!
         tag_results.append("出品方：\(issuer)\n")
-        for item in tags as! NSArray {
+        for item in (info.book_reesult?.tag_results)! {
             if count == 0 {
                 tag_results.append("标签：\(item)")
             }else{
@@ -76,7 +75,7 @@ class CartoonCoverCell: UITableViewCell {
         cell?.tagLabel?.attributedText = mastring
         
         let screenWidth = UIScreen.main.bounds.size.width
-        let detail : NSString = info["descp"] as! NSString
+        let detail : NSString = info.book_reesult?.descp as! NSString
         let defaultSize = CGSize(width: UIScreen.main.bounds.size.width - 24, height: 300)
         let dic = NSDictionary(object: UIFont.systemFont(ofSize: 16), forKey: NSAttributedStringKey.font as NSCopying)
         let size = detail.boundingRect(with: defaultSize, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedStringKey : Any] , context: nil)

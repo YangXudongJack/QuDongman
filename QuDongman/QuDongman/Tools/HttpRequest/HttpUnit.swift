@@ -14,7 +14,12 @@ class HttpUnit: NSObject {
     class func HttpGet(url: String, responseObject: @escaping (_ info: NSDictionary, _ status: Bool) -> Void) -> Void {
         HttpGet_Origin(url: url) { (response) in
             let status = response.object(forKey: "status")
-            responseObject(response, (status as! NSString).boolValue)
+            if (status as! NSString).intValue == 200 {
+                let code = response.object(forKey: "code")
+                responseObject(response, (code as! NSString).boolValue)
+            }else{
+                //error
+            }
         }
     }
     

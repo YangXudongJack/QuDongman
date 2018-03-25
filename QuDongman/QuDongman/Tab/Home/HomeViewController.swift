@@ -12,6 +12,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var tableview: UITableView?
     var datasource: NSMutableArray?
+    var page: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +41,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableview?.separatorStyle = UITableViewCellSeparatorStyle.none
         self.view.addSubview(tableview!)
         
+        page = 0
         initData()
     }
     
@@ -52,7 +54,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        tableview?.reloadData()
         
         datasource = NSMutableArray.init()
-        HttpUnit.HttpGet(url: JYUrl.home() ) { (response, status) in
+        HttpUnit.HttpGet(url: JYUrl.home(page: page!) ) { (response, status) in
             if status {
                 let books = response.object(forKey: "data")
                 for item in books as! NSArray {
@@ -81,7 +83,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataInfo = datasource![indexPath.row]
         let detail:CartoonDetailViewController = CartoonDetailViewController()
-        detail.dictionary = dataInfo as? NSDictionary
+        detail.detail = dataInfo as? JYBanner
         self.navigationController?.pushViewController(detail, animated: true)
     }
     
