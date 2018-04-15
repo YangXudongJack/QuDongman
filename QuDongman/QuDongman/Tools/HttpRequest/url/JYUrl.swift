@@ -22,15 +22,15 @@ class JYUrl: JYUrlBase {
     }
     
     class func authorCode() -> String {
-        return JYUrl.construct(url: super.url().appending("/member/sms"))
+        return JYUrl.construct(url: super.url().appending("/default/sms"))
     }
     
     class func shortcutLogin() -> String {
-        return JYUrl.construct(url: super.url().appending("/member/signup"))
+        return JYUrl.construct(url: super.url().appending("/default/signup"))
     }
     
     class func login() -> String {
-        return JYUrl.construct(url: super.url().appending("/member/signin"))
+        return JYUrl.construct(url: super.url().appending("/default/signin"))
     }
     
     class func construct(url: String) -> String {

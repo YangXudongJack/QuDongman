@@ -19,10 +19,11 @@ class JYUrlBase: NSObject {
     }
     
     class func address() -> String {
-        return "ac.xiaoshuokong.com"
+//        return "api.qudongman.com"
+        return "dev.qudongman.com"
     }
     
     class func versionCode() -> String {
-        return "/v2"
+        return "/v2_1"
     }
 }

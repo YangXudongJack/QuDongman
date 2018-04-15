@@ -12,7 +12,7 @@ extension HttpUnit {
     
     class func getAuthCode(number:String) -> Void{
         let url = JYUrl.authorCode()
-        HttpPost(url: url, params: ["tel":number as Any], responseObject: { (response, status) in
+        HttpPost(url: url, params: ["tel":number as Any, "sms_type":"2"], responseObject: { (response, status) in
             
         })
     }
