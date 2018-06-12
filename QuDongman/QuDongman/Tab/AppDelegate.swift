@@ -20,6 +20,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = JYTabbarController()
+        
+        if JYUser.exist() {
+            print("user has login")
+        }else{
+            print("user not login")
+        }
         return true
     }
 
@@ -48,6 +54,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         if url.scheme == ShareManager.WeChatAppID {
             return WXApi.handleOpen(url, delegate: ShareManager.shared)
+        }else if url.host == PayManager.aliHost{
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url) { (dictionary) in
+                
+            }
+            
+            AlipaySDK.defaultService().processAuth_V2Result(url) { (dictionary) in
+                
+            }
+            return true
         }else{
             return true
         }
@@ -56,6 +71,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         if url.scheme == ShareManager.WeChatAppID {
             return WXApi.handleOpen(url, delegate: ShareManager.shared)
+        }else if url.host == PayManager.aliHost{
+            AlipaySDK.defaultService().processOrder(withPaymentResult: url) { (dictionary) in
+                
+            }
+            
+            AlipaySDK.defaultService().processAuth_V2Result(url) { (dictionary) in
+                
+            }
+            return true
         }else{
             return true
         }

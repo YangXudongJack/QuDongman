@@ -10,7 +10,7 @@ import UIKit
 
 typealias ReadColsure = ()->Void
 
-class CartoonCoverCell: UITableViewCell {
+class CartoonCoverCell: JYBaseCell {
     
     static let identifier = "CartoonCoverCell"
     
@@ -22,73 +22,74 @@ class CartoonCoverCell: UITableViewCell {
     var descriptionLabel : UILabel?
     var activityIndicator : UIActivityIndicatorView?
     
-    
     var readColsure : ReadColsure?
     
-    
     var gradientLayer: CAGradientLayer!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    var info:JYCartoon? {
+        set {
+            let queue = DispatchQueue(label: "load.image")
+            queue.async {
+                let imageName = newValue?.book_reesult?.cover_image
+                if (imageName)?.isEmpty == false {
+                    let url = URL.init(string: imageName!)!
+                    do {
+                        let data : NSData = try NSData(contentsOf: url)
+                        DispatchQueue.main.async {
+                            self.coverImage?.image = UIImage(data: data as Data)
+                            self.activityIndicator?.stopAnimating()
+                        }
+                    } catch {}
+                }
+            }
+            
+            let title = newValue?.book_reesult?.name
+            self.titleLabel?.text = title
+            
+            var count:Int = 0
+            let tag_results:NSMutableString = NSMutableString.init()
+            let issuer:String = (newValue?.book_reesult?.issuer)!
+            tag_results.append("出品方：\(issuer)\n")
+            for item in (newValue?.book_reesult?.tag_results)! {
+                if count == 0 {
+                    tag_results.append("标签：\(item)")
+                }else{
+                    tag_results.append("、\(item)")
+                }
+                count+=1
+            }
+            let mastring = NSMutableAttributedString.init(string: tag_results as String)
+            let mpstyle = NSMutableParagraphStyle.init()
+            mpstyle.lineSpacing = 4.0
+            mastring.addAttribute(.paragraphStyle, value: mpstyle, range: NSMakeRange(0, mastring.length))
+            self.tagLabel?.attributedText = mastring
+            
+            let screenWidth = UIScreen.main.bounds.size.width
+            let detail : NSString = newValue?.book_reesult?.descp as! NSString
+            let defaultSize = CGSize(width: UIScreen.main.bounds.size.width - 24, height: 300)
+            let dic = NSDictionary(object: UIFont.systemFont(ofSize: 16), forKey: NSAttributedStringKey.font as NSCopying)
+            let size = detail.boundingRect(with: defaultSize, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedStringKey : Any] , context: nil)
+            self.descriptionLabel?.frame = CGRect(x: (self.descriptionLabel?.frame.origin.x)!, y: (self.descriptionLabel?.frame.origin.y)!, width: (self.descriptionLabel?.bounds.size.width)!, height: size.height)
+            self.descriptionLabel?.text = detail as String
+            self.contentView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: (self.descriptionLabel?.frame.origin.y)! + (self.descriptionLabel?.bounds.size.height)!)
+        }
+        
+        get {
+            return nil
+        }
     }
     
-    class func createCell(tableview: UITableView, info: JYCartoon) -> CartoonCoverCell {
+    
+    class func createCell(tableview: UITableView) -> CartoonCoverCell {
         var cell:CartoonCoverCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? CartoonCoverCell
         if cell == nil {
             cell = CartoonCoverCell.init(style: .default, reuseIdentifier: identifier)
         }
-        
-        let queue = DispatchQueue(label: "load.image")
-        queue.async {
-            let imageName = info.book_reesult?.cover_image
-            if (imageName)?.isEmpty == false {
-                let url = URL.init(string: imageName!)!
-                do {
-                    let data : NSData = try NSData(contentsOf: url)
-                    DispatchQueue.main.async {
-                        cell?.coverImage?.image = UIImage(data: data as Data)
-                        cell.activityIndicator?.stopAnimating()
-                    }
-                } catch {}
-            }
-        }
-        
-        let title = info.book_reesult?.name
-        cell?.titleLabel?.text = title
-        
-        var count:Int = 0
-        let tag_results:NSMutableString = NSMutableString.init()
-        let issuer:String = (info.book_reesult?.issuer)!
-        tag_results.append("出品方：\(issuer)\n")
-        for item in (info.book_reesult?.tag_results)! {
-            if count == 0 {
-                tag_results.append("标签：\(item)")
-            }else{
-                tag_results.append("、\(item)")
-            }
-            count+=1
-        }
-        let mastring = NSMutableAttributedString.init(string: tag_results as String)
-        let mpstyle = NSMutableParagraphStyle.init()
-        mpstyle.lineSpacing = 4.0
-        mastring.addAttribute(.paragraphStyle, value: mpstyle, range: NSMakeRange(0, mastring.length))
-        cell?.tagLabel?.attributedText = mastring
-        
-        let screenWidth = UIScreen.main.bounds.size.width
-        let detail : NSString = info.book_reesult?.descp as! NSString
-        let defaultSize = CGSize(width: UIScreen.main.bounds.size.width - 24, height: 300)
-        let dic = NSDictionary(object: UIFont.systemFont(ofSize: 16), forKey: NSAttributedStringKey.font as NSCopying)
-        let size = detail.boundingRect(with: defaultSize, options: .usesLineFragmentOrigin, attributes: dic as? [NSAttributedStringKey : Any] , context: nil)
-        cell.descriptionLabel?.frame = CGRect(x: (cell.descriptionLabel?.frame.origin.x)!, y: (cell.descriptionLabel?.frame.origin.y)!, width: (cell.descriptionLabel?.bounds.size.width)!, height: size.height)
-        cell.descriptionLabel?.text = detail as String
-        cell.contentView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: (cell.descriptionLabel?.frame.origin.y)! + (cell.descriptionLabel?.bounds.size.height)!)
         return cell
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.selectionStyle = .none
         
         let screenWidth = UIScreen.main.bounds.size.width
         let scale = screenWidth / 320.0
@@ -163,12 +164,6 @@ class CartoonCoverCell: UITableViewCell {
     
     @objc func readAction() {
         readColsure!()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
 
 }

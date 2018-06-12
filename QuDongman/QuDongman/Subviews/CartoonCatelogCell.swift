@@ -10,7 +10,7 @@ import UIKit
 
 typealias CatelogColsure = (Int)->Void
 
-class CartoonCatelogCell: UITableViewCell {
+class CartoonCatelogCell: JYBaseCell {
     
     static let identifier = "CartoonCatelogCell"
     
@@ -18,23 +18,27 @@ class CartoonCatelogCell: UITableViewCell {
     var titleLabel : UILabel?
     
     var readColsure : CatelogColsure?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    
+    var info:JYCartoon? {
+        set {
+            configSubview(catelog: newValue?.chapter_results as! Array<JYCatelog>)
+        }
+        
+        get {
+            return nil
+        }
     }
     
-    class func createCell(tableview: UITableView, info: JYCartoon) -> CartoonCatelogCell {
+    class func createCell(tableview: UITableView) -> CartoonCatelogCell {
         var cell:CartoonCatelogCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? CartoonCatelogCell
         if cell == nil {
             cell = CartoonCatelogCell.init(style: .default, reuseIdentifier: identifier)
         }
-        cell.configSubview(catelog: info.chapter_results! as! Array<JYCatelog>)
         return cell
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        self.selectionStyle = .none
     }
     
     func configSubview(catelog : Array<JYCatelog>) -> Void {
@@ -90,10 +94,6 @@ class CartoonCatelogCell: UITableViewCell {
     
     @objc func readAction(button : UIButton) {
         readColsure!(button.tag)
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
 }

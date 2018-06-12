@@ -24,6 +24,7 @@ extension UIViewController{
     func hideTabbar() -> Void {
         let screensize = UIScreen.main.bounds.size
         let tabbar: JYTabbarController = UIApplication.shared.keyWindow?.rootViewController as! JYTabbarController
+        tabbar.tabBar.isHidden = true
         UIView.animate(withDuration: 0.3, animations: { 
             tabbar.tabbarVessel?.frame = CGRect(x: 0, y: screensize.height, width: (tabbar.tabbarVessel?.bounds.size.width)!, height: (tabbar.tabbarVessel?.bounds.size.height)!)
         }) { (finish) in
@@ -36,6 +37,7 @@ extension UIViewController{
     func showTabbar() -> Void {
         let screensize = UIScreen.main.bounds.size
         let tabbar: JYTabbarController = UIApplication.shared.keyWindow?.rootViewController as! JYTabbarController
+        tabbar.tabBar.isHidden = true
         UIView.animate(withDuration: 0.1, animations: {
             tabbar.tabbarVessel?.frame = CGRect(x: 0, y: screensize.height - (tabbar.tabbarVessel?.bounds.size.height)!, width: (tabbar.tabbarVessel?.bounds.size.width)!, height: (tabbar.tabbarVessel?.bounds.size.height)!)
         }) { (finish) in

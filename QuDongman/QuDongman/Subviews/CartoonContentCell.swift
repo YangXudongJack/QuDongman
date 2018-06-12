@@ -8,40 +8,44 @@
 
 import UIKit
 
-class CartoonContentCell : UITableViewCell {
+class CartoonContentCell : JYBaseCell {
     
-    var imageview: UIImageView!
+    var imageview:UIImageView!
     var activity:UIActivityIndicatorView?
     
-    class func createCell(tableview: UITableView, info: NSString, indexPath : IndexPath) -> CartoonContentCell {
-        let identifier = String.init("identifier\(indexPath.row)")
+    var imageName:String? {
+        set {
+            let queue = DispatchQueue(label: "load.image")
+            queue.async {
+                if (newValue)?.isEmpty == false {
+                    let url = URL.init(string: newValue!)!
+                    do {
+                        let data : NSData = try NSData(contentsOf: url)
+                        DispatchQueue.main.async {
+                            self.imageview?.image = UIImage(data: data as Data)
+                            self.activity?.stopAnimating()
+                        }
+                    } catch {}
+                }
+            }
+        }
+        
+        get {
+            return ""
+        }
+    }
+    
+    class func createCell(tableview: UITableView) -> CartoonContentCell {
+        let identifier = "CartoonContentCell"
         var cell:CartoonContentCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? CartoonContentCell
         if cell == nil {
             cell = CartoonContentCell.init(style: .default, reuseIdentifier: identifier)
         }
-        
-        let queue = DispatchQueue(label: "load.image")
-        queue.async {
-            let imageName = info
-            if (imageName as String).isEmpty == false {
-                let url = URL.init(string: imageName as String)!
-                do {
-                    let data : NSData = try NSData(contentsOf: url)
-                    DispatchQueue.main.async {
-                        cell.imageview?.image = UIImage(data: data as Data)
-                        cell.activity?.stopAnimating()
-                    }
-                } catch {}
-            }
-        }
-        
         return cell
     }
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
-        self.selectionStyle = .none
         
         let screenWidth = UIScreen.main.bounds.size.width
         let scale = screenWidth / 320.0
@@ -60,16 +64,6 @@ class CartoonContentCell : UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        
-        // Configure the view for the selected state
     }
     
 }

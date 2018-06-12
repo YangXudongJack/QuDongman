@@ -11,6 +11,9 @@ import UIKit
 class MineViewController: UITableViewController {
     
     var screenWidth: CGFloat = UIScreen.main.bounds.size.width
+    var logined:Bool?
+    
+    @IBOutlet weak var usernameLabel: UILabel!
     
     class func create() -> MineViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -21,6 +24,7 @@ class MineViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
+        showTabbar()
     }
 
     override func viewDidLoad() {
@@ -31,7 +35,18 @@ class MineViewController: UITableViewController {
         if DeviceManager.isIphoneX() {
             fixHeight -= 40
         }
+        if DeviceManager.isIphonePlus() {
+            fixHeight += 8
+        }
         self.tableView.contentInset = UIEdgeInsetsMake(fixHeight, 0, 0, 0 )
+        
+        logined = JYUser.exist()
+        if logined! {
+            self.usernameLabel.text = JYUser.shared.username
+            self.tableView.reloadData()
+        }else{
+            self.usernameLabel.text = "请登录"
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -69,14 +84,21 @@ class MineViewController: UITableViewController {
             if self.isLogin() {
                 switch indexPath.row {
                 case 0: do{
+                    controller = UserMessageController.create()
                     break
                     }
                     
                 case 1: do{
+                    controller = UserRechargeViewController()
+                    let vc:UserRechargeViewController = controller as! UserRechargeViewController
+                    vc.typeShopping = false
                     break
                     }
                     
                 default: do{
+                    controller = UserRechargeViewController()
+                    let vc:UserRechargeViewController = controller as! UserRechargeViewController
+                    vc.typeShopping = true
                     break
                     }
                 }
@@ -84,7 +106,24 @@ class MineViewController: UITableViewController {
                 return
             }
         }else{
-            
+            switch indexPath.row {
+            case 0: do{
+                controller = AboutViewController()
+                break
+                }
+                
+            default: do{
+                weak var weakself = self
+                controller = UserSetupViewController.create()
+                let setup:UserSetupViewController = controller as! UserSetupViewController
+                setup.logoutColsure {
+                    weakself?.logined = false
+                    weakself?.usernameLabel.text = "请登录"
+                    weakself?.tableView.reloadData()
+                }
+                break
+                }
+            }
         }
         
         self.navigationController?.pushViewController(controller!, animated: true)
@@ -92,14 +131,19 @@ class MineViewController: UITableViewController {
     
     func isLogin() -> Bool {
         var login:Bool = false
-        if JYUser.shared.id == nil {
+        weak var weakself = self
+        if logined! {
+            login = true
+        }else{
             let loginVC = LoginViewController.create()
             let nav = JYNavigationController(rootViewController: loginVC)
+            loginVC.loginResultClosure {
+                weakself?.logined = true
+                weakself?.usernameLabel.text = JYUser.shared.username
+                weakself?.tableView.reloadData()
+            }
             self.present(nav, animated: true, completion: nil)
-        }else{
-            login = true
         }
-        
         return login
     }
 

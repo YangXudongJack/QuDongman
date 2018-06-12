@@ -40,11 +40,11 @@ class JYTabbarController: UITabBarController {
     
     func initControllers() -> Void {
         let home = HomeViewController()
-        let about = AboutViewController()
-        let search = SearchViewController()
+        let books = BookrackViewController.create()
+        let search = SearchViewController.create()
         let mine = MineViewController.create()
         
-        var views = [home, about, search, mine]
+        var views = [home, books, search, mine]
         var controllers = [UIViewController]()
         for index in 0..<views.count{
             let nav = JYNavigationController(rootViewController: views[index])

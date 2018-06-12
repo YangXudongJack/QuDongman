@@ -48,6 +48,7 @@ class RegisterViewController: UIViewController {
             if status {
                 let data = response.object(forKey: "data")
                 JYUser.shared.update(dict: data as! [String : AnyObject])
+                JYUser.shared.updateBalance()
                 
                 //登陆成功
                 self.navigationController?.popViewController(animated: true)

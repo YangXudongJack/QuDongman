@@ -8,37 +8,41 @@
 
 import UIKit
 
-class JYHomeCell: UITableViewCell {
+class JYHomeCell: JYBaseCell {
     
     var coverImageview:UIImageView?
     var activityIndicator:UIActivityIndicatorView!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    var info:JYBanner? {
+        set {
+            let queue = DispatchQueue(label: "load.image")
+            queue.async {
+                let imageName = newValue?.banner_image!
+                if imageName?.isEmpty == false {
+                    let url = URL.init(string: imageName!)!
+                    do {
+                        let data : NSData = try NSData(contentsOf: url)
+                        DispatchQueue.main.async {
+                            self.coverImageview?.image = UIImage(data: data as Data)
+                            self.activityIndicator.stopAnimating()
+                        }
+                    } catch {}
+                }
+            }
+        }
+        
+        get {
+            return nil
+        }
     }
     
-    class func createCell(tableview: UITableView, info: JYBanner, indexPath : NSIndexPath) -> JYHomeCell{
-        let identifier = String.init("identifier\(indexPath.row)")
+    
+    class func createCell(tableview: UITableView) -> JYHomeCell{
+        let identifier = "JYHomeCell"
         var homecell:JYHomeCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? JYHomeCell
         if homecell == nil {
             homecell = JYHomeCell.init(style: .default, reuseIdentifier: identifier)
         }
-        
-        let queue = DispatchQueue(label: "load.image")
-        queue.async {
-            let imageName = info.banner_image!
-            if imageName.isEmpty == false {
-                let url = URL.init(string: imageName)!
-                do {
-                    let data : NSData = try NSData(contentsOf: url)
-                    DispatchQueue.main.async {
-                        homecell?.coverImageview?.image = UIImage(data: data as Data)
-                        homecell.activityIndicator.stopAnimating()
-                    }
-                } catch {}
-            }
-        }
-        
         return homecell
     }
     
@@ -60,10 +64,6 @@ class JYHomeCell: UITableViewCell {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
 }

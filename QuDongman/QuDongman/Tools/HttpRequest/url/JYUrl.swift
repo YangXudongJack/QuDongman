@@ -33,6 +33,46 @@ class JYUrl: JYUrlBase {
         return JYUrl.construct(url: super.url().appending("/default/signin"))
     }
     
+    class func product() -> String {
+        return JYUrl.construct(url: super.url().appending("/products?pre-page=0&page=0"))
+    }
+    
+    class func preparePay() -> String {
+        let token:String = JYUser.shared.access_token!
+        let id:String = JYUser.shared.id!
+        return JYUrl.construct(url: super.url().appending("/pay/unifiedorder?member_id=\(id)&access_token=\(token)"))
+    }
+    
+    class func userInfo() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/members/\(id)?member_id=\(id)&access_token=\(token)"))
+    }
+    
+    class func record(isShopping: Bool) -> String{
+        if isShopping {
+            return self.shopping()
+        }else{
+            return self.recharge()
+        }
+    }
+    
+    class func recharge() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/behaviors?member_id=\(id)&access_token=\(token)&pre-page=0&page=0&btype=10"))
+    }
+    
+    class func shopping() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/behaviors?member_id=\(id)&access_token=\(token)&pre-page=0&page=0&btype=11"))
+    }
+    
+    class func category() -> String {
+        return JYUrl.construct(url: super.url().appending("/categories?pre-page=0&page=0"))
+    }
+    
     class func construct(url: String) -> String {
         var urlString = String()
         if url.contains("?") {

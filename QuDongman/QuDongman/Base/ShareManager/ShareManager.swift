@@ -13,8 +13,11 @@ typealias ShareSuccessClosure = ()->Void
 class ShareManager: NSObject, WXApiDelegate {
     static let shared = ShareManager()
     
-    static let WeChatAppID:String = "wxaa3cec556b37afce"
-    static let WeChatSecret:String = "f770ec753ea939b2534eae22dad2fba2"
+    static let WeChatAppID:String = "wx5b1ccfd1ad56c9cf"
+    static let WeChatSecret:String = "b12c4f11cc893e5fc9539115a8c76e3b"
+    
+    static let QQAppID:String = "1106727332"
+    static let QQSecret:String = "z2glGnuTreA2TO35"
     
     var shareSuccessClosure : ShareSuccessClosure?
     
@@ -52,9 +55,12 @@ class ShareManager: NSObject, WXApiDelegate {
                         
                         return params
                     }, responseObject: { (responseObject, status) in
-                        let data = responseObject.object(forKey: "data")
-                        JYUser.shared.update(dict: data as! [String : AnyObject])
-                        weakself?.shareSuccessClosure!()
+                        if status {
+                            let data = responseObject.object(forKey: "data")
+                            JYUser.shared.update(dict: data as! [String : AnyObject])
+                            JYUser.shared.updateBalance()
+                            weakself?.shareSuccessClosure!()
+                        }
                     })
                 })
             })

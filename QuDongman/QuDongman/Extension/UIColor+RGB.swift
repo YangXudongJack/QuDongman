@@ -41,4 +41,20 @@ extension UIColor{
     public class func borderColor() -> UIColor {
         return self.init().color(tone: 0xfcdcb3, alpha: 1.0)
     }
+    
+    public class func titleColor_Dark() -> UIColor {
+        return self.init().color(tone: 0x575757, alpha: 1.0)
+    }
+    
+    public class func titleColor_lightDark() -> UIColor {
+        return self.init().color(tone: 0xb6b6b6, alpha: 1.0)
+    }
+    
+    public class func subTitleColor_Dark() -> UIColor {
+        return self.init().color(tone: 0x979797, alpha: 1.0)
+    }
+    
+    public class func separatorColor() -> UIColor {
+        return self.init().color(tone: 0xe3e3e3, alpha: 1.0)
+    }
 }

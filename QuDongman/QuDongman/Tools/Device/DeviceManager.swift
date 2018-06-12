@@ -99,4 +99,23 @@ class DeviceManager: NSObject {
             return false
         }
     }
+    
+    class func isIphonePlus() -> Bool {
+        let model = DeviceManager().model()
+        if model.contains("iPhone7,1") {
+            return true
+        }else if model.contains("iPhone8,2"){
+            return true
+        }else if model.contains("iPhone9,2"){
+            return true
+        }else if model.contains("iPhone9,4"){
+            return true
+        }else if model.contains("iPhone10,2"){
+            return true
+        }else if model.contains("iPhone10,5"){
+            return true
+        }else{
+            return false
+        }
+    }
 }

@@ -91,7 +91,8 @@ class CartoonDetailViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         weak var weakSelf = self
         if indexPath.row == 0 {
-            let cell : CartoonCoverCell = CartoonCoverCell.createCell(tableview: tableView, info: bookInfo!)
+            let cell : CartoonCoverCell = CartoonCoverCell.createCell(tableview: tableView)
+            cell.info = bookInfo
             cell.readClickColsure {
                 if weakSelf?.bookInfo?.chapter_results?.count != 0 {
                     let cartoon: CartoonViewController = CartoonViewController()
@@ -105,7 +106,8 @@ class CartoonDetailViewController: UITableViewController {
             };
             return cell
         }else{
-            let cell : CartoonCatelogCell = CartoonCatelogCell.createCell(tableview: tableView, info: bookInfo!)
+            let cell : CartoonCatelogCell = CartoonCatelogCell.createCell(tableview: tableView)
+            cell.info = bookInfo
             cell.readClickColsure(colsure: { (tag) in
                 let cartoon: CartoonViewController = CartoonViewController()
                 cartoon.id = weakSelf?.id

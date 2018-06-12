@@ -72,7 +72,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let dataInfo = datasource![indexPath.row]
-        let cell = JYHomeCell.createCell(tableview: tableView, info: dataInfo as! JYBanner, indexPath: indexPath as NSIndexPath)
+        let cell:JYHomeCell = JYHomeCell.createCell(tableview: tableView)
+        cell.info = dataInfo as! JYBanner
         return cell
     }
 

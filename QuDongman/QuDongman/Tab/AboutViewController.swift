@@ -17,11 +17,19 @@ class AboutViewController: UIViewController {
     var titleLabel: UILabel?
     var descriptionLabel: UILabel?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        hideTabbar()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.title = "联系我们"
+        createNavBackBtn()
         self.view.backgroundColor = UIColor.AboutBackgroundColor()
-        self.title = "关于我们"
         
         statusHeight = UIApplication.shared.statusBarFrame.height
         navHeigh = self.navigationController?.navigationBar.frame.size.height

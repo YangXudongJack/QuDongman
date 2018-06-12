@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>wechat</string>
-		<string>wexin</string>
-	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -32,12 +27,39 @@
 			<string>WeChat</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxaa3cec556b37afce</string>
+				<string>wx5b1ccfd1ad56c9cf</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>AliPay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>AliPay20180506</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>QQ</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent1106727332</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>7</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>wechat</string>
+		<string>wexin</string>
+		<string>mqq</string>
+		<string>mqqapi</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

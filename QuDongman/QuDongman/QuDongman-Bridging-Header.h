@@ -4,3 +4,7 @@
 
 #import <CommonCrypto/CommonDigest.h>
 #import "WXApi.h"
+#import <AlipaySDK/AlipaySDK.h>
+#import "APOrderInfo.h"
+#import "APRSASigner.h"
+#import <QQApiInterface.h>

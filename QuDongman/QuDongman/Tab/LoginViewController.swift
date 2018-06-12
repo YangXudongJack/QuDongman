@@ -8,6 +8,8 @@
 
 import UIKit
 
+typealias LoginResultClosure = ()->Void
+
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var logoTopConstraint: NSLayoutConstraint!
@@ -39,6 +41,9 @@ class LoginViewController: UIViewController {
     var count:Int?
     
     var isShortcut:Bool = false
+    
+    var loginResultClosure : LoginResultClosure?
+    
     
     class func create() -> LoginViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -115,6 +120,8 @@ class LoginViewController: UIViewController {
                 if status {
                     let data = response.object(forKey: "data")
                     JYUser.shared.update(dict: data as! [String : AnyObject])
+                    JYUser.shared.updateBalance()
+                    weakself?.loginResultClosure!()
                     
                     weakself?.dismiss(animated: true, completion: nil)
                 }
@@ -130,6 +137,8 @@ class LoginViewController: UIViewController {
                 if status {
                     let data = response.object(forKey: "data")
                     JYUser.shared.update(dict: data as! [String : AnyObject])
+                    JYUser.shared.updateBalance()
+                    weakself?.loginResultClosure!()
                     
                     weakself?.dismiss(animated: true, completion: nil)
                 }
@@ -178,11 +187,16 @@ class LoginViewController: UIViewController {
         weak var weakself = self
         if WXApi.send(req) {
             ShareManager.shared.shareResultClosure(closure: {
+                weakself?.loginResultClosure!()
                 weakself?.dismiss(animated: true, completion: nil)
             })
         }else{
             
         }
+    }
+    
+    func loginResultClosure(closure : LoginResultClosure?) {
+        loginResultClosure = closure
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
