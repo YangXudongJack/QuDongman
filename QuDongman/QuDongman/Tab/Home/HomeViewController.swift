@@ -13,6 +13,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var tableview: UITableView?
     var datasource: NSMutableArray?
     var page: Int?
+    var loadEnable:Bool?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +21,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "趣动漫"
         self.view.backgroundColor = UIColor.white
         
+        loadEnable = true
+        datasource = NSMutableArray.init()
         let size = self.view.bounds.size
         let navHeight = self.navigationController?.navigationBar.frame.size.height
         var frame:CGRect?
@@ -39,9 +42,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableview?.dataSource = self
         tableview?.showsVerticalScrollIndicator = false
         tableview?.separatorStyle = UITableViewCellSeparatorStyle.none
+        tableview?.register(UINib.init(nibName: "JYCoverCell", bundle: Bundle.main), forCellReuseIdentifier: "JYCoverCell")
         self.view.addSubview(tableview!)
         
-        page = 0
+        page = 1
         initData()
     }
     
@@ -53,15 +57,24 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
 //        datasource = NSMutableArray.init(contentsOfFile: filePath)
 //        tableview?.reloadData()
         
-        datasource = NSMutableArray.init()
+        JYProgressHUD.show()
         HttpUnit.HttpGet(url: JYUrl.home(page: page!) ) { (response, status) in
             if status {
-                let books = response.object(forKey: "data")
-                for item in books as! NSArray {
-                    let cartoon = JYBanner.init(dict: item as! [String : AnyObject])
-                    self.datasource?.add(cartoon)
+                let books:AnyObject = response.object(forKey: "data") as AnyObject
+                if books.isKind(of: NSArray.self) {
+                    if books.count < 4 {
+                        self.loadEnable = false
+                    }
+                    
+                    for item in books as! NSArray {
+                        let cartoon = JYBanner.init(dict: item as! [String : AnyObject])
+                        self.datasource?.add(cartoon)
+                    }
+                    self.tableview?.reloadData()
+                }else{
+                    self.loadEnable = false
                 }
-                self.tableview?.reloadData()
+                JYProgressHUD.dismiss()
             }
         }
     }
@@ -71,9 +84,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let dataInfo = datasource![indexPath.row]
-        let cell:JYHomeCell = JYHomeCell.createCell(tableview: tableView)
-        cell.info = dataInfo as! JYBanner
+        let identifier = "JYCoverCell"
+        let cell:JYCoverCell! = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? JYCoverCell
+        cell.book = self.datasource?.object(at: indexPath.row) as! JYBanner
+        cell.index = indexPath.row
         return cell
     }
 
@@ -86,6 +100,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let detail:CartoonDetailViewController = CartoonDetailViewController()
         detail.detail = dataInfo as? JYBanner
         self.navigationController?.pushViewController(detail, animated: true)
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offset = (self.tableview?.contentOffset.y)! - ((self.tableview?.contentSize.height)! - (self.tableview?.bounds.size.height)!)
+        if offset == 0 && self.loadEnable!{
+            self.page = self.page! + 1
+            self.initData()
+        }
     }
     
     override func didReceiveMemoryWarning() {

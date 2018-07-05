@@ -63,6 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             return true
+        }else if TencentOAuth.canHandleOpen(url){
+            return TencentOAuth.handleOpen(url)
         }else{
             return true
         }
@@ -80,6 +82,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
             }
             return true
+        }else if TencentOAuth.canHandleOpen(url){
+            return TencentOAuth.handleOpen(url)
         }else{
             return true
         }

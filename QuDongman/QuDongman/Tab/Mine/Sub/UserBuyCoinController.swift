@@ -22,6 +22,7 @@ class UserBuyCoinController: UITableViewController {
         weak var weakself = self
         dataSource = NSMutableArray.init()
         initData {
+            JYProgressHUD.dismiss()
             weakself?.tableView.reloadSections([0], with: .fade)
         }
         tableView.tableFooterView = UIView(frame: CGRect.zero)
@@ -29,6 +30,7 @@ class UserBuyCoinController: UITableViewController {
     }
     
     func initData(colsure:@escaping () -> Void) -> Void {
+        JYProgressHUD.show()
         weak var weakself = self
         HttpUnit.HttpGet(url: JYUrl.product()) { (response, success) in
             let data:NSArray = response.object(forKey: "data") as! NSArray

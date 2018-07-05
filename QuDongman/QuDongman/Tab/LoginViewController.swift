@@ -36,6 +36,14 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var quickLoginBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var wechatLoginBtn: UIButton!
+    
+    @IBOutlet weak var QQLoginBtn: UIButton!
+    
+    @IBOutlet weak var externalLoginLabel: UILabel!
+    
+    @IBOutlet weak var externalLoginLine: UIView!
+    
     var timer:Timer?
     
     var count:Int?
@@ -67,6 +75,19 @@ class LoginViewController: UIViewController {
         count = 60
         
         self.hideTabbar()
+        
+        if QQApiInterface.isQQInstalled() {
+            QQLoginBtn.isHidden = true
+        }
+        
+        if WXApi.isWXAppInstalled() {
+            wechatLoginBtn.isHidden = true
+        }
+        
+        if QQApiInterface.isQQInstalled() && WXApi.isWXAppInstalled() {
+            externalLoginLine.isHidden = true
+            externalLoginLabel.isHidden = true
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -193,6 +214,10 @@ class LoginViewController: UIViewController {
         }else{
             
         }
+    }
+    
+    @IBAction func QQLogin(_ sender: UIButton) {
+        ShareManager.shared.QQLogin()
     }
     
     func loginResultClosure(closure : LoginResultClosure?) {

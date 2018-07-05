@@ -8,3 +8,9 @@
 #import "APOrderInfo.h"
 #import "APRSASigner.h"
 #import <QQApiInterface.h>
+#import <TencentOAuth.h>
+#import <QQApiInterfaceObject.h>
+#import "UIImageView+WebCache.h"
+#import "SDImageCache.h"
+#import "SVProgressHUD.h"
+

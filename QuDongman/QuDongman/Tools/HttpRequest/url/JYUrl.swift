@@ -73,6 +73,10 @@ class JYUrl: JYUrlBase {
         return JYUrl.construct(url: super.url().appending("/categories?pre-page=0&page=0"))
     }
     
+    class func search(page:Int, key:String, cat_id:String, finish_status:String, sort:String) -> String {
+        return JYUrl.construct(url: super.url().appending("/searches?pre-page=0&page=\(page)&k=\(key)&cat_id=\(cat_id)&finish_status=\(finish_status)&sort=\(sort)"))
+    }
+    
     class func construct(url: String) -> String {
         var urlString = String()
         if url.contains("?") {

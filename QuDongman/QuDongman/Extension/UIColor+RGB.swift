@@ -57,4 +57,26 @@ extension UIColor{
     public class func separatorColor() -> UIColor {
         return self.init().color(tone: 0xe3e3e3, alpha: 1.0)
     }
+    
+    func image(size : CGSize) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
+        UIGraphicsBeginImageContext(rect.size)
+        let context:CGContext = UIGraphicsGetCurrentContext()!
+        context.setFillColor(self.cgColor)
+        context.fill(rect)
+        let img = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return img!
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
