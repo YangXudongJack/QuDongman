@@ -15,6 +15,19 @@ class BookrackBooksCell: UICollectionViewCell {
     @IBOutlet weak var bookCover: UIImageView!
     @IBOutlet weak var bookTitle: UILabel!
     
+    var _collect:JYCollection?
+    var collect:JYCollection? {
+        set {
+            bookCover.sd_setImage(with: URL(string: (newValue?.cover_image)!), placeholderImage: UIImage.init(named: "bookrack"), options: .retryFailed, completed: nil)
+            bookTitle.text = newValue?.name
+            _collect = newValue
+        }
+        
+        get {
+            return _collect
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -14,7 +14,7 @@ class JYUrl: JYUrlBase {
     }
     
     class func detail(id: Int) -> String {
-        return JYUrl.construct(url: super.url().appending("/books/\(id)"))
+        return JYUrl.construct(url: super.url().to_v(v: "v2_2").appending("/books/\(id)"))
     }
     
     class func content(id: Int, chapter : Int) -> String {
@@ -35,6 +35,10 @@ class JYUrl: JYUrlBase {
     
     class func product() -> String {
         return JYUrl.construct(url: super.url().appending("/products?pre-page=0&page=0"))
+    }
+    
+    class func comments() -> String {
+        return JYUrl.construct(url: super.url().appending("comments?pre-page=0&page=0"))
     }
     
     class func preparePay() -> String {
@@ -75,6 +79,30 @@ class JYUrl: JYUrlBase {
     
     class func search(page:Int, key:String, cat_id:String, finish_status:String, sort:String) -> String {
         return JYUrl.construct(url: super.url().appending("/searches?pre-page=0&page=\(page)&k=\(key)&cat_id=\(cat_id)&finish_status=\(finish_status)&sort=\(sort)"))
+    }
+    
+    class func addCollect() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/collections?member_id=\(id)&access_token=\(token)"))
+    }
+    
+    class func collect() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/collections?member_id=\(id)&access_token=\(token)&pre-page=15&page=0"))
+    }
+    
+    class func addHistory() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/historys?member_id=\(id)&access_token=\(token)"))
+    }
+    
+    class func history() -> String {
+        let id:String = JYUser.shared.id!
+        let token:String = JYUser.shared.access_token!
+        return JYUrl.construct(url: super.url().appending("/member/historys?member_id=\(id)&access_token=\(token)&pre-page=15&page=0"))
     }
     
     class func construct(url: String) -> String {

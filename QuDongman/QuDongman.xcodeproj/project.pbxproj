@@ -97,6 +97,28 @@
 		0BBF827D20ED183100AC599A /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF826F20ED183100AC599A /* SVProgressHUD.bundle */; };
 		0BBF828020ED1C1300AC599A /* JYProgressHUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF827F20ED1C1300AC599A /* JYProgressHUD.swift */; };
 		0BBF828220ED2E1F00AC599A /* JYCoverCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF828120ED2E1F00AC599A /* JYCoverCell.xib */; };
+		0BBF834A20F05C9E00AC599A /* BookDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF834920F05C9E00AC599A /* BookDetailController.swift */; };
+		0BBF835820F0BC2700AC599A /* JYBookDescCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF835720F0BC2700AC599A /* JYBookDescCell.swift */; };
+		0BBF835B20F0C33200AC599A /* JYCommentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF835920F0C33200AC599A /* JYCommentsHeaderCell.swift */; };
+		0BBF835C20F0C33200AC599A /* JYCommentsHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF835A20F0C33200AC599A /* JYCommentsHeaderCell.xib */; };
+		0BBF835F20F0C95900AC599A /* JYCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF835D20F0C95900AC599A /* JYCommentCell.swift */; };
+		0BBF836020F0C95900AC599A /* JYCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF835E20F0C95900AC599A /* JYCommentCell.xib */; };
+		0BBF836320F0CEA800AC599A /* JYAllCommentsEntranceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF836120F0CEA800AC599A /* JYAllCommentsEntranceCell.swift */; };
+		0BBF836420F0CEA800AC599A /* JYAllCommentsEntranceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF836220F0CEA800AC599A /* JYAllCommentsEntranceCell.xib */; };
+		0BBF836620F0E9C000AC599A /* String+UrlVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF836520F0E9C000AC599A /* String+UrlVersion.swift */; };
+		0BBF836920F0F0BA00AC599A /* JYCatelogCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF836720F0F0BA00AC599A /* JYCatelogCell.swift */; };
+		0BBF836A20F0F0BA00AC599A /* JYCatelogCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF836820F0F0BA00AC599A /* JYCatelogCell.xib */; };
+		0BBF836C20F0FE3D00AC599A /* JYAllCatelogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF836B20F0FE3D00AC599A /* JYAllCatelogView.swift */; };
+		0BBF836E20F1097600AC599A /* JYCatelogHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF836D20F1097600AC599A /* JYCatelogHeader.swift */; };
+		0BBF837020F1098500AC599A /* JYCatelogHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF836F20F1098500AC599A /* JYCatelogHeader.xib */; };
+		0BBF837320F11B3800AC599A /* JYCatelogItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837120F11B3800AC599A /* JYCatelogItemCell.swift */; };
+		0BBF837420F11B3800AC599A /* JYCatelogItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */; };
+		0BBF837620F1294200AC599A /* JYCartoonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837520F1294200AC599A /* JYCartoonContent.swift */; };
+		0BBF837820F130A700AC599A /* BookContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837720F130A700AC599A /* BookContentController.swift */; };
+		0BBF837D20F1917000AC599A /* JYNewHomeCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */; };
+		0BBF837E20F1917000AC599A /* JYNewHomeCellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */; };
+		0BBF838120F1B9DF00AC599A /* HttpUnit+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF838020F1B9DF00AC599A /* HttpUnit+Collection.swift */; };
+		0BBF838B20F1BB9B00AC599A /* JYCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF838A20F1BB9B00AC599A /* JYCollection.swift */; };
 		0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252A61FA30E7800B8CB52 /* AppDelegate.swift */; };
 		0BC252BA1FA30F1000B8CB52 /* JYTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252B91FA30F1000B8CB52 /* JYTabbarController.swift */; };
 		0BC252BC1FA30F2500B8CB52 /* JYNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252BB1FA30F2500B8CB52 /* JYNavigationController.swift */; };
@@ -396,6 +418,28 @@
 		0BBF827020ED183100AC599A /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
 		0BBF827F20ED1C1300AC599A /* JYProgressHUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYProgressHUD.swift; sourceTree = "<group>"; };
 		0BBF828120ED2E1F00AC599A /* JYCoverCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCoverCell.xib; sourceTree = "<group>"; };
+		0BBF834920F05C9E00AC599A /* BookDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookDetailController.swift; sourceTree = "<group>"; };
+		0BBF835720F0BC2700AC599A /* JYBookDescCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBookDescCell.swift; sourceTree = "<group>"; };
+		0BBF835920F0C33200AC599A /* JYCommentsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCommentsHeaderCell.swift; sourceTree = "<group>"; };
+		0BBF835A20F0C33200AC599A /* JYCommentsHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCommentsHeaderCell.xib; sourceTree = "<group>"; };
+		0BBF835D20F0C95900AC599A /* JYCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCommentCell.swift; sourceTree = "<group>"; };
+		0BBF835E20F0C95900AC599A /* JYCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCommentCell.xib; sourceTree = "<group>"; };
+		0BBF836120F0CEA800AC599A /* JYAllCommentsEntranceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYAllCommentsEntranceCell.swift; sourceTree = "<group>"; };
+		0BBF836220F0CEA800AC599A /* JYAllCommentsEntranceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYAllCommentsEntranceCell.xib; sourceTree = "<group>"; };
+		0BBF836520F0E9C000AC599A /* String+UrlVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+UrlVersion.swift"; sourceTree = "<group>"; };
+		0BBF836720F0F0BA00AC599A /* JYCatelogCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCatelogCell.swift; sourceTree = "<group>"; };
+		0BBF836820F0F0BA00AC599A /* JYCatelogCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCatelogCell.xib; sourceTree = "<group>"; };
+		0BBF836B20F0FE3D00AC599A /* JYAllCatelogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYAllCatelogView.swift; sourceTree = "<group>"; };
+		0BBF836D20F1097600AC599A /* JYCatelogHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCatelogHeader.swift; sourceTree = "<group>"; };
+		0BBF836F20F1098500AC599A /* JYCatelogHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCatelogHeader.xib; sourceTree = "<group>"; };
+		0BBF837120F11B3800AC599A /* JYCatelogItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCatelogItemCell.swift; sourceTree = "<group>"; };
+		0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCatelogItemCell.xib; sourceTree = "<group>"; };
+		0BBF837520F1294200AC599A /* JYCartoonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCartoonContent.swift; sourceTree = "<group>"; };
+		0BBF837720F130A700AC599A /* BookContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentController.swift; sourceTree = "<group>"; };
+		0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNewHomeCellCell.swift; sourceTree = "<group>"; };
+		0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYNewHomeCellCell.xib; sourceTree = "<group>"; };
+		0BBF838020F1B9DF00AC599A /* HttpUnit+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUnit+Collection.swift"; sourceTree = "<group>"; };
+		0BBF838A20F1BB9B00AC599A /* JYCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCollection.swift; sourceTree = "<group>"; };
 		0BC252A31FA30E7800B8CB52 /* QuDongman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuDongman.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BC252A61FA30E7800B8CB52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BC252AB1FA30E7800B8CB52 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -472,6 +516,8 @@
 				0B10AF74208B1F1F00EDAFC9 /* JYUserBuyCoin.swift */,
 				0BB2795A209C9CE200452FE7 /* JYOrder.swift */,
 				0BEAD5DC20C99A840086EC28 /* JYCategory.swift */,
+				0BBF837520F1294200AC599A /* JYCartoonContent.swift */,
+				0BBF838A20F1BB9B00AC599A /* JYCollection.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -575,6 +621,7 @@
 			children = (
 				0B6F341520387C56009F6F39 /* JYUrl.swift */,
 				0B6F3448203EE5EE009F6F39 /* String+Sign.swift */,
+				0BBF836520F0E9C000AC599A /* String+UrlVersion.swift */,
 			);
 			path = url;
 			sourceTree = "<group>";
@@ -593,6 +640,8 @@
 				0BC252C61FA335D400B8CB52 /* AboutViewController.swift */,
 				0B6F3424203E637A009F6F39 /* LoginViewController.swift */,
 				0BF88359204596720018BEF9 /* RegisterViewController.swift */,
+				0BBF834920F05C9E00AC599A /* BookDetailController.swift */,
+				0BBF837720F130A700AC599A /* BookContentController.swift */,
 			);
 			path = Tab;
 			sourceTree = "<group>";
@@ -898,6 +947,22 @@
 				0B83C2A820C59F69003F5D3C /* JYMessageCell.swift */,
 				0BEAD5D220C98FEC0086EC28 /* JYCoverCell.swift */,
 				0BBF828120ED2E1F00AC599A /* JYCoverCell.xib */,
+				0BBF835720F0BC2700AC599A /* JYBookDescCell.swift */,
+				0BBF835920F0C33200AC599A /* JYCommentsHeaderCell.swift */,
+				0BBF835A20F0C33200AC599A /* JYCommentsHeaderCell.xib */,
+				0BBF835D20F0C95900AC599A /* JYCommentCell.swift */,
+				0BBF835E20F0C95900AC599A /* JYCommentCell.xib */,
+				0BBF836120F0CEA800AC599A /* JYAllCommentsEntranceCell.swift */,
+				0BBF836220F0CEA800AC599A /* JYAllCommentsEntranceCell.xib */,
+				0BBF836720F0F0BA00AC599A /* JYCatelogCell.swift */,
+				0BBF836820F0F0BA00AC599A /* JYCatelogCell.xib */,
+				0BBF836B20F0FE3D00AC599A /* JYAllCatelogView.swift */,
+				0BBF836D20F1097600AC599A /* JYCatelogHeader.swift */,
+				0BBF836F20F1098500AC599A /* JYCatelogHeader.xib */,
+				0BBF837120F11B3800AC599A /* JYCatelogItemCell.swift */,
+				0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */,
+				0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */,
+				0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -946,6 +1011,7 @@
 				0B6F341420387C32009F6F39 /* url */,
 				0B1706031FC72BC2009E3D69 /* HttpUnit.swift */,
 				0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */,
+				0BBF838020F1B9DF00AC599A /* HttpUnit+Collection.swift */,
 			);
 			path = HttpRequest;
 			sourceTree = "<group>";
@@ -1086,16 +1152,23 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BBF836420F0CEA800AC599A /* JYAllCommentsEntranceCell.xib in Resources */,
 				0BBF828220ED2E1F00AC599A /* JYCoverCell.xib in Resources */,
+				0BBF836A20F0F0BA00AC599A /* JYCatelogCell.xib in Resources */,
 				0B9BDE942067B70000915A0A /* UserAccountController.xib in Resources */,
 				0BBF827D20ED183100AC599A /* SVProgressHUD.bundle in Resources */,
 				0BE689D62090BA0100CB8564 /* AlipaySDK.bundle in Resources */,
+				0BBF836020F0C95900AC599A /* JYCommentCell.xib in Resources */,
+				0BBF837420F11B3800AC599A /* JYCatelogItemCell.xib in Resources */,
 				0B15FFC71FC724BF00639BA2 /* Main.storyboard in Resources */,
+				0BBF837020F1098500AC599A /* JYCatelogHeader.xib in Resources */,
 				0B277E2E20B313CA003115E7 /* UserSetupViewController.xib in Resources */,
 				0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */,
 				0BFFC706204D905E00ED46A3 /* UserProfileController.xib in Resources */,
 				0B78E42E20EBDBD20030EBC4 /* Assets.xcassets in Resources */,
+				0BBF837E20F1917000AC599A /* JYNewHomeCellCell.xib in Resources */,
 				0B15FFC81FC724BF00639BA2 /* LaunchScreen.storyboard in Resources */,
+				0BBF835C20F0C33200AC599A /* JYCommentsHeaderCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1106,16 +1179,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BBF837820F130A700AC599A /* BookContentController.swift in Sources */,
 				0B13A2AB1FBC9CDA00E6A759 /* CartoonCatelogCell.swift in Sources */,
 				0BBF827B20ED183100AC599A /* SVProgressHUD.m in Sources */,
 				0B6F3428203E8795009F6F39 /* DeviceManager.swift in Sources */,
 				0B78E3E820E543520030EBC4 /* SDWebImageTransition.m in Sources */,
 				0B12F9321FA5DDF4008FF9DA /* UIViewController+Extension.swift in Sources */,
 				0BC252C91FA33A1E00B8CB52 /* AboutViewController.swift in Sources */,
+				0BBF836C20F0FE3D00AC599A /* JYAllCatelogView.swift in Sources */,
 				0B78E3DD20E543520030EBC4 /* SDWebImageDownloader.m in Sources */,
 				0BEAD5DF20C99ECF0086EC28 /* SearchDetailController.swift in Sources */,
 				0B6F343B203EB823009F6F39 /* LanguageManager.swift in Sources */,
 				0B6F3425203E637A009F6F39 /* LoginViewController.swift in Sources */,
+				0BBF836320F0CEA800AC599A /* JYAllCommentsEntranceCell.swift in Sources */,
 				0B9BDE932067B70000915A0A /* UserAccountController.swift in Sources */,
 				0B277E2D20B313CA003115E7 /* UserSetupViewController.swift in Sources */,
 				0B6F340E203877E2009F6F39 /* JYCartoon.swift in Sources */,
@@ -1135,36 +1211,47 @@
 				0B10B97F1FBB59E80080F488 /* CartoonCoverCell.swift in Sources */,
 				0B78E3E620E543520030EBC4 /* SDImageCache.m in Sources */,
 				0B1706041FC72BC2009E3D69 /* HttpUnit.swift in Sources */,
+				0BBF837D20F1917000AC599A /* JYNewHomeCellCell.swift in Sources */,
 				0B78E3DF20E543520030EBC4 /* UIImage+MultiFormat.m in Sources */,
 				0B78E3DA20E543520030EBC4 /* UIImage+ForceDecode.m in Sources */,
 				0B78E3EC20E543520030EBC4 /* SDWebImageGIFCoder.m in Sources */,
 				0B78E3EB20E543520030EBC4 /* NSImage+WebCache.m in Sources */,
+				0BBF835820F0BC2700AC599A /* JYBookDescCell.swift in Sources */,
 				0BB2796C209F42C400452FE7 /* openssl_wrapper.m in Sources */,
 				0B6F341320387A08009F6F39 /* JYUrlBase.swift in Sources */,
 				0B78E3D620E543520030EBC4 /* MKAnnotationView+WebCache.m in Sources */,
 				0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */,
+				0BBF835F20F0C95900AC599A /* JYCommentCell.swift in Sources */,
 				0B78E3F120E543520030EBC4 /* UIButton+WebCache.m in Sources */,
 				0B78E3DB20E543520030EBC4 /* SDWebImageCodersManager.m in Sources */,
+				0BBF834A20F05C9E00AC599A /* BookDetailController.swift in Sources */,
 				0BC252BC1FA30F2500B8CB52 /* JYNavigationController.swift in Sources */,
 				0B6F341C203E5E85009F6F39 /* SearchViewController.swift in Sources */,
 				0B10B9791FBB3FE00080F488 /* CartoonDetailViewController.swift in Sources */,
 				0B78E3D820E543520030EBC4 /* UIImageView+HighlightedWebCache.m in Sources */,
 				0B78E3D520E543520030EBC4 /* UIImage+WebP.m in Sources */,
 				0BAA5E601FAA30A50063774E /* CartoonViewController.swift in Sources */,
+				0BBF835B20F0C33200AC599A /* JYCommentsHeaderCell.swift in Sources */,
 				0B10AF75208B1F1F00EDAFC9 /* JYUserBuyCoin.swift in Sources */,
 				0B83051E20B1C21B0058687A /* RechargeRecodeCell.swift in Sources */,
 				0BBF827C20ED183100AC599A /* SVIndefiniteAnimatedView.m in Sources */,
+				0BBF836620F0E9C000AC599A /* String+UrlVersion.swift in Sources */,
 				0BBF827920ED183100AC599A /* SVRadialGradientLayer.m in Sources */,
 				0B6F33FD20387319009F6F39 /* JYBaseObject.swift in Sources */,
 				0B78E3EA20E543520030EBC4 /* UIImageView+WebCache.m in Sources */,
 				0B220D822054FF2900072BE9 /* ShareManager.swift in Sources */,
+				0BBF837320F11B3800AC599A /* JYCatelogItemCell.swift in Sources */,
 				0B78E3E120E543520030EBC4 /* SDWebImageCompat.m in Sources */,
 				0B10AF73208B17DB00EDAFC9 /* UserBuyCoinController.swift in Sources */,
 				0B78E3E720E543520030EBC4 /* SDWebImageDownloaderOperation.m in Sources */,
 				0B6F340720387489009F6F39 /* JYBanner.swift in Sources */,
 				0B83C2A920C59F69003F5D3C /* JYMessageCell.swift in Sources */,
 				0B10AF7A208C651600EDAFC9 /* JYBuyCoinCell.swift in Sources */,
+				0BBF838B20F1BB9B00AC599A /* JYCollection.swift in Sources */,
+				0BBF836920F0F0BA00AC599A /* JYCatelogCell.swift in Sources */,
 				0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */,
+				0BBF836E20F1097600AC599A /* JYCatelogHeader.swift in Sources */,
+				0BBF837620F1294200AC599A /* JYCartoonContent.swift in Sources */,
 				0B78E3ED20E543520030EBC4 /* SDImageCacheConfig.m in Sources */,
 				0B78E3D720E543520030EBC4 /* SDWebImageManager.m in Sources */,
 				0B6F341A203E5DBC009F6F39 /* MineViewController.swift in Sources */,
@@ -1179,6 +1266,7 @@
 				0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */,
 				0B78E3E320E543520030EBC4 /* SDWebImageCoder.m in Sources */,
 				0B78E3EF20E543520030EBC4 /* UIView+WebCache.m in Sources */,
+				0BBF838120F1B9DF00AC599A /* HttpUnit+Collection.swift in Sources */,
 				0B78E3E020E543520030EBC4 /* SDWebImageCoderHelper.m in Sources */,
 				0B78E3F220E543520030EBC4 /* SDWebImageWebPCoder.m in Sources */,
 				0BB2796D209F42C400452FE7 /* APRSASigner.m in Sources */,

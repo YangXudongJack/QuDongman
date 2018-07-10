@@ -14,6 +14,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     var datasource: NSMutableArray?
     var page: Int?
     var loadEnable:Bool?
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.NavigationColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        showTabbar()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +31,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         loadEnable = true
         datasource = NSMutableArray.init()
-        let size = self.view.bounds.size
+        let size = UIScreen.main.bounds.size
         let navHeight = self.navigationController?.navigationBar.frame.size.height
         var frame:CGRect?
         if #available(iOS 11.0, *) {
@@ -62,9 +70,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             if status {
                 let books:AnyObject = response.object(forKey: "data") as AnyObject
                 if books.isKind(of: NSArray.self) {
-                    if books.count < 4 {
-                        self.loadEnable = false
-                    }
+//                    if books.count < 4 {
+//                        self.loadEnable = false
+//                    }
                     
                     for item in books as! NSArray {
                         let cartoon = JYBanner.init(dict: item as! [String : AnyObject])
@@ -97,8 +105,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dataInfo = datasource![indexPath.row]
-        let detail:CartoonDetailViewController = CartoonDetailViewController()
-        detail.detail = dataInfo as? JYBanner
+        let detail = BookDetailController.create()
+        detail.banner = dataInfo as? JYBanner
         self.navigationController?.pushViewController(detail, animated: true)
     }
     

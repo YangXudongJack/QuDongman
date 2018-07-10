@@ -24,7 +24,8 @@ class HttpUnit: NSObject {
     }
     
     class func HttpGet_Origin(url: String, responseObject: @escaping (_ info: NSDictionary) -> Void) -> Void {
-        Alamofire.request(url, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
+        let _url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)
+        Alamofire.request(_url!, method: .get, parameters: nil, encoding: URLEncoding.default, headers: nil).responseJSON { (response) in
             if(response.error == nil){
                 if let json = response.result.value {
                     let dic : NSDictionary = json as! NSDictionary

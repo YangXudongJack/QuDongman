@@ -58,6 +58,10 @@ extension UIColor{
         return self.init().color(tone: 0xe3e3e3, alpha: 1.0)
     }
     
+    public class func boardColor() -> UIColor {
+        return self.init().color(tone: 0x11100f, alpha: 1.0)
+    }
+    
     func image(size : CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)

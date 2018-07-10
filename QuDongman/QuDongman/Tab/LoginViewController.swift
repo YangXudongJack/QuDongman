@@ -129,6 +129,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func loginAction(_ sender: UIButton) {
+        JYProgressHUD.show()
         if isShortcut {
             weak var weakself = self
             HttpUnit.fastRegister(params: { () -> Dictionary<String, Any> in
@@ -146,6 +147,7 @@ class LoginViewController: UIViewController {
                     
                     weakself?.dismiss(animated: true, completion: nil)
                 }
+                JYProgressHUD.dismiss()
             })
         }else{
             weak var weakself = self
@@ -163,6 +165,7 @@ class LoginViewController: UIViewController {
                     
                     weakself?.dismiss(animated: true, completion: nil)
                 }
+                JYProgressHUD.dismiss()
             })
         }
     }

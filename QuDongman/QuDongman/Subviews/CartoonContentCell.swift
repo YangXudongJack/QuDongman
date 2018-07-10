@@ -11,23 +11,13 @@ import UIKit
 class CartoonContentCell : JYBaseCell {
     
     var imageview:UIImageView!
-    var activity:UIActivityIndicatorView?
     
     var imageName:String? {
         set {
-            let queue = DispatchQueue(label: "load.image")
-            queue.async {
-                if (newValue)?.isEmpty == false {
-                    let url = URL.init(string: newValue!)!
-                    do {
-                        let data : NSData = try NSData(contentsOf: url)
-                        DispatchQueue.main.async {
-                            self.imageview?.image = UIImage(data: data as Data)
-                            self.activity?.stopAnimating()
-                        }
-                    } catch {}
-                }
-            }
+            imageview.sd_setImage(with: URL(string: newValue as! String),
+                                  placeholderImage: UIImage.init(named: "bookCover_placeholder"),
+                                  options: .retryFailed,
+                                  completed: nil)
         }
         
         get {
@@ -53,13 +43,6 @@ class CartoonContentCell : JYBaseCell {
         imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 320 * scale, height: 427 * scale))
         imageview.image = UIImage()
         self.contentView.addSubview(imageview)
-        
-        activity = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activity?.frame = CGRect(x: (320 * scale - (activity?.bounds.size.width)!) * 0.5, y: (427 * scale - (activity?.bounds.size.height)!) * 0.5, width: (activity?.bounds.size.width)!, height: (activity?.bounds.size.height)!)
-        activity?.hidesWhenStopped = true
-        self.contentView.addSubview(activity!)
-        
-        activity?.startAnimating()
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -68,7 +68,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let size = UIScreen.main.bounds.size
         loadEnable = true
         statuebarBackgroundHeightConstraint.constant = UIApplication.shared.statusBarFrame.size.height
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
         tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - 50 - (DeviceManager.isIphoneX() ?20:0) - 88
         showTabbar()
     }
@@ -81,7 +81,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         books = NSMutableArray.init()
         tableview.tableFooterView = UIView.init()
         tableview?.register(UINib.init(nibName: "JYCoverCell", bundle: Bundle.main), forCellReuseIdentifier: "JYCoverCell")
-        self.addObserver(tableview, forKeyPath: "contentOffset", options: .new, context: nil)
         
         configSubview()
         fetchCategory()
@@ -299,17 +298,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detail = BookDetailController.create()
+        detail.banner = self.books?.object(at: indexPath.row) as! JYBanner
+        self.navigationController?.pushViewController(detail, animated: true)
+    }
+    
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offset = self.tableview.contentOffset.y - (self.tableview.contentSize.height - self.tableview.bounds.size.height)
         if offset == 0 && self.loadEnable!{
             self.page+=1
             self.search()
-        }
-    }
-    
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        if keyPath == "contentOffset" {
-            print(NSStringFromCGPoint(tableview.contentOffset))
         }
     }
     
