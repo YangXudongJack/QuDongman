@@ -45,6 +45,7 @@ class JYCommentMember: JYBaseObject {
 class JYComment: JYBaseObject {
     @objc dynamic var to_member_id:String?
     @objc dynamic var content:String?
+    @objc dynamic var status:String?
     @objc dynamic var member_result:JYCommentMember?
     @objc dynamic var id:String?
     @objc dynamic var created_at:String?

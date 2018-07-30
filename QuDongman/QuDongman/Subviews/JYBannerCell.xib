@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="JYBannerCell" id="KGk-i7-Jjw" customClass="JYBannerCell" customModule="QuDongman" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="174.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMd-Kf-qkY">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                        <connections>
+                            <outlet property="delegate" destination="-1" id="7ZK-ID-78s"/>
+                        </connections>
+                    </scrollView>
+                    <imageView userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carousel" highlightedImage="carousel" translatesAutoresizingMaskIntoConstraints="NO" id="e5i-aA-Ui8">
+                        <rect key="frame" x="290" y="139" width="63" height="9"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="carousel_sel" highlightedImage="carousel_sel" translatesAutoresizingMaskIntoConstraints="NO" id="kL8-4C-0FP">
+                        <rect key="frame" x="290" y="138" width="16" height="10"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="NMd-Kf-qkY" secondAttribute="trailing" id="Igu-B3-YpD"/>
+                    <constraint firstItem="NMd-Kf-qkY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="nY4-Gn-0cF"/>
+                    <constraint firstAttribute="bottom" secondItem="NMd-Kf-qkY" secondAttribute="bottom" constant="-0.5" id="rPB-xd-d0c"/>
+                    <constraint firstItem="NMd-Kf-qkY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wiT-ej-nmH"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="normalPoints" destination="e5i-aA-Ui8" id="u1r-RL-QfP"/>
+                <outlet property="scrollview" destination="NMd-Kf-qkY" id="Ov9-Qm-oKd"/>
+                <outlet property="selectPoint" destination="kL8-4C-0FP" id="VsB-7h-nx8"/>
+            </connections>
+            <point key="canvasLocation" x="33.5" y="133.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="carousel" width="63" height="9"/>
+        <image name="carousel_sel" width="16" height="9"/>
+    </resources>
+</document>

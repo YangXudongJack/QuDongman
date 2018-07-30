@@ -104,6 +104,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="addCommentButton" destination="S2g-q8-Nrq" id="aWN-wB-4vb"/>
                 <outlet property="comment_user_comment" destination="Qxw-dg-Wje" id="gUy-3k-3N8"/>
                 <outlet property="comment_user_header" destination="Iut-Kq-YrK" id="I49-mZ-X9C"/>
                 <outlet property="comment_user_name" destination="WNR-ev-e54" id="wHO-qU-BD1"/>

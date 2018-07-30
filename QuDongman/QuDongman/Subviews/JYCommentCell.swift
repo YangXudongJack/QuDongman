@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum JYCommentCellType {
+    case filter
+    case list
+}
+
 class JYCommentCell: JYBaseCell {
 
     @IBOutlet weak var comment_user_header: UIImageView!
@@ -17,6 +22,8 @@ class JYCommentCell: JYBaseCell {
     @IBOutlet weak var comment_user_time: UILabel!
     
     @IBOutlet weak var comment_user_comment: UILabel!
+    
+    @IBOutlet weak var addCommentButton: UIButton!
     
     @IBOutlet weak var likeButton: UIButton!
     
@@ -34,6 +41,29 @@ class JYCommentCell: JYBaseCell {
         get {
             return _comment!
         }
+    }
+    
+    class func createCell(tableview: UITableView,
+                          comment:JYComment,
+                          type:JYCommentCellType) -> JYCommentCell{
+        let identifier = "JYCommentCell"
+        var cell:JYCommentCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? JYCommentCell
+        if cell == nil {
+            cell = Bundle.main.loadNibNamed("JYCommentCell",
+                                            owner: nil,
+                                            options: nil)?.first as! JYCommentCell
+        }
+        cell.comment = comment
+        if type == .filter {
+            cell.backgroundColor = UIColor.white
+            cell.addCommentButton.isHidden = false
+            cell.likeButton.isHidden = false
+        }else{
+            cell.backgroundColor = UIColor.AboutBackgroundColor()
+            cell.addCommentButton.isHidden = true
+            cell.likeButton.isHidden = true
+        }
+        return cell
     }
     
     override func awakeFromNib() {

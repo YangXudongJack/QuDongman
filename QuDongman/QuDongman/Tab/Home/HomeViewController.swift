@@ -11,16 +11,19 @@ import UIKit
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tableview: UITableView?
-    var datasource: NSMutableArray?
+    var homeDataSource: JYHome?
     var page: Int?
-    var loadEnable:Bool?
+    var dataEnable:Bool?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         self.navigationController?.navigationBar.barTintColor = UIColor.NavigationColor()
         self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         showTabbar()
+        let nav:JYNavigationController = self.navigationController as! JYNavigationController
+        nav.resetConfig()
     }
 
     override func viewDidLoad() {
@@ -29,8 +32,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         self.title = "趣动漫"
         self.view.backgroundColor = UIColor.white
         
-        loadEnable = true
-        datasource = NSMutableArray.init()
+        dataEnable = false
         let size = UIScreen.main.bounds.size
         let navHeight = self.navigationController?.navigationBar.frame.size.height
         var frame:CGRect?
@@ -57,6 +59,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         initData()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.navigationController?.navigationBar.barTintColor = UIColor.NavigationColor()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        let nav:JYNavigationController = self.navigationController as! JYNavigationController
+        nav.resetConfig()
+    }
+    
     func initData() -> Void {
 //        let bundlePath = Bundle.main.bundlePath
 //        let plistName = "/HomeData.plist"
@@ -69,54 +82,112 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         HttpUnit.HttpGet(url: JYUrl.home(page: page!) ) { (response, status) in
             if status {
                 let books:AnyObject = response.object(forKey: "data") as AnyObject
-                if books.isKind(of: NSArray.self) {
+                if books.isKind(of: NSDictionary.self) {
 //                    if books.count < 4 {
 //                        self.loadEnable = false
 //                    }
                     
-                    for item in books as! NSArray {
-                        let cartoon = JYBanner.init(dict: item as! [String : AnyObject])
-                        self.datasource?.add(cartoon)
-                    }
+//                    for item in books as! NSArray {
+//                        let cartoon = JYBanner.init(dict: item as! [String : AnyObject])
+//                        self.datasource?.add(cartoon)
+//                    }
+                    self.dataEnable = true
+                    self.homeDataSource = JYHome.init(dict: books as! [String : AnyObject])
                     self.tableview?.reloadData()
-                }else{
-                    self.loadEnable = false
                 }
                 JYProgressHUD.dismiss()
             }
         }
     }
     
+    func numberOfRows() -> Int {
+        if self.dataEnable! {
+            return 1 + (self.homeDataSource?.recommend_results?.count)! * 2
+        }else{
+            return 0
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datasource!.count
+        return self.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = "JYCoverCell"
-        let cell:JYCoverCell! = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? JYCoverCell
-        cell.book = self.datasource?.object(at: indexPath.row) as! JYBanner
-        cell.index = indexPath.row
-        return cell
+//        let identifier = "JYCoverCell"
+//        let cell:JYCoverCell! = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? JYCoverCell
+//        cell.book = self.datasource?.object(at: indexPath.row) as! JYBanner
+//        cell.index = indexPath.row
+//        return cell
+        
+        if indexPath.row == 0 {
+            let cell = JYBannerCell.createCell(tableview: tableView) { (recommend) in
+                let detail = BookDetailController.create()
+                detail.id = recommend.id
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+            cell.banners = (self.homeDataSource?.banner_results)!
+            return cell
+        }else if indexPath.row == 1 {
+            let cell = JYNavCell.createCell(tableview: tableView) { (nav) in
+                let story = UIStoryboard.init(name: "Main", bundle: Bundle.main)
+                let detail:SearchDetailController = story.instantiateViewController(withIdentifier: "SearchDetailController") as! SearchDetailController
+                detail.sort = nav.nav_name!;
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+            cell.navs = self.homeDataSource?.nav_results
+            return cell
+        }else if (indexPath.row % 2 == 0 && indexPath.row > 1){
+            let cell = JYNewHomeCell.createCell(tableview: tableView) { (recommend) in
+                let detail = BookDetailController.create()
+                detail.id = recommend.id
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+            let index:Int = (indexPath.row - 2) / 2
+            let recommend:JYRecommend = self.homeDataSource?.recommend_results?.object(at: index) as! JYRecommend
+            cell.recommends = recommend.recommend_results
+            return cell
+        }else{
+            let cell = JYBannerCell.createCell(tableview: tableView) { (recommend) in
+                let detail = BookDetailController.create()
+                detail.id = recommend.id
+                self.navigationController?.pushViewController(detail, animated: true)
+            }
+            let index:Int = (indexPath.row - 1) / 2
+            let recommend:JYRecommend = self.homeDataSource?.recommend_results?.object(at: index) as! JYRecommend
+            let banners = NSMutableArray()
+            banners.add(recommend.top_result!)
+            cell.banners = banners
+            return cell
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160.0 * UIScreen.main.bounds.size.width / 320
+//        return 160.0 * UIScreen.main.bounds.size.width / 320
+        if indexPath.row == 0 {
+            return 175.0
+        }else if indexPath.row == 1{
+            return 93.0
+        }else if indexPath.row % 2 == 0{
+            return 343.0
+        }else{
+            return 175.0
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dataInfo = datasource![indexPath.row]
-        let detail = BookDetailController.create()
-        detail.banner = dataInfo as? JYBanner
-        self.navigationController?.pushViewController(detail, animated: true)
+//        let dataInfo = datasource![indexPath.row]
+//        let detail = BookDetailController.create()
+//        detail.banner = dataInfo as? JYBanner
+//        self.navigationController?.pushViewController(detail, animated: true)
     }
     
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let offset = (self.tableview?.contentOffset.y)! - ((self.tableview?.contentSize.height)! - (self.tableview?.bounds.size.height)!)
-        if offset == 0 && self.loadEnable!{
-            self.page = self.page! + 1
-            self.initData()
-        }
-    }
+//    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        let offset = (self.tableview?.contentOffset.y)! - ((self.tableview?.contentSize.height)! - (self.tableview?.bounds.size.height)!)
+//        if offset == 0 && self.loadEnable!{
+//            self.page = self.page! + 1
+//            self.initData()
+//        }
+//    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

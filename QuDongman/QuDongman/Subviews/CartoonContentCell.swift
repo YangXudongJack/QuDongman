@@ -42,6 +42,7 @@ class CartoonContentCell : JYBaseCell {
         
         imageview = UIImageView(frame: CGRect(x: 0, y: 0, width: 320 * scale, height: 427 * scale))
         imageview.image = UIImage()
+        imageview.contentMode = .scaleAspectFit
         self.contentView.addSubview(imageview)
     }
     

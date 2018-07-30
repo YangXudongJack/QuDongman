@@ -36,6 +36,10 @@ class JYTabbarController: UITabBarController {
         
         initControllers()
         customTabbar()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(gotoAppstore), name: Notification.Name(rawValue: String().needUpdate()), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(gotoLogin), name: Notification.Name(rawValue: String().notLogin()), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideProgressHUD), name: Notification.Name(rawValue: String().networkError()), object: nil)
     }
     
     func initControllers() -> Void {
@@ -123,6 +127,23 @@ class JYTabbarController: UITabBarController {
                 btn.isSelected = false
             }
         }
+    }
+    
+    @objc func gotoLogin() -> Void {
+        JYProgressHUD.dismiss()
+        let login = LoginViewController.create()
+        login.loginResultClosure {
+            
+        }
+        self.present(login, animated: true, completion: nil)
+    }
+    
+    @objc func gotoAppstore() -> Void {
+        UIApplication.shared.openURL(URL(string: String().installUrl())!)
+    }
+    
+    @objc func hideProgressHUD() -> Void {
+        JYProgressHUD.dismiss()
     }
     
     override func prefersHomeIndicatorAutoHidden() -> Bool {

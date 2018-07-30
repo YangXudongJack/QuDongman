@@ -96,6 +96,10 @@ class LoginViewController: UIViewController {
         self.showTabbar()
     }
 
+    @IBAction func dismiss(_ sender: UIButton) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     @IBAction func shortcutLoginAction(_ sender: UIButton) {
         if !sender.isSelected {
             isShortcut = true
@@ -210,8 +214,11 @@ class LoginViewController: UIViewController {
         
         weak var weakself = self
         if WXApi.send(req) {
+            JYProgressHUD.show()
             ShareManager.shared.shareResultClosure(closure: {
-                weakself?.loginResultClosure!()
+                if ((weakself?.loginResultClosure) != nil) {
+                    weakself?.loginResultClosure!()
+                }
                 weakself?.dismiss(animated: true, completion: nil)
             })
         }else{

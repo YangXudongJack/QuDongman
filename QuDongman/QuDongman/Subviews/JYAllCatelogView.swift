@@ -14,12 +14,19 @@ class JYAllCatelogView: UIView, UITableViewDelegate, UITableViewDataSource {
     
     var catelogColsure:((JYCatelog)->Void)?
     
+    var reverse:Bool?
+    
     var _catelogs:Array<Any>?
     var catelogs:Array<Any> {
         set {
             _catelogs = newValue
-            self.addSubview(JYCatelogHeader.showCatelogHeader(title: "", serial: (_catelogs?.count)!, colsure: {
-                self.removeFromSuperview()
+            self.addSubview(JYCatelogHeader.showCatelogHeader(title: "", serial: (_catelogs?.count)!, colsure: { (type) in
+                if type == .dismiss {
+                    self.removeFromSuperview()
+                }else{
+                    self.reverse = !self.reverse!
+                    self.tablewview?.reloadData()
+                }
             }))
             
             tablewview?.reloadData()
@@ -40,6 +47,7 @@ class JYAllCatelogView: UIView, UITableViewDelegate, UITableViewDataSource {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        self.reverse = false
         self.backgroundColor = UIColor.boardColor().withAlphaComponent(0.9)
         var originY:Int = 93
         if DeviceManager.isIphoneX() {
@@ -64,13 +72,22 @@ class JYAllCatelogView: UIView, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let catelog:JYCatelog = _catelogs![indexPath.row] as! JYCatelog
+        var row = indexPath.row
+        if self.reverse! {
+            row = (self.catelogs.count - 1) - row
+        }
+        let catelog:JYCatelog = _catelogs![row] as! JYCatelog
         let vip:Bool = (catelog.is_vip! as NSString).boolValue
         return JYCatelogItemCell.showCatelogItem(tableview: tableView, title: catelog.name!, vip: vip)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let catelog:JYCatelog = _catelogs![indexPath.row] as! JYCatelog
+        var row = indexPath.row
+        if self.reverse! {
+            row = (self.catelogs.count - 1) - row
+        }
+        let catelog:JYCatelog = _catelogs![row] as! JYCatelog
         catelogColsure!(catelog)
+        self.removeFromSuperview()
     }
 }

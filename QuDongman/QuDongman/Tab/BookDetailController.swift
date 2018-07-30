@@ -65,7 +65,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     }
     
-    var banner:JYBanner?
+    var id:String?
     var cartoonContent:JYCartoonContent?
     var _bookInfo:JYCartoon?
     var bookInfo:JYCartoon?{
@@ -109,7 +109,6 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         type = .info
-        tableview.register(UINib.init(nibName: "JYCommentCell", bundle: Bundle.main), forCellReuseIdentifier: "JYCommentCell")
         _configNav()
         _initDetailData()
     }
@@ -130,7 +129,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func _initDetailData() -> Void {
         JYProgressHUD.show()
-        HttpUnit.HttpGet(url: JYUrl.detail(id: Int((banner?.id)!)!)) { (responseObject, success) in
+        HttpUnit.HttpGet(url: JYUrl.detail(id: Int(self.id!)!)) { (responseObject, success) in
             if success {
                 let data = responseObject.object(forKey: "data")
                 self.bookInfo = JYCartoon.init(dict: data as! [String : AnyObject])
@@ -144,7 +143,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         JYProgressHUD.show()
         let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
         let chapter:Int = Int(catelog.id!)!
-        HttpUnit.HttpGet(url: JYUrl.content(id: Int((banner?.id)!)!, chapter: chapter)) { (responseObject, success) in
+        HttpUnit.HttpGet(url: JYUrl.content(id: Int(self.id!)!, chapter: chapter)) { (responseObject, success) in
             if success {
                 let data = responseObject.object(forKey: "data")
                 self.cartoonContent = JYCartoonContent.init(dict: data as! [String : AnyObject])
@@ -174,7 +173,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBAction func readNowAction(_ sender: UIButton) {
         let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
-        let book = BookContentController.bookContent(id: (banner?.id)!, chapter: catelog.id!, title: catelog.name!)
+        let book = BookContentController.bookContent(id: self.id!, chapter: catelog.id!, title: catelog.name!)
         self.navigationController?.pushViewController(book, animated: true)
     }
     
@@ -248,14 +247,20 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
             case 2 + (self.bookInfo?.comment_results?.results?.count)!: do {
-                return JYAllCommentsEntranceCell.createCell(tableview: tableView)
+                return JYAllCommentsEntranceCell.createCell(tableview: tableView, colsure: {
+                    let comments:JYCommentsController = JYCommentsController()
+                    let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
+                    let chapter:Int = Int(catelog.id!)!
+                    comments.bookId = self.id
+                    comments.chapterId = catelog.id
+                    comments.pid = ""
+                    self.navigationController?.pushViewController(comments, animated: true)
+                })
                 }
                 
             default: do {
-                let identifier = "JYCommentCell"
-                let cell:JYCommentCell! = tableView.dequeueReusableCell(withIdentifier: identifier, for: indexPath) as? JYCommentCell
-                cell.comment = self.bookInfo?.comment_results?.results?.object(at: indexPath.row - 2) as! JYComment
-                return cell
+                let comment:JYComment = self.bookInfo?.comment_results?.results?.object(at: indexPath.row - 2) as! JYComment
+                return JYCommentCell.createCell(tableview: tableView, comment: comment, type: .filter)
                 }
             }
         }
@@ -266,13 +271,14 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                     let cell:JYCatelogCell = JYCatelogCell.createCell(tableview: tableview, colsure: { (catelog, actionType) in
                         switch actionType {
                         case .catelog: do {
-                            let book = BookContentController.bookContent(id: (self.banner?.id)!, chapter: catelog.id!, title: catelog.name!)
+                            let book = BookContentController.bookContent(id: self.id!, chapter: catelog.id!, title: catelog.name!)
                             self.navigationController?.pushViewController(book, animated: true)
                             }
                             
                         default : do {
                             JYAllCatelogView.showAllCatelog(catelogs: (self.bookInfo?.chapter_results)!, colsure: { (catelog) in
-                                
+                                let book = BookContentController.bookContent(id: self.id!, chapter: catelog.id!, title: catelog.name!)
+                                self.navigationController?.pushViewController(book, animated: true)
                             })
                             }
                         }

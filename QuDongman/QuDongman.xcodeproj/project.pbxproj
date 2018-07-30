@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B01E54F2100EDDF00BA9F4A /* String+Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01E54E2100EDDF00BA9F4A /* String+Tools.swift */; };
+		0B01E55B21048DCA00BA9F4A /* JYHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01E55A21048DCA00BA9F4A /* JYHome.swift */; };
+		0B01E5662104BD5100BA9F4A /* JYBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01E5642104BD5100BA9F4A /* JYBannerCell.swift */; };
+		0B01E5672104BD5100BA9F4A /* JYBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B01E5652104BD5100BA9F4A /* JYBannerCell.xib */; };
+		0B01E56A2104D8D000BA9F4A /* JYNavCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01E5682104D8D000BA9F4A /* JYNavCell.swift */; };
+		0B01E56B2104D8D000BA9F4A /* JYNavCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B01E5692104D8D000BA9F4A /* JYNavCell.xib */; };
+		0B01E56E2104DF4000BA9F4A /* JYNewHomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B01E56C2104DF4000BA9F4A /* JYNewHomeCell.swift */; };
+		0B01E56F2104DF4000BA9F4A /* JYNewHomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B01E56D2104DF4000BA9F4A /* JYNewHomeCell.xib */; };
 		0B10AF73208B17DB00EDAFC9 /* UserBuyCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10AF72208B17DB00EDAFC9 /* UserBuyCoinController.swift */; };
 		0B10AF75208B1F1F00EDAFC9 /* JYUserBuyCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10AF74208B1F1F00EDAFC9 /* JYUserBuyCoin.swift */; };
 		0B10AF78208B26B900EDAFC9 /* JYBaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B10AF77208B26B900EDAFC9 /* JYBaseCell.swift */; };
@@ -33,6 +41,7 @@
 		0B277E2E20B313CA003115E7 /* UserSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B277E2C20B313CA003115E7 /* UserSetupViewController.xib */; };
 		0B5AC22220B70C52009E3A73 /* BookrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5AC22020B70C52009E3A73 /* BookrackViewController.swift */; };
 		0B5AC27320BAFBB8009E3A73 /* BookrackBooksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5AC27120BAFBB8009E3A73 /* BookrackBooksCell.swift */; };
+		0B62A53A20FCDF78007EBB9D /* String+Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62A53920FCDF78007EBB9D /* String+Method.swift */; };
 		0B6F33FD20387319009F6F39 /* JYBaseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F33FC20387319009F6F39 /* JYBaseObject.swift */; };
 		0B6F340720387489009F6F39 /* JYBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F340620387489009F6F39 /* JYBanner.swift */; };
 		0B6F340E203877E2009F6F39 /* JYCartoon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B6F340D203877E2009F6F39 /* JYCartoon.swift */; };
@@ -83,6 +92,11 @@
 		0B9BDE932067B70000915A0A /* UserAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9BDE912067B70000915A0A /* UserAccountController.swift */; };
 		0B9BDE942067B70000915A0A /* UserAccountController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B9BDE922067B70000915A0A /* UserAccountController.xib */; };
 		0BAA5E601FAA30A50063774E /* CartoonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */; };
+		0BAD768F210A2611005F2576 /* JYCommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD768E210A2611005F2576 /* JYCommentsController.swift */; };
+		0BAD7693210C86B8005F2576 /* JYListCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD7691210C86B8005F2576 /* JYListCommentCell.swift */; };
+		0BAD7694210C86B8005F2576 /* JYListCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BAD7692210C86B8005F2576 /* JYListCommentCell.xib */; };
+		0BAD76A2210CC925005F2576 /* JYCommentEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD76A1210CC925005F2576 /* JYCommentEditView.swift */; };
+		0BAD76A8210D4BE7005F2576 /* JYChapterBuyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAD76A7210D4BE7005F2576 /* JYChapterBuyController.swift */; };
 		0BAE85FA1FA37FDB005E9027 /* JYButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAE85F91FA37FDB005E9027 /* JYButton.swift */; };
 		0BB2795B209C9CE200452FE7 /* JYOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2795A209C9CE200452FE7 /* JYOrder.swift */; };
 		0BB27966209F3E7E00452FE7 /* APOrderInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB27965209F3E7E00452FE7 /* APOrderInfo.m */; };
@@ -90,6 +104,8 @@
 		0BB2796D209F42C400452FE7 /* APRSASigner.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB2796B209F42C400452FE7 /* APRSASigner.m */; };
 		0BB279C0209F45F700452FE7 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB279BE209F45F700452FE7 /* libcrypto.a */; };
 		0BB279C1209F45F700452FE7 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BB279BF209F45F700452FE7 /* libssl.a */; };
+		0BBA2A5520FE40EE00B60B89 /* String+NotificationName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBA2A5420FE40EE00B60B89 /* String+NotificationName.swift */; };
+		0BBA2A5F20FE43AD00B60B89 /* String+Install.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBA2A5E20FE43AD00B60B89 /* String+Install.swift */; };
 		0BBF827920ED183100AC599A /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF826720ED183100AC599A /* SVRadialGradientLayer.m */; };
 		0BBF827A20ED183100AC599A /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF826A20ED183100AC599A /* SVProgressAnimatedView.m */; };
 		0BBF827B20ED183100AC599A /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF826D20ED183100AC599A /* SVProgressHUD.m */; };
@@ -115,8 +131,6 @@
 		0BBF837420F11B3800AC599A /* JYCatelogItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */; };
 		0BBF837620F1294200AC599A /* JYCartoonContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837520F1294200AC599A /* JYCartoonContent.swift */; };
 		0BBF837820F130A700AC599A /* BookContentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837720F130A700AC599A /* BookContentController.swift */; };
-		0BBF837D20F1917000AC599A /* JYNewHomeCellCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */; };
-		0BBF837E20F1917000AC599A /* JYNewHomeCellCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */; };
 		0BBF838120F1B9DF00AC599A /* HttpUnit+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF838020F1B9DF00AC599A /* HttpUnit+Collection.swift */; };
 		0BBF838B20F1BB9B00AC599A /* JYCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BBF838A20F1BB9B00AC599A /* JYCollection.swift */; };
 		0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC252A61FA30E7800B8CB52 /* AppDelegate.swift */; };
@@ -139,6 +153,9 @@
 		0BEAD5DD20C99A840086EC28 /* JYCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD5DC20C99A840086EC28 /* JYCategory.swift */; };
 		0BEAD5DF20C99ECF0086EC28 /* SearchDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEAD5DE20C99ECF0086EC28 /* SearchDetailController.swift */; };
 		0BEAD5F020CEC8820086EC28 /* TencentOpenAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEAD5E720CEC8820086EC28 /* TencentOpenAPI.framework */; };
+		0BEEE07520FF9FA300C1F5F3 /* UMAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEEE07420FF9FA300C1F5F3 /* UMAnalytics.framework */; };
+		0BEEE07720FF9FAF00C1F5F3 /* UMCommon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0BEEE07620FF9FAF00C1F5F3 /* UMCommon.framework */; };
+		0BEEE07920FFA00A00C1F5F3 /* String+AppID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEEE07820FFA00A00C1F5F3 /* String+AppID.swift */; };
 		0BF8835A204596720018BEF9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF88359204596720018BEF9 /* RegisterViewController.swift */; };
 		0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */; };
 		0BFFC705204D905D00ED46A3 /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFFC703204D905D00ED46A3 /* UserProfileController.swift */; };
@@ -211,6 +228,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B01E54E2100EDDF00BA9F4A /* String+Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Tools.swift"; sourceTree = "<group>"; };
+		0B01E55A21048DCA00BA9F4A /* JYHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYHome.swift; sourceTree = "<group>"; };
+		0B01E5642104BD5100BA9F4A /* JYBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBannerCell.swift; sourceTree = "<group>"; };
+		0B01E5652104BD5100BA9F4A /* JYBannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYBannerCell.xib; sourceTree = "<group>"; };
+		0B01E5682104D8D000BA9F4A /* JYNavCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNavCell.swift; sourceTree = "<group>"; };
+		0B01E5692104D8D000BA9F4A /* JYNavCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYNavCell.xib; sourceTree = "<group>"; };
+		0B01E56C2104DF4000BA9F4A /* JYNewHomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNewHomeCell.swift; sourceTree = "<group>"; };
+		0B01E56D2104DF4000BA9F4A /* JYNewHomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYNewHomeCell.xib; sourceTree = "<group>"; };
 		0B10AF72208B17DB00EDAFC9 /* UserBuyCoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserBuyCoinController.swift; sourceTree = "<group>"; };
 		0B10AF74208B1F1F00EDAFC9 /* JYUserBuyCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYUserBuyCoin.swift; sourceTree = "<group>"; };
 		0B10AF77208B26B900EDAFC9 /* JYBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBaseCell.swift; sourceTree = "<group>"; };
@@ -237,6 +262,7 @@
 		0B277E2C20B313CA003115E7 /* UserSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserSetupViewController.xib; sourceTree = "<group>"; };
 		0B5AC22020B70C52009E3A73 /* BookrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrackViewController.swift; sourceTree = "<group>"; };
 		0B5AC27120BAFBB8009E3A73 /* BookrackBooksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrackBooksCell.swift; sourceTree = "<group>"; };
+		0B62A53920FCDF78007EBB9D /* String+Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Method.swift"; sourceTree = "<group>"; };
 		0B6F33FC20387319009F6F39 /* JYBaseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBaseObject.swift; sourceTree = "<group>"; };
 		0B6F340620387489009F6F39 /* JYBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYBanner.swift; sourceTree = "<group>"; };
 		0B6F340D203877E2009F6F39 /* JYCartoon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCartoon.swift; sourceTree = "<group>"; };
@@ -319,6 +345,11 @@
 		0B9BDE912067B70000915A0A /* UserAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccountController.swift; sourceTree = "<group>"; };
 		0B9BDE922067B70000915A0A /* UserAccountController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserAccountController.xib; sourceTree = "<group>"; };
 		0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartoonViewController.swift; sourceTree = "<group>"; };
+		0BAD768E210A2611005F2576 /* JYCommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCommentsController.swift; sourceTree = "<group>"; };
+		0BAD7691210C86B8005F2576 /* JYListCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYListCommentCell.swift; sourceTree = "<group>"; };
+		0BAD7692210C86B8005F2576 /* JYListCommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYListCommentCell.xib; sourceTree = "<group>"; };
+		0BAD76A1210CC925005F2576 /* JYCommentEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCommentEditView.swift; sourceTree = "<group>"; };
+		0BAD76A7210D4BE7005F2576 /* JYChapterBuyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYChapterBuyController.swift; sourceTree = "<group>"; };
 		0BAE85F91FA37FDB005E9027 /* JYButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYButton.swift; sourceTree = "<group>"; };
 		0BB2795A209C9CE200452FE7 /* JYOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYOrder.swift; sourceTree = "<group>"; };
 		0BB27964209F3E7E00452FE7 /* APOrderInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APOrderInfo.h; sourceTree = "<group>"; };
@@ -406,6 +437,8 @@
 		0BB27A0E209F472C00452FE7 /* ebcdic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ebcdic.h; sourceTree = "<group>"; };
 		0BB27A0F209F472C00452FE7 /* idea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idea.h; sourceTree = "<group>"; };
 		0BB27A10209F472C00452FE7 /* lhash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = lhash.h; sourceTree = "<group>"; };
+		0BBA2A5420FE40EE00B60B89 /* String+NotificationName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+NotificationName.swift"; sourceTree = "<group>"; };
+		0BBA2A5E20FE43AD00B60B89 /* String+Install.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Install.swift"; sourceTree = "<group>"; };
 		0BBF826720ED183100AC599A /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
 		0BBF826820ED183100AC599A /* SVIndefiniteAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVIndefiniteAnimatedView.h; sourceTree = "<group>"; };
 		0BBF826920ED183100AC599A /* SVProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressHUD.h; sourceTree = "<group>"; };
@@ -436,8 +469,6 @@
 		0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYCatelogItemCell.xib; sourceTree = "<group>"; };
 		0BBF837520F1294200AC599A /* JYCartoonContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCartoonContent.swift; sourceTree = "<group>"; };
 		0BBF837720F130A700AC599A /* BookContentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookContentController.swift; sourceTree = "<group>"; };
-		0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYNewHomeCellCell.swift; sourceTree = "<group>"; };
-		0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYNewHomeCellCell.xib; sourceTree = "<group>"; };
 		0BBF838020F1B9DF00AC599A /* HttpUnit+Collection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUnit+Collection.swift"; sourceTree = "<group>"; };
 		0BBF838A20F1BB9B00AC599A /* JYCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCollection.swift; sourceTree = "<group>"; };
 		0BC252A31FA30E7800B8CB52 /* QuDongman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuDongman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -464,6 +495,9 @@
 		0BEAD5DC20C99A840086EC28 /* JYCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYCategory.swift; sourceTree = "<group>"; };
 		0BEAD5DE20C99ECF0086EC28 /* SearchDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDetailController.swift; sourceTree = "<group>"; };
 		0BEAD5E720CEC8820086EC28 /* TencentOpenAPI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TencentOpenAPI.framework; sourceTree = "<group>"; };
+		0BEEE07420FF9FA300C1F5F3 /* UMAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMAnalytics.framework; sourceTree = "<group>"; };
+		0BEEE07620FF9FAF00C1F5F3 /* UMCommon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMCommon.framework; sourceTree = "<group>"; };
+		0BEEE07820FFA00A00C1F5F3 /* String+AppID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AppID.swift"; sourceTree = "<group>"; };
 		0BF88359204596720018BEF9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		0BF8836D2046F5430018BEF9 /* HttpUnit+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HttpUnit+Login.swift"; sourceTree = "<group>"; };
 		0BFFC703204D905D00ED46A3 /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
@@ -476,9 +510,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BB279C0209F45F700452FE7 /* libcrypto.a in Frameworks */,
+				0BEEE07520FF9FA300C1F5F3 /* UMAnalytics.framework in Frameworks */,
 				0BEAD5F020CEC8820086EC28 /* TencentOpenAPI.framework in Frameworks */,
 				0BB279C1209F45F700452FE7 /* libssl.a in Frameworks */,
 				0BE68A002093735900CB8564 /* CoreMotion.framework in Frameworks */,
+				0BEEE07720FF9FAF00C1F5F3 /* UMCommon.framework in Frameworks */,
 				0BE689FE2093735000CB8564 /* CFNetwork.framework in Frameworks */,
 				0BE689FC2093734700CB8564 /* Foundation.framework in Frameworks */,
 				0BE689FA2093734200CB8564 /* UIKit.framework in Frameworks */,
@@ -518,6 +554,7 @@
 				0BEAD5DC20C99A840086EC28 /* JYCategory.swift */,
 				0BBF837520F1294200AC599A /* JYCartoonContent.swift */,
 				0BBF838A20F1BB9B00AC599A /* JYCollection.swift */,
+				0B01E55A21048DCA00BA9F4A /* JYHome.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -622,6 +659,7 @@
 				0B6F341520387C56009F6F39 /* JYUrl.swift */,
 				0B6F3448203EE5EE009F6F39 /* String+Sign.swift */,
 				0BBF836520F0E9C000AC599A /* String+UrlVersion.swift */,
+				0B62A53920FCDF78007EBB9D /* String+Method.swift */,
 			);
 			path = url;
 			sourceTree = "<group>";
@@ -769,6 +807,8 @@
 			children = (
 				0B10B9781FBB3FE00080F488 /* CartoonDetailViewController.swift */,
 				0BAA5E5F1FAA30A50063774E /* CartoonViewController.swift */,
+				0BAD768E210A2611005F2576 /* JYCommentsController.swift */,
+				0BAD76A7210D4BE7005F2576 /* JYChapterBuyController.swift */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -894,6 +934,7 @@
 		0BC2529A1FA30E7800B8CB52 = {
 			isa = PBXGroup;
 			children = (
+				0BEEE06720FF9F4400C1F5F3 /* UMeng */,
 				0BBF826620ED183100AC599A /* SVProgressHUD */,
 				0B78E38E20E543520030EBC4 /* SDWebImage */,
 				0BE689CB2090B9ED00CB8564 /* AliPay */,
@@ -961,8 +1002,15 @@
 				0BBF836F20F1098500AC599A /* JYCatelogHeader.xib */,
 				0BBF837120F11B3800AC599A /* JYCatelogItemCell.swift */,
 				0BBF837220F11B3800AC599A /* JYCatelogItemCell.xib */,
-				0BBF837B20F1917000AC599A /* JYNewHomeCellCell.swift */,
-				0BBF837C20F1917000AC599A /* JYNewHomeCellCell.xib */,
+				0B01E5642104BD5100BA9F4A /* JYBannerCell.swift */,
+				0B01E5652104BD5100BA9F4A /* JYBannerCell.xib */,
+				0B01E5682104D8D000BA9F4A /* JYNavCell.swift */,
+				0B01E5692104D8D000BA9F4A /* JYNavCell.xib */,
+				0B01E56C2104DF4000BA9F4A /* JYNewHomeCell.swift */,
+				0B01E56D2104DF4000BA9F4A /* JYNewHomeCell.xib */,
+				0BAD7691210C86B8005F2576 /* JYListCommentCell.swift */,
+				0BAD7692210C86B8005F2576 /* JYListCommentCell.xib */,
+				0BAD76A1210CC925005F2576 /* JYCommentEditView.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -982,6 +1030,10 @@
 			children = (
 				0BC252C11FA312A500B8CB52 /* UIColor+RGB.swift */,
 				0B12F9311FA5DDF4008FF9DA /* UIViewController+Extension.swift */,
+				0BBA2A5420FE40EE00B60B89 /* String+NotificationName.swift */,
+				0BBA2A5E20FE43AD00B60B89 /* String+Install.swift */,
+				0BEEE07820FFA00A00C1F5F3 /* String+AppID.swift */,
+				0B01E54E2100EDDF00BA9F4A /* String+Tools.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1003,6 +1055,15 @@
 				0BE68A022096A54400CB8564 /* PayManager.swift */,
 			);
 			path = PayManager;
+			sourceTree = "<group>";
+		};
+		0BEEE06720FF9F4400C1F5F3 /* UMeng */ = {
+			isa = PBXGroup;
+			children = (
+				0BEEE07620FF9FAF00C1F5F3 /* UMCommon.framework */,
+				0BEEE07420FF9FA300C1F5F3 /* UMAnalytics.framework */,
+			);
+			path = UMeng;
 			sourceTree = "<group>";
 		};
 		0BF883642046E8680018BEF9 /* HttpRequest */ = {
@@ -1156,17 +1217,20 @@
 				0BBF828220ED2E1F00AC599A /* JYCoverCell.xib in Resources */,
 				0BBF836A20F0F0BA00AC599A /* JYCatelogCell.xib in Resources */,
 				0B9BDE942067B70000915A0A /* UserAccountController.xib in Resources */,
+				0B01E56B2104D8D000BA9F4A /* JYNavCell.xib in Resources */,
+				0B01E5672104BD5100BA9F4A /* JYBannerCell.xib in Resources */,
 				0BBF827D20ED183100AC599A /* SVProgressHUD.bundle in Resources */,
 				0BE689D62090BA0100CB8564 /* AlipaySDK.bundle in Resources */,
+				0B01E56F2104DF4000BA9F4A /* JYNewHomeCell.xib in Resources */,
 				0BBF836020F0C95900AC599A /* JYCommentCell.xib in Resources */,
 				0BBF837420F11B3800AC599A /* JYCatelogItemCell.xib in Resources */,
 				0B15FFC71FC724BF00639BA2 /* Main.storyboard in Resources */,
+				0BAD7694210C86B8005F2576 /* JYListCommentCell.xib in Resources */,
 				0BBF837020F1098500AC599A /* JYCatelogHeader.xib in Resources */,
 				0B277E2E20B313CA003115E7 /* UserSetupViewController.xib in Resources */,
 				0B6F3442203ED1BC009F6F39 /* Localizable.strings in Resources */,
 				0BFFC706204D905E00ED46A3 /* UserProfileController.xib in Resources */,
 				0B78E42E20EBDBD20030EBC4 /* Assets.xcassets in Resources */,
-				0BBF837E20F1917000AC599A /* JYNewHomeCellCell.xib in Resources */,
 				0B15FFC81FC724BF00639BA2 /* LaunchScreen.storyboard in Resources */,
 				0BBF835C20F0C33200AC599A /* JYCommentsHeaderCell.xib in Resources */,
 			);
@@ -1188,6 +1252,7 @@
 				0BC252C91FA33A1E00B8CB52 /* AboutViewController.swift in Sources */,
 				0BBF836C20F0FE3D00AC599A /* JYAllCatelogView.swift in Sources */,
 				0B78E3DD20E543520030EBC4 /* SDWebImageDownloader.m in Sources */,
+				0B01E55B21048DCA00BA9F4A /* JYHome.swift in Sources */,
 				0BEAD5DF20C99ECF0086EC28 /* SearchDetailController.swift in Sources */,
 				0B6F343B203EB823009F6F39 /* LanguageManager.swift in Sources */,
 				0B6F3425203E637A009F6F39 /* LoginViewController.swift in Sources */,
@@ -1195,9 +1260,12 @@
 				0B9BDE932067B70000915A0A /* UserAccountController.swift in Sources */,
 				0B277E2D20B313CA003115E7 /* UserSetupViewController.swift in Sources */,
 				0B6F340E203877E2009F6F39 /* JYCartoon.swift in Sources */,
+				0B01E54F2100EDDF00BA9F4A /* String+Tools.swift in Sources */,
 				0BB27966209F3E7E00452FE7 /* APOrderInfo.m in Sources */,
 				0BC252C21FA312A500B8CB52 /* UIColor+RGB.swift in Sources */,
+				0B62A53A20FCDF78007EBB9D /* String+Method.swift in Sources */,
 				0BFFC705204D905D00ED46A3 /* UserProfileController.swift in Sources */,
+				0BBA2A5520FE40EE00B60B89 /* String+NotificationName.swift in Sources */,
 				0B78E3E520E543520030EBC4 /* SDAnimatedImageRep.m in Sources */,
 				0B78E3F020E543520030EBC4 /* SDWebImageImageIOCoder.m in Sources */,
 				0BEAD5DD20C99A840086EC28 /* JYCategory.swift in Sources */,
@@ -1211,7 +1279,6 @@
 				0B10B97F1FBB59E80080F488 /* CartoonCoverCell.swift in Sources */,
 				0B78E3E620E543520030EBC4 /* SDImageCache.m in Sources */,
 				0B1706041FC72BC2009E3D69 /* HttpUnit.swift in Sources */,
-				0BBF837D20F1917000AC599A /* JYNewHomeCellCell.swift in Sources */,
 				0B78E3DF20E543520030EBC4 /* UIImage+MultiFormat.m in Sources */,
 				0B78E3DA20E543520030EBC4 /* UIImage+ForceDecode.m in Sources */,
 				0B78E3EC20E543520030EBC4 /* SDWebImageGIFCoder.m in Sources */,
@@ -1223,6 +1290,7 @@
 				0BF8836E2046F5430018BEF9 /* HttpUnit+Login.swift in Sources */,
 				0BBF835F20F0C95900AC599A /* JYCommentCell.swift in Sources */,
 				0B78E3F120E543520030EBC4 /* UIButton+WebCache.m in Sources */,
+				0BAD76A2210CC925005F2576 /* JYCommentEditView.swift in Sources */,
 				0B78E3DB20E543520030EBC4 /* SDWebImageCodersManager.m in Sources */,
 				0BBF834A20F05C9E00AC599A /* BookDetailController.swift in Sources */,
 				0BC252BC1FA30F2500B8CB52 /* JYNavigationController.swift in Sources */,
@@ -1238,9 +1306,11 @@
 				0BBF836620F0E9C000AC599A /* String+UrlVersion.swift in Sources */,
 				0BBF827920ED183100AC599A /* SVRadialGradientLayer.m in Sources */,
 				0B6F33FD20387319009F6F39 /* JYBaseObject.swift in Sources */,
+				0BEEE07920FFA00A00C1F5F3 /* String+AppID.swift in Sources */,
 				0B78E3EA20E543520030EBC4 /* UIImageView+WebCache.m in Sources */,
 				0B220D822054FF2900072BE9 /* ShareManager.swift in Sources */,
 				0BBF837320F11B3800AC599A /* JYCatelogItemCell.swift in Sources */,
+				0BBA2A5F20FE43AD00B60B89 /* String+Install.swift in Sources */,
 				0B78E3E120E543520030EBC4 /* SDWebImageCompat.m in Sources */,
 				0B10AF73208B17DB00EDAFC9 /* UserBuyCoinController.swift in Sources */,
 				0B78E3E720E543520030EBC4 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -1249,6 +1319,7 @@
 				0B10AF7A208C651600EDAFC9 /* JYBuyCoinCell.swift in Sources */,
 				0BBF838B20F1BB9B00AC599A /* JYCollection.swift in Sources */,
 				0BBF836920F0F0BA00AC599A /* JYCatelogCell.swift in Sources */,
+				0B01E5662104BD5100BA9F4A /* JYBannerCell.swift in Sources */,
 				0BC252A71FA30E7800B8CB52 /* AppDelegate.swift in Sources */,
 				0BBF836E20F1097600AC599A /* JYCatelogHeader.swift in Sources */,
 				0BBF837620F1294200AC599A /* JYCartoonContent.swift in Sources */,
@@ -1258,10 +1329,13 @@
 				0B5AC22220B70C52009E3A73 /* BookrackViewController.swift in Sources */,
 				0B78E3EE20E543520030EBC4 /* UIView+WebCacheOperation.m in Sources */,
 				0B5AC27320BAFBB8009E3A73 /* BookrackBooksCell.swift in Sources */,
+				0B01E56E2104DF4000BA9F4A /* JYNewHomeCell.swift in Sources */,
+				0BAD768F210A2611005F2576 /* JYCommentsController.swift in Sources */,
 				0BB2795B209C9CE200452FE7 /* JYOrder.swift in Sources */,
 				0B83052020B1CD720058687A /* UserRechargeViewController.swift in Sources */,
 				0B78E3E920E543520030EBC4 /* NSData+ImageContentType.m in Sources */,
 				0BE68A032096A54400CB8564 /* PayManager.swift in Sources */,
+				0B01E56A2104D8D000BA9F4A /* JYNavCell.swift in Sources */,
 				0B78E3DE20E543520030EBC4 /* UIImage+GIF.m in Sources */,
 				0B6F3450203F0950009F6F39 /* JYUser.swift in Sources */,
 				0B78E3E320E543520030EBC4 /* SDWebImageCoder.m in Sources */,
@@ -1270,6 +1344,7 @@
 				0B78E3E020E543520030EBC4 /* SDWebImageCoderHelper.m in Sources */,
 				0B78E3F220E543520030EBC4 /* SDWebImageWebPCoder.m in Sources */,
 				0BB2796D209F42C400452FE7 /* APRSASigner.m in Sources */,
+				0BAD76A8210D4BE7005F2576 /* JYChapterBuyController.swift in Sources */,
 				0BF8835A204596720018BEF9 /* RegisterViewController.swift in Sources */,
 				0B1706131FC89210009E3D69 /* CartoonContentCell.swift in Sources */,
 				0B6F3449203EE5EE009F6F39 /* String+Sign.swift in Sources */,
@@ -1278,6 +1353,7 @@
 				0B78E3E420E543520030EBC4 /* NSButton+WebCache.m in Sources */,
 				0BC252C81FA33A1A00B8CB52 /* HomeViewController.swift in Sources */,
 				0B119B441FA4BAF2002270EA /* JYHomeCell.swift in Sources */,
+				0BAD7693210C86B8005F2576 /* JYListCommentCell.swift in Sources */,
 				0BBF827A20ED183100AC599A /* SVProgressAnimatedView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1441,6 +1517,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliPay",
 					"$(PROJECT_DIR)/QuDongman/Third",
+					"$(PROJECT_DIR)/UMeng",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/AliPay/openssl\"",
@@ -1483,6 +1560,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/AliPay",
 					"$(PROJECT_DIR)/QuDongman/Third",
+					"$(PROJECT_DIR)/UMeng",
 				);
 				HEADER_SEARCH_PATHS = (
 					"\"$(SRCROOT)/AliPay/openssl\"",

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum JYCatelogColsureType {
+    case dismiss
+    case reverse
+}
+
 class JYCatelogHeader: UIView {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,9 +23,9 @@ class JYCatelogHeader: UIView {
     
     @IBOutlet weak var backOriginYConstraint: NSLayoutConstraint!
     
-    var dismissColsure:(()->Void)?
+    var dismissColsure:((JYCatelogColsureType)->Void)?
     
-    class func showCatelogHeader(title:String, serial:Int, colsure:@escaping ()->Void) -> JYCatelogHeader{
+    class func showCatelogHeader(title:String, serial:Int, colsure:@escaping (JYCatelogColsureType)->Void) -> JYCatelogHeader{
         let header:JYCatelogHeader = Bundle.main.loadNibNamed("JYCatelogHeader", owner: nil, options: nil)?.first as! JYCatelogHeader
         header.dismissColsure = colsure
         header.titleLabel.text = title
@@ -41,8 +46,12 @@ class JYCatelogHeader: UIView {
         self.frame = CGRect(x: 0, y: 0, width: Int(UIScreen.main.bounds.size.width), height: originY)
     }
     
+    @IBAction func reverseAction(_ sender: UITapGestureRecognizer) {
+        dismissColsure!(.reverse)
+    }
+    
     @IBAction func dismiss(_ sender: UIButton) {
-        dismissColsure!()
+        dismissColsure!(.dismiss)
     }
     
 }

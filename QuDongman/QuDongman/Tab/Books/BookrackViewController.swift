@@ -9,6 +9,7 @@
 import UIKit
 
 enum JYBookrackType {
+    case placeholder
     case collect
     case history
 }
@@ -43,18 +44,36 @@ class BookrackViewController: UIViewController, UICollectionViewDelegate, UIColl
         collectviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 44 - 50 - (DeviceManager.isIphoneX() ?20:0) - 40
         self.navigationController?.setNavigationBarHidden(true, animated: false)
         
+        if JYUser.exist() {
+            if type == .placeholder {
+                type = .collect
+            }
+        }else{
+            type = .placeholder
+        }
+        
         if type == .collect {
             _fetchCollection()
-        }else{
+        }else if type == .history{
             _fetchHistories()
+        }else{
+            collections?.removeAllObjects()
+            collectionview.reloadData()
         }
+        
+        showTabbar()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         collections = NSMutableArray()
-        type = .collect
+        
+        if JYUser.exist() {
+            type = .collect
+        }else{
+            type = .placeholder
+        }
     }
     
     @IBAction func collectAction(_ sender: UIButton) {
@@ -128,12 +147,12 @@ class BookrackViewController: UIViewController, UICollectionViewDelegate, UIColl
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell:BookrackBooksCell! = collectionView.dequeueReusableCell(withReuseIdentifier: BookrackBooksCell.identifier, for: indexPath) as! BookrackBooksCell;
-        if cell == nil {
-            cell = Bundle.main.loadNibNamed("BookrackBooksCell", owner: nil, options: nil)?.first as! BookrackBooksCell
-        }
-        cell.collect = self.collections?.object(at: indexPath.row) as! JYCollection
-        return cell
+        let collect:JYCollection = self.collections?.object(at: indexPath.row) as! JYCollection
+        return BookrackBooksCell.createCell(collectionView: collectionView, indexPath: indexPath, collect: collect, colsure: { (collection) in
+            let detail = BookDetailController.create()
+            detail.id = collection.id
+            self.navigationController?.pushViewController(detail, animated: true)
+        })
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

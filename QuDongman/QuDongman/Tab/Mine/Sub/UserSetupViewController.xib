@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserSetupViewController" customModule="QuDongman" customModuleProvider="target">
             <connections>
+                <outlet property="cacheSizeLabel" destination="WqD-Yr-Zza" id="AHP-yZ-wii"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -72,15 +73,19 @@
                             <color key="textColor" red="0.3411764705882353" green="0.3411764705882353" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0MB" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqD-Yr-Zza">
-                            <rect key="frame" x="313.5" y="18.5" width="49" height="18.5"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0MB" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WqD-Yr-Zza">
+                            <rect key="frame" x="247" y="19" width="115" height="19"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="19" id="RWM-lz-hyj"/>
+                                <constraint firstAttribute="width" constant="115" id="ihu-IA-h6f"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <color key="textColor" red="0.71372549019607845" green="0.71372549019607845" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="fSD-QI-aRd" secondAttribute="trailing" constant="136" id="50n-rW-KAa"/>
                         <constraint firstItem="fSD-QI-aRd" firstAttribute="top" secondItem="McS-OW-eOL" secondAttribute="top" constant="14" id="CBu-qz-Zei"/>
@@ -88,8 +93,14 @@
                         <constraint firstAttribute="trailing" secondItem="cwG-ZZ-eyi" secondAttribute="trailing" id="Pt0-1y-xEy"/>
                         <constraint firstItem="cwG-ZZ-eyi" firstAttribute="leading" secondItem="McS-OW-eOL" secondAttribute="leading" id="XV2-VF-MPn"/>
                         <constraint firstItem="fSD-QI-aRd" firstAttribute="leading" secondItem="McS-OW-eOL" secondAttribute="leading" constant="23" id="Zpo-bs-Ggh"/>
+                        <constraint firstItem="WqD-Yr-Zza" firstAttribute="centerY" secondItem="McS-OW-eOL" secondAttribute="centerY" id="fi6-p4-V0P"/>
                         <constraint firstAttribute="bottom" secondItem="cwG-ZZ-eyi" secondAttribute="bottom" id="iuA-eR-nnj"/>
+                        <constraint firstAttribute="trailing" secondItem="WqD-Yr-Zza" secondAttribute="trailing" constant="13" id="xbg-VQ-KwW"/>
+                        <constraint firstItem="WqD-Yr-Zza" firstAttribute="leading" secondItem="fSD-QI-aRd" secondAttribute="trailing" constant="8" id="zal-4H-8cr"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="55p-ln-9xK" appends="YES" id="1tL-MU-yaY"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Hb-HN-ftu">
                     <rect key="frame" x="0.0" y="112" width="375" height="56"/>
@@ -112,6 +123,7 @@
                         </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="56" id="L9E-f6-eWg"/>
                         <constraint firstItem="4BO-q6-phO" firstAttribute="leading" secondItem="8Hb-HN-ftu" secondAttribute="leading" constant="23" id="dAJ-q9-rIJ"/>
@@ -121,6 +133,9 @@
                         <constraint firstAttribute="trailing" secondItem="4BO-q6-phO" secondAttribute="trailing" constant="8" id="qQK-Fj-sZi"/>
                         <constraint firstItem="4BO-q6-phO" firstAttribute="top" secondItem="8Hb-HN-ftu" secondAttribute="top" constant="14" id="rMe-AG-ycf"/>
                     </constraints>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="HBh-po-1EV" appends="YES" id="MOJ-2i-7gZ"/>
+                    </connections>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y1S-Df-E4c">
                     <rect key="frame" x="0.0" y="544" width="375" height="56"/>
@@ -184,5 +199,15 @@
             </constraints>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
+        <tapGestureRecognizer id="HBh-po-1EV">
+            <connections>
+                <action selector="aboutAction:" destination="-1" id="9aX-R8-JvJ"/>
+            </connections>
+        </tapGestureRecognizer>
+        <tapGestureRecognizer id="55p-ln-9xK">
+            <connections>
+                <action selector="clearCache:" destination="-1" id="e2M-mL-4rA"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
 </document>

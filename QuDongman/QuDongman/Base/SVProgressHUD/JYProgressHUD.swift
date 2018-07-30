@@ -18,4 +18,16 @@ class JYProgressHUD: NSObject {
     class func dismiss() -> Void {
         SVProgressHUD.dismiss()
     }
+    
+    class func showSuccess(success:String) -> Void {
+        SVProgressHUD.showSuccess(withStatus: success)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.black)
+    }
+    
+    class func showFailed(failed:String) -> Void {
+        SVProgressHUD.showError(withStatus: failed)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultMaskType(.black)
+    }
 }

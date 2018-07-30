@@ -11,6 +11,9 @@
 #import <TencentOAuth.h>
 #import <QQApiInterfaceObject.h>
 #import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 #import "SDImageCache.h"
 #import "SVProgressHUD.h"
+#import <UMCommon/UMCommon.h>
+#import <UMAnalytics/MobClick.h>
 

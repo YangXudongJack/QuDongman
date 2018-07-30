@@ -17,8 +17,21 @@ extension UIViewController{
         self.navigationItem.leftBarButtonItem = backBtn
     }
     
+    func createNavBackBtn_Yello() -> Void {
+        let backBtn = UIBarButtonItem(image: UIImage(named: "nav_back_yellow_icon"), style: .done, target: self, action: #selector(UIViewController.dismissview))
+        backBtn.tintColor = UIColor.NavigationColor()
+        self.navigationItem.leftBarButtonItem = backBtn
+    }
+    
     @objc func dismissview() -> Void {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func showTiele(title:String, color:UIColor) -> Void {
+        self.navigationController?.title = title
+        let dict:NSDictionary = [NSAttributedStringKey.foregroundColor: color,
+                                 NSAttributedStringKey.font : UIFont.boldSystemFont(ofSize: 18)]
+        self.navigationController?.navigationBar.titleTextAttributes = dict as? [NSAttributedStringKey : Any]
     }
     
     func hideTabbar() -> Void {

@@ -63,6 +63,7 @@ class ShareManager: NSObject, WXApiDelegate, TencentSessionDelegate {
                             JYUser.shared.updateBalance()
                             weakself?.shareSuccessClosure!()
                         }
+                        JYProgressHUD.dismiss()
                     })
                 })
             })

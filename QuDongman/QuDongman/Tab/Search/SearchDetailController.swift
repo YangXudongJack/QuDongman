@@ -292,7 +292,8 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detail = BookDetailController.create()
-        detail.banner = self.books?.object(at: indexPath.row) as? JYBanner
+        let banner:JYBanner = (self.books?.object(at: indexPath.row) as? JYBanner)!
+        detail.id = banner.id
         self.navigationController?.pushViewController(detail, animated: true)
     }
     

@@ -48,8 +48,9 @@
                     <color key="textColor" red="0.41568627450980389" green="0.41568627450980389" blue="0.41568627450980389" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倒序" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqC-Fk-wFE">
+                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倒序" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VqC-Fk-wFE">
                     <rect key="frame" x="332.5" y="68" width="20.5" height="14"/>
+                    <gestureRecognizers/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="Nz4-Ch-Eyh"/>
                         <constraint firstAttribute="width" priority="200" constant="24" id="Zc4-Uo-l3C"/>
@@ -57,6 +58,9 @@
                     <fontDescription key="fontDescription" type="system" pointSize="10"/>
                     <color key="textColor" red="0.71372549019607845" green="0.71372549019607845" blue="0.71372549019607845" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
+                    <connections>
+                        <outletCollection property="gestureRecognizers" destination="ISh-uq-P2A" appends="YES" id="6wL-GW-Lce"/>
+                    </connections>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sequence" highlightedImage="icon_sequence" translatesAutoresizingMaskIntoConstraints="NO" id="XX6-PE-6VT">
                     <rect key="frame" x="317" y="71" width="11" height="9"/>
@@ -87,6 +91,11 @@
                 <outlet property="titleOriginYConstraint" destination="beq-du-k2P" id="HwH-8r-dov"/>
             </connections>
         </view>
+        <tapGestureRecognizer id="ISh-uq-P2A">
+            <connections>
+                <action selector="reverseAction:" destination="iN0-l3-epB" id="lNl-sp-lOD"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="icon_sequence" width="11" height="8"/>

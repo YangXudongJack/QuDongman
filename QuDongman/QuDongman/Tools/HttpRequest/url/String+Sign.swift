@@ -11,14 +11,23 @@ import Foundation
 let app_key = "892aa040b7d8d9dc3b00ea14e2a284d4"
 
 extension String {
-    func sign() -> String {
-        let method = "v2/" + self.components(separatedBy: "/v2/").last!
-        let signString = "app_key=\(app_key)method=\(method)t=\(self.timestamp())"
+    func sign(method:String) -> String {
+        let url_query = URL(string: self.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)?.query
+        var array:Array = (url_query?.components(separatedBy: "&"))!
+        array.append("app_key=\(app_key)")
+        array.append("method=\(method)")
+        array = array.sorted(by: { (string1, string2) -> Bool in
+            string1.localizedCompare(string2) == .orderedAscending
+        })
+        var signString = String()
+        for string in array {
+            signString.append(string)
+        }
         return signString.md5()
     }
     
     func timestamp() -> String {
-        let timeInterval = Date().timeIntervalSince1970 * 1000
+        let timeInterval = Date().timeIntervalSince1970
         return "\(Int64(timeInterval))"
     }
     

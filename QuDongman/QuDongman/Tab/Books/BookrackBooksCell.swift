@@ -28,9 +28,44 @@ class BookrackBooksCell: UICollectionViewCell {
         }
     }
     
+    var collectionColsure:((JYCollection)->Void)?
+    
+    class func createCell(collectionView: UICollectionView,
+                          indexPath:IndexPath,
+                          collect:JYCollection,
+                          colsure:@escaping (JYCollection)->Void) -> BookrackBooksCell{
+        var cell:BookrackBooksCell! = collectionView.dequeueReusableCell(withReuseIdentifier: BookrackBooksCell.identifier, for: indexPath) as? BookrackBooksCell
+        if cell == nil {
+            cell = Bundle.main.loadNibNamed("BookrackBooksCell",
+                                            owner: nil,
+                                            options: nil)?.first as! BookrackBooksCell
+        }
+        cell.collect = collect
+        cell.collectionColsure = colsure
+        return cell
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        let tap:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(selectThisCollect(_:)))
+        self.contentView.addGestureRecognizer(tap)
+    }
+    
+    @objc func selectThisCollect(_ tap:UITapGestureRecognizer) {
+        self.collectionColsure!(self.collect!)
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+

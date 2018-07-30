@@ -36,14 +36,23 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
+                <gestureRecognizers/>
                 <constraints>
                     <constraint firstItem="z7c-RM-P0t" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="B8b-Im-n2U"/>
                     <constraint firstAttribute="trailing" secondItem="wW3-p0-NuR" secondAttribute="trailing" constant="31" id="PR5-Nc-O8r"/>
                     <constraint firstItem="wW3-p0-NuR" firstAttribute="leading" secondItem="z7c-RM-P0t" secondAttribute="trailing" constant="3" id="QTa-jr-WLP"/>
                     <constraint firstItem="wW3-p0-NuR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ysI-5M-OpO"/>
                 </constraints>
+                <connections>
+                    <outletCollection property="gestureRecognizers" destination="bNP-5M-B1g" appends="YES" id="hnP-P0-7wc"/>
+                </connections>
             </tableViewCellContentView>
         </tableViewCell>
+        <tapGestureRecognizer id="bNP-5M-B1g">
+            <connections>
+                <action selector="selectAllCommentsEntrance:" destination="KGk-i7-Jjw" id="CEO-FT-yVb"/>
+            </connections>
+        </tapGestureRecognizer>
     </objects>
     <resources>
         <image name="more_comments" width="10" height="16"/>

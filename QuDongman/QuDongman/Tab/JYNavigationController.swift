@@ -13,6 +13,16 @@ class JYNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        resetConfig()
+    }
+    
+    func changeConfig() -> Void {
+        self.navigationBar.barTintColor = UIColor.AboutBackgroundColor()
+        self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.NavigationColor()]
+        self.navigationBar.isTranslucent = false
+    }
+    
+    func resetConfig() -> Void {
         self.navigationBar.barTintColor = UIColor.NavigationColor()
         self.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
         self.navigationBar.isTranslucent = false

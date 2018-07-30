@@ -73,7 +73,7 @@ class JYCatelogCell: JYBaseCell {
     }
     
     @objc func selectCatelog(_ sender:UIButton) -> Void {
-        if sender.tag <= (_catelogs?.count)! {
+        if sender.tag <= (_catelogs?.count)! && sender.tag != 8{
             catelogColsure!(_catelogs?.object(at: sender.tag-1) as! JYCatelog, .catelog)
         }else{
             catelogColsure!(_catelogs?.firstObject as! JYCatelog, .more)

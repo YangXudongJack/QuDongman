@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class BookContentController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
@@ -21,8 +22,17 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var collectButton: UIButton!
     @IBOutlet weak var titleBackViewHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var inputBottomWithToolBarConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var sendCommentBtn: UIButton!
     @IBOutlet var toolbar: [UIView]!
     var didScroll:Bool?
+    
+    var beginPoint:CGPoint?
+    var endPoint:CGPoint?
+    
+    @IBOutlet weak var commentTF: UITextField!
+    @IBOutlet weak var chapterNameLabel: UILabel!
     
     class func bookContent(id:String, chapter:String, title:String) -> BookContentController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -37,6 +47,9 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         super.viewWillAppear(animated)
         
         self.navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        hideTabbar()
+        _fetchData()
     }
     
     override func viewDidLoad() {
@@ -44,6 +57,7 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         
         didScroll = false
         titleLabel.text = cartoonTitle
+        chapterNameLabel.text = cartoonTitle
         if DeviceManager.isIphoneX() {
             titleBackViewHeightConstraint.constant = 88
         }
@@ -51,8 +65,13 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
             view.backgroundColor = UIColor.boardColor().withAlphaComponent(0.9)
         }
         collectButton.backgroundColor = UIColor.boardColor().withAlphaComponent(0.5)
-        _fetchData()
         HttpUnit.addHistory(id: id!, chapter: chapter!)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+        let pan:UIPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(calculateGesture(_:)))
+        self.view.addGestureRecognizer(pan)
     }
     
     func _fetchData() -> Void {
@@ -61,7 +80,19 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
             if success {
                 let data = responseObject.object(forKey: "data")
                 self.cartoonContent = JYCartoonContent.init(dict: data as! [String : AnyObject])
-                self.tableview?.reloadData()
+                if Int((self.cartoonContent?.is_buy)!)! == 1 {
+                    self.titleLabel.text = self.cartoonContent?.pay_data?.title
+                    self.chapterNameLabel.text = self.cartoonContent?.pay_data?.title
+                    self.tableview?.reloadData()
+                }else{
+                    let buy:JYChapterBuyController = JYChapterBuyController.showChapterBuyView(title: (self.cartoonContent?.pay_data?.title)!, price: (self.cartoonContent?.pay_data?.fee)!, balance: (self.cartoonContent?.pay_data?.balance)!, colsure: {
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                    buy.bookId = self.id
+                    buy.chapterId = self.chapter
+                    self.present(buy, animated: true, completion: nil)
+                    
+                }
             }
             JYProgressHUD.dismiss()
         }
@@ -69,6 +100,60 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBAction func addCollection(_ sender: UIButton) {
         HttpUnit.addCollection(id: id!)
+    }
+    
+    @IBAction func addComment(_ sender: UIButton) {
+        JYProgressHUD.show()
+        
+        var params:Parameters = Parameters.init()
+        params["to_member_id"] = "0"
+        params["book_id"] = id
+        params["chapter_id"] = chapter
+        params["content"] = commentTF.text
+        params["pid"] = "0"
+        HttpUnit.HttpPost(url: JYUrl.addComments(), params: params) { (response, success) in
+            if success {
+                let result:String = response.object(forKey: "code") as! String
+                if Int(result) == 1 {
+                    self.commentTF.text = nil
+                }
+            }
+            JYProgressHUD.dismiss()
+        }
+    }
+    
+    @IBAction func prev_chapter(_ sender: UIButton) {
+        self.chapter = self.cartoonContent?.prev_chapter_id
+        self._fetchData()
+    }
+    
+    @IBAction func next_chapter(_ sender: UIButton) {
+        self.chapter = self.cartoonContent?.next_chapter_id
+        self._fetchData()
+    }
+    
+    @IBAction func commentEdit(_ sender: UIButton) {
+        commentTF.becomeFirstResponder()
+    }
+    
+    @objc func keyboardWillShow(_ notification : Notification) -> Void {
+        weak var weakSelf = self
+        let kbInfo = notification.userInfo
+        let kbRect = (kbInfo?[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+        let changeY = kbRect.origin.y - UIScreen.main.bounds.size.height
+        let duration = kbInfo?[UIKeyboardAnimationDurationUserInfoKey] as!Double
+        UIView.animate(withDuration: duration) {
+            weakSelf?.inputBottomWithToolBarConstraint.constant = changeY * (changeY > 0 ? 1 : -1) - 44
+        }
+    }
+    
+    @objc func keyboardWillHide(_ notification : Notification) -> Void {
+        weak var weakSelf = self
+        let kbInfo = notification.userInfo
+        let duration = kbInfo?[UIKeyboardAnimationDurationUserInfoKey] as!Double
+        UIView.animate(withDuration: duration) {
+            weakSelf?.inputBottomWithToolBarConstraint.constant = 0
+        }
     }
     
     @IBAction func dismiss(_ sender: UIButton) {
@@ -105,6 +190,7 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
         if didScroll! {
             for view in toolbar {
                 UIView.animate(withDuration: 0.5) {
@@ -123,9 +209,45 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let rag = textField.text?.toRange(range)
+        let string = textField.text?.replacingCharacters(in: rag!, with: string)
+        if (string?.characters.count)! > 0 {
+            sendCommentBtn.isEnabled = true
+        }else{
+            sendCommentBtn.isEnabled = false
+        }
+        return true
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return true
+    }
+    
+    @objc func calculateGesture(_ pan:UIPanGestureRecognizer) -> Void {
+        if pan.state == .began {
+            beginPoint = pan.translation(in: self.tableview)
+        }else if pan.state == .ended {
+            endPoint = pan.translation(in: self.tableview)
+            
+            var yOffset:CGFloat = (beginPoint?.y)! - (endPoint?.y)!
+            if yOffset < 0 {
+                yOffset = yOffset * -1
+            }
+            
+            if (beginPoint?.x)! - (endPoint?.x)! > 30 && yOffset < 30{
+                if self.cartoonContent?.next_chapter_id != self.chapter {
+                    self.chapter = self.cartoonContent?.next_chapter_id
+                    self._fetchData()
+                }
+            }else if (beginPoint?.x)! - (endPoint?.x)! < -30 && yOffset < 30{
+                if self.cartoonContent?.prev_chapter_id != self.chapter {
+                    self.chapter = self.cartoonContent?.prev_chapter_id
+                    self._fetchData()
+                }
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {

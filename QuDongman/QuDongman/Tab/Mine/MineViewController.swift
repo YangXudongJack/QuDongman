@@ -25,6 +25,14 @@ class MineViewController: UITableViewController {
         
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         showTabbar()
+        
+        logined = JYUser.exist()
+        if logined! {
+            self.usernameLabel.text = JYUser.shared.username
+            self.tableView.reloadData()
+        }else{
+            self.usernameLabel.text = "请登录"
+        }
     }
 
     override func viewDidLoad() {
@@ -39,14 +47,6 @@ class MineViewController: UITableViewController {
             fixHeight += 8
         }
         self.tableView.contentInset = UIEdgeInsetsMake(fixHeight, 0, 0, 0 )
-        
-        logined = JYUser.exist()
-        if logined! {
-            self.usernameLabel.text = JYUser.shared.username
-            self.tableView.reloadData()
-        }else{
-            self.usernameLabel.text = "请登录"
-        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -108,8 +108,7 @@ class MineViewController: UITableViewController {
         }else{
             switch indexPath.row {
             case 0: do{
-                controller = AboutViewController()
-                break
+                return
                 }
                 
             default: do{
