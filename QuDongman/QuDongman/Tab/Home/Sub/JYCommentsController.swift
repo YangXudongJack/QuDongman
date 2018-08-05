@@ -55,6 +55,8 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
         tableview?.dataSource = self
         tableview?.separatorStyle = .none
         tableview?.backgroundColor = UIColor.AboutBackgroundColor()
+        tableview?.estimatedRowHeight = 99
+        tableview?.rowHeight = UITableViewAutomaticDimension
         self.view.addSubview(tableview!)
         
         commentInputView = JYCommentEditView.showAddCommentView(frame: CGRect(x: 0, y: (tableview?.frame.origin.y)! + (tableview?.frame.size.height)!, width: size.width, height: 56), colsure: {
@@ -95,6 +97,7 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
         UIView.animate(withDuration: duration) {
             weakSelf?.tableview?.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height - 56 - kbRect.size.height)
             weakSelf?.commentInputView?.frame = CGRect(x: 0, y: (weakSelf?.tableview?.frame.origin.y)! + (weakSelf?.tableview?.frame.size.height)!, width: size.width, height: 56)
+            weakSelf?.tableview?.setContentOffset(CGPoint(x: 0, y: ((weakSelf?.tableview?.contentSize.height)! - (weakSelf?.tableview?.bounds.size.height)!)), animated: true)
         }
     }
     
@@ -114,13 +117,12 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
         return (self.comments?.count)!
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 99.0
-    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comment:JYComment = self.comments?.object(at: indexPath.row) as! JYComment
-        return JYCommentCell.createCell(tableview: tableView, comment: comment, type: .list)
+        return JYListCommentCell.createCell(tableview: tableView, comments: comment, bookId: bookId!, chapter: chapterId!, colsure: { (commentObj) in
+            self.commentInputView?.commentTextField.becomeFirstResponder()
+            self.commentInputView?.pid = commentObj.id
+        })
     }
 
     override func didReceiveMemoryWarning() {

@@ -12,9 +12,15 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var statusbarHeightConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var searchBarBackviewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var categoriesBackground: UIView!
     
     @IBOutlet weak var categoriesButtonsBackgroundHeightConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var otherOptionButtonsBackview: UIView!
+    
+    @IBOutlet weak var otherOptionButtonsBackviewTopConstraint: NSLayoutConstraint!
     
     var categoriesButton:NSMutableArray!
     
@@ -40,11 +46,16 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var rankButtons: [UIButton]!
     
+    var onlyRank:Bool = false
+    
     var page:Int = 0
     var key:String = ""
     var cat_id:String = ""
     var finish_status:String = ""
     var sort:String = ""
+    var is_vip:String = ""
+    var is_short:String = ""
+    var tag_id:String = ""
     
     var categories:NSMutableArray?
     var books:NSMutableArray?
@@ -57,16 +68,32 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
         
         let size = UIScreen.main.bounds.size
         loadEnable = true
-        self.navigationController?.setNavigationBarHidden(true, animated: false)
-        statusbarHeightConstraint.constant = UIApplication.shared.statusBarFrame.size.height
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80
+        
+        if onlyRank {
+            self.navigationController?.setNavigationBarHidden(false, animated: false)
+            for button in bookSerialButtons {
+                button.isHidden = true
+            }
+            statusbarHeightConstraint.constant = 0
+            categoriesButtonsBackgroundHeightConstraint.constant = 0
+            searchBarBackviewHeightConstraint.constant = 0
+            otherOptionButtonsBackviewTopConstraint.constant = -36
+            self.view.insertSubview(otherOptionButtonsBackview, at: 0)
+        }else{
+            statusbarHeightConstraint.constant = UIApplication.shared.statusBarFrame.size.height
+            self.navigationController?.setNavigationBarHidden(true, animated: false)
+        }
+        
+        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - (onlyRank ? -36 : categoriesButtonsBackgroundHeightConstraint.constant) - (DeviceManager.isIphoneX() ?20:0) - 80 + (onlyRank ? 12 : 0)
         hideTabbar()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        if onlyRank {
+            createNavBackBtn()
+        }
         page = 1
         isConditionChange = false
         books = NSMutableArray.init()
@@ -74,7 +101,9 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
         tableview?.register(UINib.init(nibName: "JYCoverCell", bundle: Bundle.main), forCellReuseIdentifier: "JYCoverCell")
         
         configSubview()
-        fetchCategory()
+        if !onlyRank {
+            fetchCategory()
+        }
         search()
     }
     
@@ -98,7 +127,10 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
                                            key: key,
                                            cat_id: cat_id,
                                            finish_status: finish_status,
-                                           sort: sort)) { (responseObject, success) in
+                                           sort: sort,
+                                           is_vip: is_vip,
+                                           is_short: is_short,
+                                           tag_id: tag_id)) { (responseObject, success) in
                                             if success {
                                                 if self.isConditionChange! {
                                                     self.books?.removeAllObjects()
@@ -165,7 +197,7 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
             i+=1
             categoriesButtonsBackgroundHeightConstraint.constant = button.frame.origin.y + button.bounds.size.height + 8
         }
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80
+        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80 + (onlyRank ? 12 : 0)
     }
     
     @objc func selectCategory(sender:UIButton) -> Void {
@@ -299,7 +331,7 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let offset = self.tableview.contentOffset.y - (self.tableview.contentSize.height - self.tableview.bounds.size.height)
-        if offset == (DeviceManager.isIphoneX() ? 14:0) && self.loadEnable!{
+        if offset >= 0 && self.loadEnable!{
             self.page+=1
             self.search()
         }

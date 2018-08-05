@@ -34,6 +34,8 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     @IBOutlet weak var commentTF: UITextField!
     @IBOutlet weak var chapterNameLabel: UILabel!
     
+    var indexPathList:NSMutableArray?
+    
     class func bookContent(id:String, chapter:String, title:String) -> BookContentController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
         let book = storyboard.instantiateViewController(withIdentifier: "BookContentController") as! BookContentController
@@ -55,6 +57,7 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        indexPathList = NSMutableArray()
         didScroll = false
         titleLabel.text = cartoonTitle
         chapterNameLabel.text = cartoonTitle
@@ -136,6 +139,33 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         commentTF.becomeFirstResponder()
     }
     
+    func _fetchCellHeight(indexPath:IndexPath) -> CGFloat {
+        for item in self.indexPathList! {
+            let cellInfo:JYCellInfo = item as! JYCellInfo
+            if cellInfo.indexPath?.section == indexPath.section &&
+                cellInfo.indexPath?.row == indexPath.row {
+                return cellInfo.height!
+            }
+        }
+        
+        let screenWidth = UIScreen.main.bounds.size.width
+        let scale = screenWidth / 375.0
+        return 214.0 * scale
+    }
+    
+    func _updateCellHeight(cellInfo:JYCellInfo) -> Void {
+        for item in self.indexPathList! {
+            let info:JYCellInfo = item as! JYCellInfo
+            if cellInfo.indexPath?.section == info.indexPath?.section &&
+                cellInfo.indexPath?.row == info.indexPath?.row {
+                info.height = cellInfo.height
+                return
+            }
+        }
+        
+        self.indexPathList?.add(cellInfo)
+    }
+    
     @objc func keyboardWillShow(_ notification : Notification) -> Void {
         weak var weakSelf = self
         let kbInfo = notification.userInfo
@@ -161,9 +191,7 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let screenWidth = UIScreen.main.bounds.size.width
-        let scale = screenWidth / 320.0
-        return 427 * scale
+        return self._fetchCellHeight(indexPath: indexPath)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -175,7 +203,13 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = CartoonContentCell.createCell(tableview: tableView)
+        let cell = CartoonContentCell.createCell(tableview: tableView, indexPath: indexPath) { (height) in
+            let cellInfo = JYCellInfo()
+            cellInfo.indexPath = indexPath
+            cellInfo.height = height
+            self._updateCellHeight(cellInfo: cellInfo)
+            tableView.reloadData()
+        }
         cell.imageName = self.cartoonContent?.content_results![indexPath.row] as! String
         return cell
     }

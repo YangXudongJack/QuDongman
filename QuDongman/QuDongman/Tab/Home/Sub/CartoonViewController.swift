@@ -77,7 +77,9 @@ class CartoonViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell:CartoonContentCell = CartoonContentCell.createCell(tableview: tableView)
+        let cell:CartoonContentCell = CartoonContentCell.createCell(tableview: tableView, indexPath: indexPath) { (height) in
+            
+        }
         cell.imageName = datasource?.object(at: indexPath.row) as! String
         return cell
     }

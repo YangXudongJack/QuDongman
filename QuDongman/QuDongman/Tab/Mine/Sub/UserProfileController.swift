@@ -38,6 +38,8 @@ class UserProfileController: UIViewController, UIImagePickerControllerDelegate, 
         
         headerImageview.layer.cornerRadius = 39.5
         headerImageview.layer.masksToBounds = true
+        
+        headerImageview.sd_setImage(with: URL(string: JYUser.shared.avatar!), placeholderImage: UIImage(named: "user_pic_big"), options: .retryFailed, completed: nil)
     }
     
     @IBAction func changeUserName(_ sender: UITapGestureRecognizer) {

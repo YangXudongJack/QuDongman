@@ -116,8 +116,15 @@ class JYUrl: JYUrlBase {
         return JYUrl.construct(url: super.url().appending("/categories?pre-page=0&page=0"), method: String().m_category())
     }
     
-    class func search(page:Int, key:String, cat_id:String, finish_status:String, sort:String) -> String {
-        return JYUrl.construct(url: super.url().appending("/searches?pre-page=0&page=\(page)&k=\(key)&cat_id=\(cat_id)&finish_status=\(finish_status)&sort=\(sort)"), method: String().m_search())
+    class func search(page:Int,
+                      key:String,
+                      cat_id:String,
+                      finish_status:String,
+                      sort:String,
+                      is_vip:String,
+                      is_short:String,
+                      tag_id:String) -> String {
+        return JYUrl.construct(url: super.url().appending("/searches?pre-page=0&page=\(page)&k=\(key)&cat_id=\(cat_id)&finish_status=\(finish_status)&sort=\(sort)&is_vip=\(is_vip)&is_short=\(is_short)&tag_id=\(tag_id)"), method: String().m_search())
     }
     
     class func addCollect() -> String {

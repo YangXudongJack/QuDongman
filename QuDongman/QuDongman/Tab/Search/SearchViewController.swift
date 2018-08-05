@@ -107,7 +107,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                                            key: key,
                                            cat_id: cat_id,
                                            finish_status: finish_status,
-                                           sort: sort)) { (responseObject, success) in
+                                           sort: sort,
+                                           is_vip: "",
+                                           is_short: "",
+                                           tag_id: "")) { (responseObject, success) in
                                             if success {
                                                 if self.isConditionChange! {
                                                     self.books?.removeAllObjects()

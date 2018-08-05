@@ -14,6 +14,7 @@ class MineViewController: UITableViewController {
     var logined:Bool?
     
     @IBOutlet weak var usernameLabel: UILabel!
+    @IBOutlet weak var headerImageview: UIImageView!
     
     class func create() -> MineViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: Bundle.main)
@@ -29,6 +30,7 @@ class MineViewController: UITableViewController {
         logined = JYUser.exist()
         if logined! {
             self.usernameLabel.text = JYUser.shared.username
+            self.headerImageview.sd_setImage(with: URL(string: JYUser.shared.avatar!), placeholderImage: UIImage(named: "mypg_user_img"), options: .retryFailed, completed: nil)
             self.tableView.reloadData()
         }else{
             self.usernameLabel.text = "请登录"
@@ -47,6 +49,8 @@ class MineViewController: UITableViewController {
             fixHeight += 8
         }
         self.tableView.contentInset = UIEdgeInsetsMake(fixHeight, 0, 0, 0 )
+        headerImageview.layer.cornerRadius = 28.5
+        headerImageview.layer.masksToBounds = true
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -57,7 +61,11 @@ class MineViewController: UITableViewController {
                 return 120.0
             }
         }else {
-            return 56.0
+            if indexPath.section == 1 && indexPath.row == 0{
+                return 0
+            }else{
+                return 56.0
+            }
         }
     }
     

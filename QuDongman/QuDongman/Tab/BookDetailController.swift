@@ -13,6 +13,11 @@ enum JYBookDetailType {
     case catelog
 }
 
+class JYCellInfo: JYBaseObject {
+    var indexPath:IndexPath?
+    var height:CGFloat?
+}
+
 class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var bookCoverImageview: UIImageView!
@@ -38,6 +43,8 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var readNowImage: UIImageView!
     
     @IBOutlet weak var readNowLabel: UILabel!
+    
+    var indexPathList:NSMutableArray?
     
     var _type:JYBookDetailType?
     var type:JYBookDetailType? {
@@ -109,6 +116,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
         super.viewDidLoad()
         
         type = .info
+        indexPathList = NSMutableArray()
         _configNav()
         _initDetailData()
     }
@@ -151,6 +159,33 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             JYProgressHUD.dismiss()
         }
+    }
+    
+    func _fetchCellHeight(indexPath:IndexPath) -> CGFloat {
+        for item in self.indexPathList! {
+            let cellInfo:JYCellInfo = item as! JYCellInfo
+            if cellInfo.indexPath?.section == indexPath.section &&
+                cellInfo.indexPath?.row == indexPath.row {
+                return cellInfo.height!
+            }
+        }
+        
+        let screenWidth = UIScreen.main.bounds.size.width
+        let scale = screenWidth / 375.0
+        return 214.0 * scale
+    }
+    
+    func _updateCellHeight(cellInfo:JYCellInfo) -> Void {
+        for item in self.indexPathList! {
+            let info:JYCellInfo = item as! JYCellInfo
+            if cellInfo.indexPath?.section == info.indexPath?.section &&
+                cellInfo.indexPath?.row == info.indexPath?.row {
+                info.height = cellInfo.height
+                return
+            }
+        }
+        
+        self.indexPathList?.add(cellInfo)
     }
 
     @IBAction func bookDescAction(_ sender: UIButton) {
@@ -221,9 +256,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 default:do{
-                    let screenWidth = UIScreen.main.bounds.size.width
-                    let scale = screenWidth / 320.0
-                    return 427 * scale
+                    return self._fetchCellHeight(indexPath: indexPath)
                 }
             }
             }
@@ -253,7 +286,7 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                     let chapter:Int = Int(catelog.id!)!
                     comments.bookId = self.id
                     comments.chapterId = catelog.id
-                    comments.pid = ""
+                    comments.pid = "0"
                     self.navigationController?.pushViewController(comments, animated: true)
                 })
                 }
@@ -288,7 +321,13 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
                 
                 default:do{
-                    let cell = CartoonContentCell.createCell(tableview: tableView)
+                    let cell = CartoonContentCell.createCell(tableview: tableView, indexPath: indexPath) { (height) in
+                        let cellInfo = JYCellInfo()
+                        cellInfo.indexPath = indexPath
+                        cellInfo.height = height
+                        self._updateCellHeight(cellInfo: cellInfo)
+                        tableView.reloadData()
+                    }
                     cell.imageName = self.cartoonContent?.content_results![indexPath.row - 1] as! String
                     return cell
                 }

@@ -96,6 +96,7 @@ class JYCommentEditView: UIView , UITextFieldDelegate{
                 if Int(result) == 1 {
                     self.commentColsure!()
                     self.commentTextField.text = nil
+                    self.sendButton.isEnabled = false
                 }
             }
         }
