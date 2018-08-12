@@ -25,7 +25,7 @@ class JYCommentCell: JYBaseCell {
     
     @IBOutlet weak var addCommentButton: UIButton!
     
-    @IBOutlet weak var likeButton: UIButton!
+//    @IBOutlet weak var likeButton: UIButton!
     
     var _comment:JYComment?
     var comment:JYComment {
@@ -43,9 +43,12 @@ class JYCommentCell: JYBaseCell {
         }
     }
     
+    var commentColsure:(()->Void)?
+    
     class func createCell(tableview: UITableView,
                           comment:JYComment,
-                          type:JYCommentCellType) -> JYCommentCell{
+                          type:JYCommentCellType,
+                          colsure:@escaping ()->Void) -> JYCommentCell{
         let identifier = "JYCommentCell"
         var cell:JYCommentCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? JYCommentCell
         if cell == nil {
@@ -57,12 +60,13 @@ class JYCommentCell: JYBaseCell {
         if type == .filter {
             cell.backgroundColor = UIColor.white
             cell.addCommentButton.isHidden = false
-            cell.likeButton.isHidden = false
+//            cell.likeButton.isHidden = false
         }else{
             cell.backgroundColor = UIColor.AboutBackgroundColor()
             cell.addCommentButton.isHidden = true
-            cell.likeButton.isHidden = true
+//            cell.likeButton.isHidden = true
         }
+        cell.commentColsure = colsure
         return cell
     }
     
@@ -74,12 +78,14 @@ class JYCommentCell: JYBaseCell {
     }
     
     @IBAction func commentAction(_ sender: UIButton) {
-        
+        if (self.commentColsure != nil) {
+            self.commentColsure!()
+        }
     }
     
-    @IBAction func likeAction(_ sender: UIButton) {
-        
-    }
+//    @IBAction func likeAction(_ sender: UIButton) {
+//        
+//    }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

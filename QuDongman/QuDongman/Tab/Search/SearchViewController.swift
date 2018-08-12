@@ -23,6 +23,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var categoriesButton:NSMutableArray!
     
+    @IBOutlet weak var otherOptionButtonsBackviewHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var tableview: UITableView!
     
     @IBOutlet weak var tableviewHeightConstraint: NSLayoutConstraint!
@@ -69,7 +71,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         loadEnable = true
         statuebarBackgroundHeightConstraint.constant = UIApplication.shared.statusBarFrame.size.height
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - 50 - (DeviceManager.isIphoneX() ?20:0) - 88
+        otherOptionButtonsBackviewHeightConstraint.constant = 44
+        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - 50 - (DeviceManager.isIphoneX() ?20:0) - 44
         showTabbar()
     }
 
@@ -177,7 +180,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             i+=1
             categoriesButtonsBackgroundHeightConstraint.constant = button.frame.origin.y + button.bounds.size.height + 8
         }
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - 50 - (DeviceManager.isIphoneX() ?20:0) - 88
+        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - 50 - (DeviceManager.isIphoneX() ?20:0) - 44
     }
     
     @objc func selectCategory(sender:UIButton) -> Void {

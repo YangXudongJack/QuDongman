@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum SearchDetailType {
+    case normal
+    case category
+    case rank
+    case none
+}
+
 class SearchDetailController: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var statusbarHeightConstraint: NSLayoutConstraint!
@@ -21,6 +28,8 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     @IBOutlet weak var otherOptionButtonsBackview: UIView!
     
     @IBOutlet weak var otherOptionButtonsBackviewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var otherOptionButtonsBackviewHeightConstraint: NSLayoutConstraint!
     
     var categoriesButton:NSMutableArray!
     
@@ -46,7 +55,7 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet var rankButtons: [UIButton]!
     
-    var onlyRank:Bool = false
+    var detailType:SearchDetailType = .normal
     
     var page:Int = 0
     var key:String = ""
@@ -69,29 +78,40 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
         let size = UIScreen.main.bounds.size
         loadEnable = true
         
-        if onlyRank {
+        if detailType != .normal {
             self.navigationController?.setNavigationBarHidden(false, animated: false)
             for button in bookSerialButtons {
                 button.isHidden = true
             }
             statusbarHeightConstraint.constant = 0
-            categoriesButtonsBackgroundHeightConstraint.constant = 0
-            searchBarBackviewHeightConstraint.constant = 0
-            otherOptionButtonsBackviewTopConstraint.constant = -36
-            self.view.insertSubview(otherOptionButtonsBackview, at: 0)
+            if detailType == .category {
+                searchBarBackviewHeightConstraint.constant = 0
+                otherOptionButtonsBackviewHeightConstraint.constant = 0
+            }else if detailType == .rank {
+                searchBarBackviewHeightConstraint.constant = 0
+                categoriesButtonsBackgroundHeightConstraint.constant = 0
+                otherOptionButtonsBackviewTopConstraint.constant = -36
+                self.view.insertSubview(otherOptionButtonsBackview, at: 0)
+            }else{
+                searchBarBackviewHeightConstraint.constant = 0
+                categoriesButtonsBackgroundHeightConstraint.constant = 0
+                otherOptionButtonsBackviewHeightConstraint.constant = 0
+            }
         }else{
             statusbarHeightConstraint.constant = UIApplication.shared.statusBarFrame.size.height
             self.navigationController?.setNavigationBarHidden(true, animated: false)
+            otherOptionButtonsBackviewHeightConstraint.constant = 44
+            
+            tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80
         }
         
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - (onlyRank ? -36 : categoriesButtonsBackgroundHeightConstraint.constant) - (DeviceManager.isIphoneX() ?20:0) - 80 + (onlyRank ? 12 : 0)
         hideTabbar()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if onlyRank {
+        if detailType != .normal {
             createNavBackBtn()
         }
         page = 1
@@ -101,7 +121,7 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
         tableview?.register(UINib.init(nibName: "JYCoverCell", bundle: Bundle.main), forCellReuseIdentifier: "JYCoverCell")
         
         configSubview()
-        if !onlyRank {
+        if detailType == .normal || detailType == .category {
             fetchCategory()
         }
         search()
@@ -197,7 +217,7 @@ class SearchDetailController: UIViewController, UITableViewDelegate, UITableView
             i+=1
             categoriesButtonsBackgroundHeightConstraint.constant = button.frame.origin.y + button.bounds.size.height + 8
         }
-        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80 + (onlyRank ? 12 : 0)
+        tableviewHeightConstraint.constant = size.height - UIApplication.shared.statusBarFrame.size.height - 64 - categoriesButtonsBackgroundHeightConstraint.constant - (DeviceManager.isIphoneX() ?20:0) - 80
     }
     
     @objc func selectCategory(sender:UIButton) -> Void {

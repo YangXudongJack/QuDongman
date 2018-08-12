@@ -15,6 +15,8 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     var chapter:String?
     var cartoonTitle:String?
     
+    var autoBack:Bool = false
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var tableview: UITableView!
     var cartoonContent:JYCartoonContent?
@@ -26,6 +28,9 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     
     @IBOutlet weak var sendCommentBtn: UIButton!
     @IBOutlet var toolbar: [UIView]!
+    @IBOutlet weak var topToolBar: UIView!
+    
+    @IBOutlet weak var bottomToolBarHeightConstraint: NSLayoutConstraint!
     var didScroll:Bool?
     
     var beginPoint:CGPoint?
@@ -52,6 +57,14 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         
         hideTabbar()
         _fetchData()
+        
+        if autoBack {
+            topToolBar.isHidden = true
+            bottomToolBarHeightConstraint.constant = 0
+            collectButton.isHidden = true
+        }
+        
+        tableview.scrollsToTop = true
     }
     
     override func viewDidLoad() {
@@ -119,6 +132,7 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
                 let result:String = response.object(forKey: "code") as! String
                 if Int(result) == 1 {
                     self.commentTF.text = nil
+                    self.view.endEditing(true)
                 }
             }
             JYProgressHUD.dismiss()
@@ -136,7 +150,11 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     @IBAction func commentEdit(_ sender: UIButton) {
-        commentTF.becomeFirstResponder()
+        let comments:JYCommentsController = JYCommentsController()
+        comments.bookId = self.id
+        comments.chapterId = self.chapter
+        comments.pid = "0"
+        self.navigationController?.pushViewController(comments, animated: true)
     }
     
     func _fetchCellHeight(indexPath:IndexPath) -> CGFloat {
@@ -217,9 +235,25 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         didScroll = true
         for view in toolbar {
-            UIView.animate(withDuration: 0.5) {
-                view.alpha = 1
+            if autoBack {
+                if view == topToolBar {
+                    continue
+                }else{
+                    UIView.animate(withDuration: 0.5) {
+                        view.alpha = 1
+                    }
+                }
+            }else{
+                UIView.animate(withDuration: 0.5) {
+                    view.alpha = 1
+                }
             }
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if autoBack && tableview.contentOffset.y < -20{
+            self.navigationController?.popViewController(animated: false)
         }
     }
     
@@ -227,8 +261,18 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
         self.view.endEditing(true)
         if didScroll! {
             for view in toolbar {
-                UIView.animate(withDuration: 0.5) {
-                    view.alpha = 0
+                if autoBack {
+                    if view == topToolBar {
+                        continue
+                    }else{
+                        UIView.animate(withDuration: 0.5) {
+                            view.alpha = 1
+                        }
+                    }
+                }else{
+                    UIView.animate(withDuration: 0.5) {
+                        view.alpha = 1
+                    }
                 }
             }
         }
@@ -237,8 +281,18 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
     func scrollViewDidScrollToTop(_ scrollView: UIScrollView) {
         didScroll = true
         for view in toolbar {
-            UIView.animate(withDuration: 0.5) {
-                view.alpha = 1
+            if autoBack {
+                if view == topToolBar {
+                    continue
+                }else{
+                    UIView.animate(withDuration: 0.5) {
+                        view.alpha = 1
+                    }
+                }
+            }else{
+                UIView.animate(withDuration: 0.5) {
+                    view.alpha = 1
+                }
             }
         }
     }
@@ -272,11 +326,17 @@ class BookContentController: UIViewController, UITableViewDelegate, UITableViewD
             
             if (beginPoint?.x)! - (endPoint?.x)! > 30 && yOffset < 30{
                 if self.cartoonContent?.next_chapter_id != self.chapter {
+                    self.autoBack = false
+                    self.topToolBar.isHidden = false
+                    self.bottomToolBarHeightConstraint.constant = 44
                     self.chapter = self.cartoonContent?.next_chapter_id
                     self._fetchData()
                 }
             }else if (beginPoint?.x)! - (endPoint?.x)! < -30 && yOffset < 30{
                 if self.cartoonContent?.prev_chapter_id != self.chapter {
+                    self.autoBack = false
+                    self.topToolBar.isHidden = false
+                    self.bottomToolBarHeightConstraint.constant = 44
                     self.chapter = self.cartoonContent?.prev_chapter_id
                     self._fetchData()
                 }

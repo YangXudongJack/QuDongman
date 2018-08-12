@@ -13,8 +13,11 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
     var bookId:String?
     var chapterId:String?
     var pid:String?
-    var page:Int?
+    var page:Int = 1
     var comments:NSMutableArray?
+    var type:CommentType = .main
+    var defaultComment:JYComment?
+    var loadEnable:Bool = true
     
     var tableview:UITableView?
     var commentInputView:JYCommentEditView?
@@ -22,6 +25,7 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage.init(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage.init()
         
@@ -38,6 +42,9 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
         
         page = 1
         comments = NSMutableArray()
+        if type == .sub {
+            comments?.add(defaultComment)
+        }
         initSubview()
         initComments()
         
@@ -72,10 +79,13 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func initComments() -> Void {
         JYProgressHUD.show()
-        HttpUnit.HttpGet(url: JYUrl.comments(page: page!, bookId: bookId!, chapter: chapterId!, pid: pid!)) { (response, success) in
+        HttpUnit.HttpGet(url: JYUrl.comments(page: page, bookId: bookId!, chapter: chapterId!, pid: pid!)) { (response, success) in
             let comments:AnyObject = response.object(forKey: "data") as AnyObject
             if comments.isKind(of: NSArray.self) {
                 let commentsArr:NSArray = comments as! NSArray
+                if commentsArr.count < 4 {
+                    self.loadEnable = false
+                }
                 for item in commentsArr {
                     let comment:JYComment = JYComment(dict: item as! [String : AnyObject])
                     self.comments?.add(comment)
@@ -119,10 +129,28 @@ class JYCommentsController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comment:JYComment = self.comments?.object(at: indexPath.row) as! JYComment
-        return JYListCommentCell.createCell(tableview: tableView, comments: comment, bookId: bookId!, chapter: chapterId!, colsure: { (commentObj) in
+        return JYListCommentCell.createCell(tableview: tableView, comments: comment, bookId: bookId!, chapter: chapterId!, type:type, colsure: { (commentObj) in
             self.commentInputView?.commentTextField.becomeFirstResponder()
+            let defaultHeader:String = (commentObj.member_result?.nickname)!
+            self.commentInputView?.defaultString = "回复\(defaultHeader):"
             self.commentInputView?.pid = commentObj.id
+        }, allCommentsColsure: { (commentObj) in
+            let comments:JYCommentsController = JYCommentsController()
+            comments.bookId = self.bookId
+            comments.chapterId = self.chapterId
+            comments.pid = commentObj.id
+            comments.type = .sub
+            comments.defaultComment = commentObj;
+            self.navigationController?.pushViewController(comments, animated: true)
         })
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let offset = (self.tableview?.contentOffset.y)! - ((self.tableview?.contentSize.height)! - (self.tableview?.bounds.size.height)!)
+        if offset >= 0 && self.loadEnable{
+            page+=1
+            initComments()
+        }
     }
 
     override func didReceiveMemoryWarning() {

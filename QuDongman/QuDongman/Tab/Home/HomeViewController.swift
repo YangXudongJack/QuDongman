@@ -131,14 +131,23 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let cell = JYNavCell.createCell(tableview: tableView) { (nav) in
                 let story = UIStoryboard.init(name: "Main", bundle: Bundle.main)
                 let detail:SearchDetailController = story.instantiateViewController(withIdentifier: "SearchDetailController") as! SearchDetailController
+                var detailType:SearchDetailType = .category
+                if nav.nav_name == "分类" {
+                    detailType = .category
+                }
+                if nav.nav_name == "排行" {
+                    detailType = .rank
+                }
                 if nav.nav_name == "免费" {
                     detail.is_vip = "0"
+                    detailType = .none
                 }
                 if nav.nav_name == "短篇" {
                     detail.is_short = "1"
+                    detailType = .none
                 }
                 detail.title = nav.nav_name
-                detail.onlyRank = true
+                detail.detailType = detailType
                 self.navigationController?.pushViewController(detail, animated: true)
             }
             cell.navs = self.homeDataSource?.nav_results

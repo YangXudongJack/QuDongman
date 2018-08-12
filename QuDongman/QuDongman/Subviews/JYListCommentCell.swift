@@ -8,10 +8,16 @@
 
 import UIKit
 
+enum CommentType {
+    case main
+    case sub
+}
+
 class JYListCommentCell: JYBaseCell {
     
     var bookId:String?
     var chapter:String?
+    var type:CommentType = .main
     
     var _comment:JYComment?
     var comment:JYComment? {
@@ -23,15 +29,37 @@ class JYListCommentCell: JYBaseCell {
             timeLabel.text = newValue?.created_at
             ownerCommentLabel.text = newValue?.content
             
-            if Int((newValue?.comment_count)!)! == 0 {
+            if type == .sub {
                 firstCommentLabel.text = nil
                 secondCommentLabel.text = nil
                 cellBottomWithReplyBottomConstraint.constant = -43
-            }else{
-                if Int((newValue?.comment_count)!)! == 1 {
-                    secondCommentLabel.text = nil
+                
+                if newValue?.pid == "0" {
+                    self.contentView.backgroundColor = UIColor.white
+                }else{
+                    self.contentView.backgroundColor = UIColor.AboutBackgroundColor()
                 }
-                self.initComments()
+            }else{
+                if Int((newValue?.comment_count)!)! == 0 {
+                    firstCommentLabel.text = nil
+                    secondCommentLabel.text = nil
+                    cellBottomWithReplyBottomConstraint.constant = -43
+                }else{
+                    if Int((newValue?.comment_count)!)! == 1 {
+                        secondCommentLabel.text = nil
+                    }
+                    self.initComments()
+                }
+                
+                if Int((newValue?.comment_count)!)! > 2 {
+                    allCommentsButton.isHidden = false
+                    spreadButtonWithSecondCommentConstraint.constant = 7
+                    allCommentsButtonHeightConstraint.constant = 14
+                }else{
+                    allCommentsButton.isHidden = true
+                    spreadButtonWithSecondCommentConstraint.constant = 0
+                    //                allCommentsButtonHeightConstraint.constant = 0
+                }
             }
         }
         
@@ -46,16 +74,21 @@ class JYListCommentCell: JYBaseCell {
     @IBOutlet weak var ownerCommentLabel: UILabel!
     @IBOutlet weak var firstCommentLabel: UILabel!
     @IBOutlet weak var secondCommentLabel: UILabel!
+    @IBOutlet weak var allCommentsButton: UIButton!
+    @IBOutlet weak var allCommentsButtonHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var spreadButtonWithSecondCommentConstraint: NSLayoutConstraint!
     @IBOutlet weak var cellBottomWithReplyBottomConstraint: NSLayoutConstraint!
     
     var commentColsure:((JYComment)->Void)?
+    var allCommentColsure:((JYComment)->Void)?
     
     class func createCell(tableview: UITableView,
                           comments:JYComment,
                           bookId:String,
                           chapter:String,
-                          colsure:@escaping (JYComment)->Void) -> JYListCommentCell{
+                          type:CommentType,
+                          colsure:@escaping (JYComment)->Void,
+                          allCommentsColsure:@escaping (JYComment)->Void) -> JYListCommentCell{
         let identifier = "JYListCommentCell"
         var cell:JYListCommentCell! = tableview.dequeueReusableCell(withIdentifier: identifier) as? JYListCommentCell
         if cell == nil {
@@ -65,8 +98,10 @@ class JYListCommentCell: JYBaseCell {
         }
         cell.bookId = bookId
         cell.chapter = chapter
+        cell.type = type
         cell.comment = comments
         cell.commentColsure = colsure
+        cell.allCommentColsure = allCommentsColsure
         return cell
     }
     
@@ -118,6 +153,9 @@ class JYListCommentCell: JYBaseCell {
     }
     
     @IBAction func openAllReplay(_ sender: UIButton) {
+        if (allCommentColsure != nil) {
+            self.allCommentColsure!(self.comment!)
+        }
     }
     
     func _changeColor(string:NSString, colorString:String) -> NSAttributedString {

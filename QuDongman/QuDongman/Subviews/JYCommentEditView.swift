@@ -20,6 +20,19 @@ class JYCommentEditView: UIView , UITextFieldDelegate{
     var pid:String?
     var to_member_id:String?
     
+    var _defaultString:String?
+    var defaultString:String? {
+        set {
+            _defaultString = newValue
+            
+            self.commentTextField.text = newValue
+        }
+        
+        get {
+            return _defaultString
+        }
+    }
+    
     var commentColsure:(()->Void)?
     
     class func showAddCommentView(frame:CGRect, colsure:@escaping ()->Void) -> JYCommentEditView{
@@ -87,7 +100,7 @@ class JYCommentEditView: UIView , UITextFieldDelegate{
         params["to_member_id"] = to_member_id
         params["book_id"] = bookId
         params["chapter_id"] = chapterId
-        params["content"] = commentTextField.text
+        params["content"] = commentTextField.text?.replacingOccurrences(of: self.defaultString == nil ? "" : self.defaultString!, with: "")
         params["pid"] = pid
         HttpUnit.HttpPost(url: JYUrl.addComments(), params: params) { (response, success) in
             JYProgressHUD.dismiss()

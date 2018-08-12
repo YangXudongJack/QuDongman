@@ -39,6 +39,8 @@
 		0B220D822054FF2900072BE9 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B220D812054FF2900072BE9 /* ShareManager.swift */; };
 		0B277E2D20B313CA003115E7 /* UserSetupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B277E2B20B313CA003115E7 /* UserSetupViewController.swift */; };
 		0B277E2E20B313CA003115E7 /* UserSetupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B277E2C20B313CA003115E7 /* UserSetupViewController.xib */; };
+		0B2C1935212039C90050040F /* JYReadNowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2C1933212039C90050040F /* JYReadNowCell.swift */; };
+		0B2C1936212039C90050040F /* JYReadNowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0B2C1934212039C90050040F /* JYReadNowCell.xib */; };
 		0B5AC22220B70C52009E3A73 /* BookrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5AC22020B70C52009E3A73 /* BookrackViewController.swift */; };
 		0B5AC27320BAFBB8009E3A73 /* BookrackBooksCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5AC27120BAFBB8009E3A73 /* BookrackBooksCell.swift */; };
 		0B62A53A20FCDF78007EBB9D /* String+Method.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B62A53920FCDF78007EBB9D /* String+Method.swift */; };
@@ -260,6 +262,8 @@
 		0B220D812054FF2900072BE9 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		0B277E2B20B313CA003115E7 /* UserSetupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetupViewController.swift; sourceTree = "<group>"; };
 		0B277E2C20B313CA003115E7 /* UserSetupViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserSetupViewController.xib; sourceTree = "<group>"; };
+		0B2C1933212039C90050040F /* JYReadNowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JYReadNowCell.swift; sourceTree = "<group>"; };
+		0B2C1934212039C90050040F /* JYReadNowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JYReadNowCell.xib; sourceTree = "<group>"; };
 		0B5AC22020B70C52009E3A73 /* BookrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrackViewController.swift; sourceTree = "<group>"; };
 		0B5AC27120BAFBB8009E3A73 /* BookrackBooksCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookrackBooksCell.swift; sourceTree = "<group>"; };
 		0B62A53920FCDF78007EBB9D /* String+Method.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Method.swift"; sourceTree = "<group>"; };
@@ -1011,6 +1015,8 @@
 				0BAD7691210C86B8005F2576 /* JYListCommentCell.swift */,
 				0BAD7692210C86B8005F2576 /* JYListCommentCell.xib */,
 				0BAD76A1210CC925005F2576 /* JYCommentEditView.swift */,
+				0B2C1933212039C90050040F /* JYReadNowCell.swift */,
+				0B2C1934212039C90050040F /* JYReadNowCell.xib */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -1225,6 +1231,7 @@
 				0BBF836020F0C95900AC599A /* JYCommentCell.xib in Resources */,
 				0BBF837420F11B3800AC599A /* JYCatelogItemCell.xib in Resources */,
 				0B15FFC71FC724BF00639BA2 /* Main.storyboard in Resources */,
+				0B2C1936212039C90050040F /* JYReadNowCell.xib in Resources */,
 				0BAD7694210C86B8005F2576 /* JYListCommentCell.xib in Resources */,
 				0BBF837020F1098500AC599A /* JYCatelogHeader.xib in Resources */,
 				0B277E2E20B313CA003115E7 /* UserSetupViewController.xib in Resources */,
@@ -1281,6 +1288,7 @@
 				0B1706041FC72BC2009E3D69 /* HttpUnit.swift in Sources */,
 				0B78E3DF20E543520030EBC4 /* UIImage+MultiFormat.m in Sources */,
 				0B78E3DA20E543520030EBC4 /* UIImage+ForceDecode.m in Sources */,
+				0B2C1935212039C90050040F /* JYReadNowCell.swift in Sources */,
 				0B78E3EC20E543520030EBC4 /* SDWebImageGIFCoder.m in Sources */,
 				0B78E3EB20E543520030EBC4 /* NSImage+WebCache.m in Sources */,
 				0BBF835820F0BC2700AC599A /* JYBookDescCell.swift in Sources */,

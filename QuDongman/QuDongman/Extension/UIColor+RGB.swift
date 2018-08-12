@@ -70,6 +70,10 @@ extension UIColor{
         return self.init().color(tone: 0x6a6a6a, alpha: 1.0)
     }
     
+    public class func subComments() -> UIColor {
+        return self.init().color(tone: 0x767676, alpha: 1.0)
+    }
+    
     func image(size : CGSize) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         UIGraphicsBeginImageContext(rect.size)

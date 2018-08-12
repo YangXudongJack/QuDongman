@@ -141,6 +141,8 @@
             </tableViewCellContentView>
             <gestureRecognizers/>
             <connections>
+                <outlet property="allCommentsButton" destination="X1X-PC-Pcv" id="IiP-w6-q8l"/>
+                <outlet property="allCommentsButtonHeightConstraint" destination="lCj-ZV-6u6" id="UQM-Bn-5xh"/>
                 <outlet property="cellBottomWithReplyBottomConstraint" destination="vET-LH-9MP" id="1qW-kL-SWr"/>
                 <outlet property="firstCommentLabel" destination="1QM-qD-Zf0" id="p4l-a8-brb"/>
                 <outlet property="headerImage" destination="c3B-EK-FgM" id="2Fk-42-DIY"/>

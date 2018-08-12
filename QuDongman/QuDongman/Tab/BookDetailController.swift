@@ -38,11 +38,11 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     
     @IBOutlet weak var tableviewHeightConstraint: NSLayoutConstraint!
     
-    @IBOutlet weak var readNowButton: UIButton!
+//    @IBOutlet weak var readNowButton: UIButton!
     
-    @IBOutlet weak var readNowImage: UIImageView!
-    
-    @IBOutlet weak var readNowLabel: UILabel!
+//    @IBOutlet weak var readNowImage: UIImageView!
+//    
+//    @IBOutlet weak var readNowLabel: UILabel!
     
     var indexPathList:NSMutableArray?
     
@@ -52,18 +52,17 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
             let size = UIScreen.main.bounds.size
             let scale:CGFloat = size.width / 375.0
             if newValue == .info {
-                readNowButton.isHidden = false
-                readNowImage.isHidden = false
-                readNowLabel.isHidden = false
-                tableviewHeightConstraint.constant = size.height - 210 * scale - 60 - 44
+//                readNowButton.isHidden = false
+//                readNowImage.isHidden = false
+//                readNowLabel.isHidden = false
             }else{
-                readNowButton.isHidden = true
-                readNowImage.isHidden = true
-                readNowLabel.isHidden = true
-                tableviewHeightConstraint.constant = size.height - 210 * scale - 60
+//                readNowButton.isHidden = true
+//                readNowImage.isHidden = true
+//                readNowLabel.isHidden = true
                 
                 _fetchCartoonContent()
             }
+            tableviewHeightConstraint.constant = size.height - 210 * scale - 60
             _type = newValue
         }
         
@@ -215,15 +214,16 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch type {
         case .info?: do {
-            return bookInfo == nil ? 0 : 3 + (self.bookInfo?.comment_results?.results?.count)!
+            return bookInfo == nil ? 0 : 4 + (self.bookInfo?.comment_results?.results?.count)!
         }
             
         default: do{
-            if self.cartoonContent == nil {
-                return 1
-            }else{
-                return 1 + (self.cartoonContent?.content_results?.count)!
-            }
+//            if self.cartoonContent == nil {
+//                return 1
+//            }else{
+//                return 1 + (self.cartoonContent?.content_results?.count)!
+//            }
+            return 1
             }
         }
     }
@@ -242,6 +242,10 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 
             case 2 + (self.bookInfo?.comment_results?.results?.count)!: do {
                 return 21.0
+                }
+                
+            case 3 + (self.bookInfo?.comment_results?.results?.count)!: do {
+                return 44.0
                 }
                 
             default:
@@ -291,9 +295,26 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 })
                 }
                 
+            case 3 + (self.bookInfo?.comment_results?.results?.count)!: do {
+                return JYReadNowCell.createCell(tableview: tableView, colsure: {
+                    let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
+                    let book = BookContentController.bookContent(id: self.id!, chapter: catelog.id!, title: catelog.name!)
+                    book.autoBack = true
+                    self.navigationController?.pushViewController(book, animated: false)
+                })
+                }
+                
             default: do {
                 let comment:JYComment = self.bookInfo?.comment_results?.results?.object(at: indexPath.row - 2) as! JYComment
-                return JYCommentCell.createCell(tableview: tableView, comment: comment, type: .filter)
+                return JYCommentCell.createCell(tableview: tableView, comment: comment, type: .filter, colsure: {
+                    let comments:JYCommentsController = JYCommentsController()
+                    let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
+                    let chapter:Int = Int(catelog.id!)!
+                    comments.bookId = self.id
+                    comments.chapterId = catelog.id
+                    comments.pid = "0"
+                    self.navigationController?.pushViewController(comments, animated: true)
+                })
                 }
             }
         }
@@ -333,6 +354,21 @@ class BookDetailController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
             }
             }
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        var autoRead = false
+        if tableview.bounds.size.height > tableview.contentSize.height {
+            autoRead = tableview.contentOffset.y > 20
+        }else{
+            autoRead = tableview.contentOffset.y + tableview.bounds.size.height > tableview.contentSize.height
+        }
+        if autoRead && type == .info {
+            let catelog:JYCatelog = self.bookInfo?.chapter_results?.first as! JYCatelog
+            let book = BookContentController.bookContent(id: self.id!, chapter: catelog.id!, title: catelog.name!)
+            book.autoBack = true
+            self.navigationController?.pushViewController(book, animated: false)
         }
     }
     

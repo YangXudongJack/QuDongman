@@ -34,6 +34,7 @@ class MineViewController: UITableViewController {
             self.tableView.reloadData()
         }else{
             self.usernameLabel.text = "请登录"
+            self.headerImageview.image = UIImage(named: "mypg_user_img")
         }
     }
 
@@ -126,6 +127,7 @@ class MineViewController: UITableViewController {
                 setup.logoutColsure {
                     weakself?.logined = false
                     weakself?.usernameLabel.text = "请登录"
+                    weakself?.headerImageview.image = UIImage(named: "mypg_user_img")
                     weakself?.tableView.reloadData()
                 }
                 break
@@ -147,6 +149,7 @@ class MineViewController: UITableViewController {
             loginVC.loginResultClosure {
                 weakself?.logined = true
                 weakself?.usernameLabel.text = JYUser.shared.username
+                weakself?.headerImageview.sd_setImage(with: URL(string: JYUser.shared.avatar!), placeholderImage: UIImage(named: "mypg_user_img"), options: .retryFailed, completed: nil)
                 weakself?.tableView.reloadData()
             }
             self.present(nav, animated: true, completion: nil)

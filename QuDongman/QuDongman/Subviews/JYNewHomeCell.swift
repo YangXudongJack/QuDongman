@@ -26,7 +26,7 @@ class JYNewHomeCell: JYBaseCell {
                 let titleLabel:UILabel = view?.viewWithTag(12) as! UILabel
                 let descLabel:UILabel = view?.viewWithTag(13) as! UILabel
                 
-                imageview.sd_setImage(with: URL(string: recommend.banner_image!), placeholderImage: UIImage(named: "bookCover_placeholder"), options: .retryFailed, completed: nil)
+                imageview.sd_setImage(with: URL(string: recommend.cover_image_m!), placeholderImage: UIImage(named: "bookCover_placeholder"), options: .retryFailed, completed: nil)
                 titleLabel.text = recommend.name
                 descLabel.text = recommend.descp_short
                 index+=1

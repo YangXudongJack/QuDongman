@@ -79,9 +79,12 @@ class JYUser: JYBaseObject {
     }
     
     func updateBalance() -> Void {
+//        let semaphore = DispatchSemaphore.init(value: 0)
         HttpUnit.HttpGet(url: JYUrl.userInfo()) { (response, success) in
             JYUser.shared.update(dict: response.object(forKey: "data") as! [String : AnyObject])
+//            semaphore.signal()
         }
+//        semaphore.wait()
     }
     
     func clear(colsure:()->Void) -> Void {

@@ -67,24 +67,11 @@
                             <constraint firstAttribute="height" constant="16" id="QvV-EU-bld"/>
                         </constraints>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" backgroundImage="like_icon"/>
+                        <state key="normal" backgroundImage="more_comment_cion"/>
                         <state key="selected" backgroundImage="like_pre_icon"/>
                         <state key="highlighted" backgroundImage="like_pre_icon"/>
                         <connections>
-                            <action selector="likeAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="5yw-bg-6SL"/>
-                        </connections>
-                    </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S2g-q8-Nrq">
-                        <rect key="frame" x="289" y="7.5" width="15" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="oOE-RL-8md"/>
-                            <constraint firstAttribute="width" constant="15" id="xuU-Bp-QoH"/>
-                        </constraints>
-                        <state key="normal" backgroundImage="more_comment_cion"/>
-                        <state key="selected" backgroundImage="more_comment_cion"/>
-                        <state key="highlighted" backgroundImage="more_comment_cion"/>
-                        <connections>
-                            <action selector="commentAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BQf-1u-eQV"/>
+                            <action selector="commentAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="lSM-LL-MLd"/>
                         </connections>
                     </button>
                 </subviews>
@@ -94,9 +81,7 @@
                     <constraint firstAttribute="trailing" secondItem="gbC-Hd-wkh" secondAttribute="trailing" constant="30" id="BdM-d0-3eU"/>
                     <constraint firstItem="co7-dq-Jte" firstAttribute="leading" secondItem="WNR-ev-e54" secondAttribute="leading" id="FZl-Pp-7He"/>
                     <constraint firstItem="Qxw-dg-Wje" firstAttribute="top" secondItem="co7-dq-Jte" secondAttribute="bottom" constant="6" id="K5C-3k-M3O"/>
-                    <constraint firstItem="S2g-q8-Nrq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7.5" id="VFo-Tk-LBj"/>
                     <constraint firstItem="Iut-Kq-YrK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="XgB-Ja-Z6w"/>
-                    <constraint firstItem="gbC-Hd-wkh" firstAttribute="leading" secondItem="S2g-q8-Nrq" secondAttribute="trailing" constant="25" id="kja-8R-wk2"/>
                     <constraint firstItem="Iut-Kq-YrK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="19" id="mgx-x3-zsL"/>
                     <constraint firstItem="co7-dq-Jte" firstAttribute="top" secondItem="WNR-ev-e54" secondAttribute="bottom" constant="2" id="oir-SJ-maC"/>
                     <constraint firstItem="WNR-ev-e54" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="xE8-ah-uUc"/>
@@ -104,18 +89,16 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="addCommentButton" destination="S2g-q8-Nrq" id="aWN-wB-4vb"/>
+                <outlet property="addCommentButton" destination="gbC-Hd-wkh" id="RF7-N5-m3n"/>
                 <outlet property="comment_user_comment" destination="Qxw-dg-Wje" id="gUy-3k-3N8"/>
                 <outlet property="comment_user_header" destination="Iut-Kq-YrK" id="I49-mZ-X9C"/>
                 <outlet property="comment_user_name" destination="WNR-ev-e54" id="wHO-qU-BD1"/>
                 <outlet property="comment_user_time" destination="co7-dq-Jte" id="lD7-ld-qXu"/>
-                <outlet property="likeButton" destination="gbC-Hd-wkh" id="j2F-br-Xns"/>
             </connections>
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="like_icon" width="16" height="16"/>
         <image name="like_pre_icon" width="16" height="16"/>
         <image name="more_comment_cion" width="16" height="15"/>
     </resources>
